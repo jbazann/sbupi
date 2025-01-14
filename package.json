@@ -1,0 +1,23 @@
+{
+  "name": "sbupi",
+  "private": true,
+  "version": "1.0.0",
+  "description": "The SBUPI project. A marvel of science and engineering. ",
+  "repository": {
+    "url": "https://github.com/jbazann/sbupi"
+  },
+  "author": "jbazann",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^6.0.5"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.0.0-beta.9",
+    "tailwindcss": "^4.0.0-beta.9"
+  }
+}

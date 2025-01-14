@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+/*noinspection CssInvalidAtRule*/
+@variant chk1 (input#chk1:checked ~ div &,input#chk1:checked ~ &);
+/*noinspection CssInvalidAtRule*/
+@variant chk2 (input#chk2:checked ~ div &,input#chk2:checked ~ &);
+/*noinspection CssInvalidAtRule*/
+@variant wide (@media (orientation: landscape));
+/*noinspection CssInvalidAtRule*/
+@variant pc (@media (min-width: 900px) and (orientation: landscape));
+
+/*noinspection CssInvalidAtRule*/
+@theme {
+    --font-main: "ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New",  "monospace";
+    --color-dark-pink-background: oklch(10% 0.03 350);
+    --color-dark-pink-border: oklch(20% 0.04 350);
+    --color-dark-pink-text: oklch(88% 0.02 350);
+    --color-dark-pink-highlight: oklch(70% 0.15 360);
+    --color-dark-background: oklch(10% 0.03 270);
+    --color-dark-border: oklch(50% 0.03 270);
+    --color-dark-text: oklch(90% 0.03 270);
+    --color-dark-highlight:  oklch(88% 0.22 222);
+    --color-light-background: oklch(96% 0.03 90);
+    --color-light-border: oklch(70% 0.02 90);
+    --color-light-text: oklch(20% 0.02 90);
+    --color-light-highlight: oklch(60% 0.2 30);
+    --drop-shadow-dark-glow: 0 0 0.35rem rgba(153, 204, 255, 0.5);
+    --drop-shadow-light-glow: 0 0 0.35rem rgba(255, 215, 0, 0.5);
+    --animate-marquee: marquee 42s linear infinite;
+
+    @keyframes marquee {
+        from { transform: translateY(0%); }
+        to { transform: translateX(-100%); }
+    }
+
+}
