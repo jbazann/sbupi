@@ -157,7 +157,7 @@
                 <div id="linksdiv1" data-content data-content1>
                   <div class="h-fit w-full py-2 flex flex-col justify-center overflow-y-auto">
                     <a href="https://x.com/jbazann_" target="_blank" class="contents">
-                      <button id="remindmetofixthis"  data-button>Twitter/X</button>
+                      <button id="linksfocus1"  data-button>Twitter/X</button>
                     </a>
                    <a href="https://github.com/jbazann" target="_blank" class="contents">
                      <button data-button>GitHub</button>
@@ -210,10 +210,17 @@
 
 
     <script type="module">
-      import {menuButtons,cats,init} from "./src/index.js"
-      menuButtons(['me', 'projects', 'links', 'cat', 'settings'], '1')
-      menuButtons(['sbupi', 'skwidl'], '2', 'projects')
-      init()
+      import {registerButtons,cats,init} from "./src/index.js"
+      registerButtons([
+        {name: 'me'},
+        {name: 'projects', focusOn: 'sbupibtn2'},
+        {name: 'links', focusOn: 'linksfocus1'},
+        {name: 'cat', focusOn: 'anothercat'},
+        {name: 'settings'}], '1')
+      registerButtons([
+        {name: 'sbupi'},
+        {name: 'skwidl'}], '2', 'projects')
+
       let batch, nextBatch
       const cat = document.getElementById('catimg')
       whyIsTopLevelAwaitSomethingIHaveToConfigureManIHateJavascript()
@@ -248,6 +255,7 @@
         brutelyCache(nextBatch)
       }
 
+      init()
     </script>
 
   </body>

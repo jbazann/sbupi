@@ -1,7 +1,7 @@
-const buttons = new Map();
+const buttons = new Map()
 
 class MenuButton {
-    constructor(name,menu,under) {
+    constructor(name,menu,under,focusOn) {
         this.name = name
         this.menu = menu
         this.key = name + menu
@@ -11,39 +11,31 @@ class MenuButton {
         this.menuchk = document.getElementById('chk' + this.menu)
         this.submenuchk = document.getElementById('submenuchk' + this.menu)
         this.under = under ? buttons.get(under + (menu-1)) : null
-        this.over = []
-        this.under?.over?.push(this.elem)
+        this.focusOnAction = focusOn
         this.label = this.elem.innerText
         this.elem.addEventListener('click', this.menuListener(), true)
         buttons.set(this.key, this)
     }
 
     menuListener() {
-        const button = this.key;
+        const buttonKey = this.key;
         return (function () {
-            menuListener(button);
+            buttonListener(buttonKey)
         });
     }
 }
 
-function menuListener(button) {
-    const cuttingcorners = button // fixme
-    button = buttons.get(button)
-    const back = button.elem.innerText === 'Back'
-    button.chk.click(); button.menuchk.click(); button.under?.submenuchk?.click()
-    button.elem.innerText = back ? button.label : 'Back'
-    if (!back) button.over?.at(0)?.focus()
-    let currentPath = window.location.pathname
-    if (currentPath.endsWith('/')) currentPath = currentPath.substring(0, currentPath.lastIndexOf('/'))
-    if (initialized && !back) history.pushState(null,'', currentPath + '/' + button.path) // fixme
-    if (initialized && back) history.pushState(null,'', removeLastSegment(currentPath)) // fixme
-    if (cuttingcorners === 'links1') document.getElementById('remindmetofixthis').focus() // fixme
-    if (cuttingcorners === 'cat1') document.getElementById('anothercat').focus() // fixme
+export function registerButtons(btns, menu, under) {
+    for (const button of btns) new MenuButton(button.name, menu, under, button.focusOn)
 }
 
-export function menuButtons(btns, menu, under) {
-    for (const button of btns) new MenuButton(button,menu,under)
+function action(button) {
+    const back = button.elem.innerText === 'Back'
+    button.elem.innerText = back ? button.label : 'Back'//TODO  getTranslated('back')
+    button.chk.click(); button.menuchk.click(); button.under?.submenuchk?.click()
+    if (!back && button.focusOnAction) document.getElementById(button.focusOnAction).focus()
 }
+
 
 export async function cats() {
     // TODO use my own API with sanitized cat images
@@ -55,19 +47,58 @@ export async function cats() {
     return await ((await fetch('https://api.thecatapi.com/v1/images/search?limit=10')).json())
 }
 
-let initialized = false
+
+const redirects = new Map()
+
+redirects.set('projects',['proyectos']) //TODO
+
+let clicksPushState = false
+let rememberClicks = true
+let pressedButtons = []
+
+function buttonListener(key) {
+    const button = buttons.get(key)
+    const isLastPressed = pressedButtons.at(-1)?.name === button.name
+    let state = {
+        key: button.key,
+        isPushedState: true
+    }
+    let currentPath = window.location.pathname
+    if (currentPath.endsWith('/')) currentPath = currentPath.substring(0,-1)
+    if (isLastPressed) {
+        pressedButtons.pop()
+        if (clicksPushState) history.pushState(state,'', removeLastSegment(currentPath))
+    } else {
+        if (rememberClicks) pressedButtons.push(button)
+        if (clicksPushState) history.pushState(state,'', currentPath + '/' + button.path)
+    }
+    action(button)
+}
 
 export function init() {
-    let path = window.location.pathname.split('/').filter(p => p !== '').reverse()
+    console.log('pop',pressedButtons.length)
+    clicksPushState = false
+    while (pressedButtons.length > 0) {
+        rememberClicks = false
+        let btn = pressedButtons.pop()
+        btn.elem.click()
+        rememberClicks = true
+    }
+    let path = window.location.pathname
+        .split('/')
+        .filter(s => s !== '')
+        .reverse();
     let menu = 1;
     let button
     while (button = buttons.get(path.pop() + menu++)) {
         button.elem.click()
     }
-    initialized = true
+    clicksPushState = true
 }
 
 function removeLastSegment(target) {
     const result =  target.substring(0,target.lastIndexOf('/'))
     return result === '' ? '/' : result
 }
+
+window.addEventListener('popstate', init)
