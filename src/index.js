@@ -76,7 +76,6 @@ function buttonListener(key) {
 }
 
 export function init() {
-    console.log('pop',pressedButtons.length)
     clicksPushState = false
     while (pressedButtons.length > 0) {
         rememberClicks = false
