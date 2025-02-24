@@ -12,6 +12,9 @@
 @variant pc (@media (min-width: 900px) and (orientation: landscape));
 
 /*noinspection CssInvalidAtRule*/
+@variant dark (&:where(.dark, .dark *));
+
+/*noinspection CssInvalidAtRule*/
 @theme {
     --font-main: "ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New",  "monospace";
     --color-dark-pink-background: oklch(10% 0.03 350);

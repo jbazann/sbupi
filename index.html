@@ -282,7 +282,7 @@
 
 
     <script type="module">
-      import {registerButtons,cats,init} from "./src/index.js"
+      import {registerButtons, cats, init, initSettings} from "./src/index.js"
       registerButtons([
         {name: 'me'},
         {name: 'projects', focusOn: 'sbupibtn2'},
@@ -296,6 +296,8 @@
         {name: 'language'},
         {name: 'theme'},
         {name: 'cookies'}], '3', 'settings', '1')
+
+      initSettings()
 
       let batch, nextBatch
       const cat = document.getElementById('catimg')

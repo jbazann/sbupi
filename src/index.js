@@ -101,3 +101,95 @@ function removeLastSegment(target) {
 }
 
 window.addEventListener('popstate', init)
+
+export const THEME_KEY = 'THEME'
+const THEME_RADIO_GROUP = 'theme'
+const LANGUAGE_RADIO_GROUP = 'language'
+const THEME_OPTIONS = {
+    DARK: {
+        radio: 'dark-rb'
+    },
+    LIGHT: {
+        radio: 'light-rb'
+    }
+}
+
+export const LANGUAGE_OPTIONS = {
+    EN: {
+        radio: 'en-rb'
+    },
+    ES: {
+        radio: 'es-rb'
+    }
+}
+
+export function initSettings() {
+    let theme = JSON.parse(localStorage.getItem(THEME_KEY))
+    if (!theme) {
+        theme =  (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ?
+            THEME_OPTIONS.DARK :
+            THEME_OPTIONS.LIGHT
+    }
+    document.getElementById(theme.radio).checked = true
+    themeListener()
+
+    for (const elem of document.getElementsByName(THEME_RADIO_GROUP)) {
+        elem.addEventListener('click', themeListener)
+    }
+
+    let lang = getCookie(LANGUAGE_COOKIE_NAME)
+    if (lang) {
+        document.getElementById(LANGUAGE_OPTIONS[lang].radio).checked = true
+    }
+
+    for (const elem of document.getElementsByName(LANGUAGE_RADIO_GROUP)) {
+        elem.addEventListener('click', languageListener);
+    }
+}
+
+function themeListener() {
+    let theme = document.querySelector('input[name=theme]:checked')?.value
+    if (theme === 'DARK') {
+        document.body.classList.add('dark')
+        addCookie(THEME_COOKIE_NAME, 'dark', 90)
+    }
+    if (theme === 'LIGHT') {
+        document.body.classList.remove('dark')
+        addCookie(THEME_COOKIE_NAME, 'light', 90)
+    }
+    if (theme) localStorage.setItem(THEME_KEY, JSON.stringify(THEME_OPTIONS[theme]))
+}
+
+function languageListener() {
+    const lang = document.querySelector('input[name=language]:checked')?.value
+    const cookie = getCookie(LANGUAGE_COOKIE_NAME)
+    if (cookie !== lang) {
+        addCookie(LANGUAGE_COOKIE_NAME, lang, 90)
+        location.reload()
+    }
+}
+
+
+const LANGUAGE_COOKIE_NAME = 'jbazann-lang'
+const THEME_COOKIE_NAME = 'jbazann-theme'
+
+function addCookie(name, value, days) {
+    let expires = "";
+    if (days) {
+        const date = new Date();
+        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = `${name}=${encodeURIComponent(value)}${expires}; path=/; SameSite=Lax`;
+}
+
+function getCookie(name) {
+    return document.cookie
+        .split("; ")
+        .find(row => row.startsWith(name + "="))
+        ?.split("=")[1]
+        ? decodeURIComponent(document.cookie
+            .split("; ")
+            .find(row => row.startsWith(name + "="))
+            .split("=")[1]) : null;
+}
