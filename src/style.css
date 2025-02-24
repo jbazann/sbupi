@@ -5,6 +5,8 @@
 /*noinspection CssInvalidAtRule*/
 @variant chk2 (input#chk2:checked ~ div &,input#chk2:checked ~ &);
 /*noinspection CssInvalidAtRule*/
+@variant chk3 (input#chk3:checked ~ div &,input#chk3:checked ~ &);
+/*noinspection CssInvalidAtRule*/
 @variant wide (@media (orientation: landscape));
 /*noinspection CssInvalidAtRule*/
 @variant pc (@media (min-width: 900px) and (orientation: landscape));

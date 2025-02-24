@@ -28,7 +28,24 @@
       **:data-button:focus:underline-offset-8
       **:data-button:underline-offset-0
       **:data-button:transition-all **:data-button:ease-in-out **:data-button:duration-122
-      **:data-button:
+      **:data-radio:p-2 **:data-radio:select-none
+      **:data-radio:outline-hidden **:data-radio:self-center
+      **:data-radio:has-hover:underline-offset-4
+      **:data-radio:has-hover:scale-110
+      **:data-radio:has-active:scale-95
+      **:data-radio:has-active:underline-offset-0
+      **:data-radio:has-active:decoration-4
+      **:data-radio:has-checked:underline **:data-radio:has-checked:decoration-2
+      **:data-radio:has-checked:underline-offset-8
+      **:data-radio:flex **:data-radio:flex-row
+      **:data-radio:justify-center
+      **:data-radio:text-center
+      **:data-radio:decoration-light-highlight **:data-radio:dark:decoration-dark-highlight
+      **:data-radio:decoration-0
+      **:data-radio:has-focus:scale-110
+      **:data-radio:underline-offset-0
+      **:data-radio:transition-all **:data-radio:ease-in-out **:data-radio:duration-122
+      **:data-hidden:hidden
 ">
       <div class="absolute inset-0 flex flex-row justify-center bg-light-background dark:bg-dark-background">
         <div id="!grid" class="grid grid-cols-1 grid-rows-[auto_1fr_auto] self-center w-11/12 h-4/5 wide:w-1/2 pc:h-3/4 border rounded">
@@ -56,6 +73,7 @@
             **:data-menu1:chk1:hidden
             **:data-menu1:chk1:peer-checked:block
             **:data-menu1:chk1:peer-checked:chk2:hidden
+            **:data-menu1:chk1:peer-checked:chk3:hidden
 ">
               <div id="!me" data-entry>
                 <input id="mechk1" type="checkbox" class="hidden peer" aria-hidden="true" />
@@ -185,9 +203,63 @@
               </div>
               <div data-entry>
                 <input id="settingschk1" type="checkbox" class="hidden peer" aria-hidden="true" />
+                <input id="chk3" type="checkbox" class="hidden" aria-hidden="true"/>
                 <div id="settingsdiv1" data-content data-content1>
-                  <div class="h-fit w-full py-2 flex flex-row flex-wrap justify-center overflow-y-auto">
-                    <p>Coming soon(-ish)!</p>
+                  <div class="h-fit w-full chk3:h-full py-2 flex flex-col justify-center overflow-y-auto
+                    **:data-content2:hidden
+                    **:data-content2:chk3:peer-checked:flex
+                    **:data-menu2:chk3:hidden
+                    **:data-menu2:chk3:peer-checked:block
+                  ">
+                    <div data-entry>
+                      <input id="languagechk3" type="checkbox" class="hidden peer" aria-hidden="true" />
+                      <div id="languagediv3" data-content data-content2>
+                        <div data-radio>
+                          <input id="en-rb" type="radio" name="language" value="EN" checked class="hidden" aria-hidden="true">
+                          <label for="en-rb" tabindex="0">English</label>
+                        </div>
+                        <div data-radio>
+                          <input id="es-rb" type="radio" name="language" value="ES" class="hidden" aria-hidden="true">
+                          <label for="es-rb" tabindex="0">Español</label>
+                        </div>
+                      </div>
+                      <button id="languagebtn3" data-button data-menu2>
+                        Language</button>
+                    </div>
+                    <div data-entry>
+                      <input id="themechk3" type="checkbox" class="hidden peer" aria-hidden="true" />
+                      <div id="themediv3" data-content data-content2 class="
+                        **:data-radio:flex **:data-radio:flex-row
+                        **:data-radio:justify-center
+                      ">
+                        <div data-radio>
+                          <input id="dark-rb" type="radio" name="theme" value="DARK" checked data-hidden>
+                          <label for="dark-rb" tabindex="0">Dark</label>
+                        </div>
+                        <div data-radio>
+                          <input id="light-rb" type="radio" name="theme" value="LIGHT" data-hidden>
+                          <label for="light-rb" tabindex="0">Light</label>
+                        </div>
+                      </div>
+                      <button id="themebtn3" data-button data-menu2>
+                        Theme</button>
+                    </div>
+                    <div data-entry>
+                      <input id="cookieschk3" type="checkbox" class="hidden peer" aria-hidden="true" />
+                      <div id="cookiesdiv3" data-content data-content2>
+                        <div class="h-fit w-full py-2 px-[10%] flex flex-row flex-wrap justify-center self-center overflow-y-auto">
+                          <p class="text-center self-center">
+                            Sorry, it would take too much effort to implement opting out of cookies, they're mandatory.
+                            <br> <br>
+                            They are only used to remember other settings, and may indirectly cause some degree of
+                            anonymous tracking through Cloudflare metrics, but they do not identify individuals
+                            nor keep track of their behavior.
+                          </p>
+                        </div>
+                      </div>
+                      <button id="cookiesbtn3" data-button data-menu2>
+                        Cookies</button>
+                    </div>
                   </div>
                 </div>
                 <button id="settingsbtn1" data-button data-menu1>
@@ -219,7 +291,11 @@
         {name: 'settings'}], '1')
       registerButtons([
         {name: 'sbupi'},
-        {name: 'skwidl'}], '2', 'projects')
+        {name: 'skwidl'}], '2', 'projects', '1')
+      registerButtons([
+        {name: 'language'},
+        {name: 'theme'},
+        {name: 'cookies'}], '3', 'settings', '1')
 
       let batch, nextBatch
       const cat = document.getElementById('catimg')

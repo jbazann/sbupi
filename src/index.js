@@ -1,7 +1,7 @@
 const buttons = new Map()
 
 class MenuButton {
-    constructor(name,menu,under,focusOn) {
+    constructor(name,menu,under,underMenu,focusOn) {
         this.name = name
         this.menu = menu
         this.key = name + menu
@@ -10,9 +10,9 @@ class MenuButton {
         this.chk = document.getElementById(this.name + 'chk' + this.menu)
         this.menuchk = document.getElementById('chk' + this.menu)
         this.submenuchk = document.getElementById('submenuchk' + this.menu)
-        this.under = under ? buttons.get(under + (menu-1)) : null
+        this.under = under ? buttons.get(under + underMenu) : null
         this.focusOnAction = focusOn
-        this.label = this.elem.innerText
+        this.label = this.elem.innerText.trim()
         this.elem.addEventListener('click', this.menuListener(), true)
         buttons.set(this.key, this)
     }
@@ -25,8 +25,8 @@ class MenuButton {
     }
 }
 
-export function registerButtons(btns, menu, under) {
-    for (const button of btns) new MenuButton(button.name, menu, under, button.focusOn)
+export function registerButtons(btns, menu, under, underMenu) {
+    for (const button of btns) new MenuButton(button.name, menu, under, underMenu, button.focusOn)
 }
 
 function action(button) {
