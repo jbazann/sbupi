@@ -31,7 +31,7 @@ export function registerButtons(btns, menu, under, underMenu) {
 
 function action(button) {
     const back = button.elem.innerText === 'Back'
-    button.elem.innerText = back ? button.label : 'Back'//TODO  getTranslated('back')
+    button.elem.innerText = back ? button.label : 'Back'
     button.chk.click(); button.menuchk.click(); button.under?.submenuchk?.click()
     if (!back && button.focusOnAction) document.getElementById(button.focusOnAction).focus()
 }
