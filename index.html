@@ -66,6 +66,7 @@
             </div>
           </div>
           <input id="chk1" type="checkbox" class="hidden" aria-hidden="true"/>
+          <input id="chk2" type="checkbox" class="hidden" aria-hidden="true"/>
           <div id="!mid-row" class="w-full flex flex-col justify-center overflow-hidden">
             <div class="contents **:data-entry:contents
             **:data-content1:hidden
@@ -94,7 +95,6 @@
               </div>
               <div id="!projects" data-entry>
                 <input id="projectschk1" type="checkbox" class="hidden peer" aria-hidden="true" />
-                <input id="chk2" type="checkbox" class="hidden" aria-hidden="true"/>
                 <div id="projectsdiv1" data-content data-content1>
                   <div class="h-fit chk2:h-full w-full py-2 flex flex-col justify-center overflow-y-auto
                     **:data-content2:hidden
@@ -203,17 +203,16 @@
               </div>
               <div data-entry>
                 <input id="settingschk1" type="checkbox" class="hidden peer" aria-hidden="true" />
-                <input id="chk3" type="checkbox" class="hidden" aria-hidden="true"/>
                 <div id="settingsdiv1" data-content data-content1>
-                  <div class="h-fit w-full chk3:h-full py-2 flex flex-col justify-center overflow-y-auto
+                  <div class="h-fit w-full chk2:h-full py-2 flex flex-col justify-center overflow-y-auto
                     **:data-content2:hidden
-                    **:data-content2:chk3:peer-checked:flex
-                    **:data-menu2:chk3:hidden
-                    **:data-menu2:chk3:peer-checked:block
+                    **:data-content2:chk2:peer-checked:flex
+                    **:data-menu2:chk2:hidden
+                    **:data-menu2:chk2:peer-checked:block
                   ">
                     <div data-entry>
-                      <input id="languagechk3" type="checkbox" class="hidden peer" aria-hidden="true" />
-                      <div id="languagediv3" data-content data-content2>
+                      <input id="languagechk2" type="checkbox" class="hidden peer" aria-hidden="true" />
+                      <div id="languagediv2" data-content data-content2>
                         <div data-radio>
                           <input id="en-rb" type="radio" name="language" value="EN" data-hidden>
                           <label for="en-rb" tabindex="0">English</label>
@@ -223,12 +222,12 @@
                           <label for="es-rb" tabindex="0">Español</label>
                         </div>
                       </div>
-                      <button id="languagebtn3" data-button data-menu2>
+                      <button id="languagebtn2" data-button data-menu2>
                         Language</button>
                     </div>
                     <div data-entry>
-                      <input id="themechk3" type="checkbox" class="hidden peer" aria-hidden="true" />
-                      <div id="themediv3" data-content data-content2 class="
+                      <input id="themechk2" type="checkbox" class="hidden peer" aria-hidden="true" />
+                      <div id="themediv2" data-content data-content2 class="
                         **:data-radio:flex **:data-radio:flex-row
                         **:data-radio:justify-center
                       ">
@@ -241,12 +240,12 @@
                           <label for="light-rb" tabindex="0">Light</label>
                         </div>
                       </div>
-                      <button id="themebtn3" data-button data-menu2>
+                      <button id="themebtn2" data-button data-menu2>
                         Theme</button>
                     </div>
                     <div data-entry>
-                      <input id="cookieschk3" type="checkbox" class="hidden peer" aria-hidden="true" />
-                      <div id="cookiesdiv3" data-content data-content2>
+                      <input id="cookieschk2" type="checkbox" class="hidden peer" aria-hidden="true" />
+                      <div id="cookiesdiv2" data-content data-content2>
                         <div class="h-fit w-full py-2 px-[10%] flex flex-row flex-wrap justify-center self-center overflow-y-auto">
                           <p class="text-center self-center">
                             Sorry, it would take too much effort to implement opting out of cookies, they're mandatory.
@@ -257,7 +256,7 @@
                           </p>
                         </div>
                       </div>
-                      <button id="cookiesbtn3" data-button data-menu2>
+                      <button id="cookiesbtn2" data-button data-menu2>
                         Cookies</button>
                     </div>
                   </div>
@@ -295,7 +294,7 @@
       registerButtons([
         {name: 'language'},
         {name: 'theme'},
-        {name: 'cookies'}], '3', 'settings', '1')
+        {name: 'cookies'}], '2', 'settings', '1')
 
       initSettings()
 
