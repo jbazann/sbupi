@@ -23,5 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 
+.wrangler
+
 # Because Cloudflare breaks
 package-lock.json
