@@ -19,8 +19,7 @@ export async function onRequestGet(context) {
     const ids = Array.from({ length: IMG_AMOUNT },
         () => Math.floor(Math.random() * metrics.cat_amount));
     let response = {
-        cats: await Promise.all(ids.map(((id) => context.env.CAT_BUCKET.get(id)
-            .then((r2o) => toDataURL(r2o))))),
+        cats: await Promise.all(ids.map(((id) => context.env.CAT_BUCKET.get(id).then(r2o => r2o.text())))),
         amount: metrics.cat_amount,
         size: metrics.cat_size
     }
@@ -30,11 +29,6 @@ export async function onRequestGet(context) {
 function gbtb(gb) {
     let b, kb, mb = kb = b = 1024
     return  gb * mb * kb * b
-}
-
-async function toDataURL(r2o) {
-    let buffer = await r2o?.arrayBuffer()
-    return 'data:'+r2o?.httpMetadata.contentType+';base64,'+arrayBufferToBase64(buffer)
 }
 
 function arrayBufferToBase64(buffer) {
@@ -50,17 +44,20 @@ async function fetchCats(context,metrics) {
     }).then(res => res.json())
 
     const cats = (await Promise.all(batch.map(obj => fetch(obj.url)
-        .then(res => !res.ok ? null : ({cat: res.body,type: new Headers({"content-type": res.headers.get("content-type")})}))
-    ))).filter(cat => cat)
+        .then(async res => {
+            if (!res.ok) {
+                console.log(res)
+                await res.body.cancel()
+                return ''
+            }
+            const buffer = await res.arrayBuffer()
+            return 'data:'+res.headers.get("content-type")+';base64,'+arrayBufferToBase64(buffer)
+        })
+    ))).filter(cat => cat !== '')
 
-    const R2Obj = await Promise.all(cats.map((kitten) =>
-        context.env.CAT_BUCKET.put((metrics.cat_amount)++, kitten.cat, {httpMetadata: kitten.type})))
+    await Promise.all(cats.map((kitten) => context.env.CAT_BUCKET
+                .put((metrics.cat_amount)++, kitten, {httpMetadata: new Headers({'content-type': 'text/plain'})})))
+            .then(r2os => r2os.forEach(r2o => metrics.cat_size += r2o.size))
 
-    for (const obj of R2Obj) {
-        metrics.cat_size += obj.size
-    }
-
-    await Promise.all([
-        context.env.CAT_BUCKET.put(bucket_keys.cat_metrics, JSON.stringify(metrics)),
-    ])
+    await context.env.CAT_BUCKET.put(bucket_keys.cat_metrics, JSON.stringify(metrics))
 }
