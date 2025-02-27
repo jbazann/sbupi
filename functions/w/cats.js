@@ -1,19 +1,18 @@
 const bucket_keys = {
-    cat_amount: 'cat_amount',
-    cat_size: 'cat_size',
-    Aoperations: 'a_operations',
+    cat_metrics: 'cat_metrics',
+    Aoperations: 'a_operations', // TODO use these
     Boperations: 'b_operations'
 }
 
-const IMG_AMOUNT = 25
+const IMG_AMOUNT = 12 // + 1
+const SCRAPE_AMOUNT = 17 // * 2 + 2 = 49
 
 export async function onRequestGet(context) {
-    const [javascript, sucks] = await Promise.all([
-        context.env.CAT_BUCKET.get(bucket_keys.cat_amount).then(r2o => r2o?.json()),
-        context.env.CAT_BUCKET.get(bucket_keys.cat_size).then(r2o => r2o?.json())
-    ]), metrics = {
-        cat_amount: javascript ? javascript : 0,
-        cat_size: sucks ? sucks : 0,
+    let metrics = await context.env.CAT_BUCKET.get(bucket_keys.cat_metrics).then(r2o => r2o?.json())
+
+    if (!metrics) metrics = {
+        cat_amount: 0,
+        cat_size: 0
     }
 
     if (metrics.cat_amount < 12000 && metrics.cat_size < gbtb(5)) context.waitUntil(fetchCats(context,metrics))
@@ -45,7 +44,7 @@ function arrayBufferToBase64(buffer) {
 }
 
 async function fetchCats(context,metrics) {
-    const batch = await fetch("https://api.thecatapi.com/v1/images/search?limit=50", {
+    const batch = await fetch(`https://api.thecatapi.com/v1/images/search?limit=${SCRAPE_AMOUNT}`, {
         headers: {
             'x-api-key': context.env.CATS_API_KEY
         }
@@ -65,7 +64,6 @@ async function fetchCats(context,metrics) {
     }
 
     await Promise.all([
-        context.env.CAT_BUCKET.put(bucket_keys.cat_amount, JSON.stringify(metrics.cat_amount)),
-        context.env.CAT_BUCKET.put(bucket_keys.cat_size, JSON.stringify(metrics.cat_size))
+        context.env.CAT_BUCKET.put(bucket_keys.cat_metrics, JSON.stringify(metrics)),
     ])
 }
