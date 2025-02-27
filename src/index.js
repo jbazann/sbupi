@@ -38,13 +38,23 @@ function action(button) {
 
 
 export async function cats() {
-    // TODO use my own API with sanitized cat images
-    // In the meantime, I'm sorry if you end up seeing porn or some other
+    let surelyThisWontHappen = false
+    let kittens = await fetch('/w/cats')
+        .then(r => r.json())
+        .then(kitties => kitties.cats.map(feline => ({url: feline})))
+        .catch(() => surelyThisWontHappen = true);
+
+    // In case my API fails I need this fallback,
+    // I'm sorry if you end up seeing porn or some other
     // unwanted content if thecatapi is compromised.
     // I am also sorry for exposing your IP to third parties.
     // And I apologize for whatever other security risk I unknowingly exposed you to.
     // Such is life.
-    return await ((await fetch('https://api.thecatapi.com/v1/images/search?limit=10')).json())
+    if (surelyThisWontHappen) {
+        console.log("falling back to thecatapi's cats")
+        kittens = await ((await fetch('https://api.thecatapi.com/v1/images/search?limit=10')).json())
+    }
+    return kittens
 }
 
 

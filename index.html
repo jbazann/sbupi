@@ -320,9 +320,10 @@
       })
 
       function brutelyCache(btch) {
-        btch.forEach(async (i) => {
-          new Image().src = i.url
-        })
+        // currently not necessary but I don't feel like removing every usage
+        // btch.forEach(async (i) => {
+        //   new Image().src = i.url
+        // })
       }
 
       async function whyIsTopLevelAwaitSomethingIHaveToConfigureManIHateJavascript() {
