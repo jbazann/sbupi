@@ -9,13 +9,12 @@ const SCRAPE_AMOUNT = 17 // * 2 + 2 = 49
 
 export async function onRequestGet(context) {
     let metrics = await context.env.CAT_BUCKET.get(bucket_keys.cat_metrics).then(r2o => r2o?.json())
-
     if (!metrics) metrics = {
         cat_amount: 0,
         cat_size: 0
     }
 
-    if (metrics.cat_amount < 12000 && metrics.cat_size < gbtb(5)) context.waitUntil(fetchCats(context,metrics))
+    if (metrics.cat_amount < 12000 && metrics.cat_size < gbtb(5)) await fetchCats(context,metrics)
 
     const ids = Array.from({ length: IMG_AMOUNT },
         () => Math.floor(Math.random() * metrics.cat_amount));
@@ -50,13 +49,11 @@ async function fetchCats(context,metrics) {
         }
     }).then(res => res.json())
 
-    const cats = (await Promise.all(batch.map(async obj => {
-        const res = await fetch(obj.url)
-        if (!res.ok) return null;
-        return ({cat: res.body,type: new Headers({"content-type": res.headers.get("content-type")})})
-    }))).filter(cat => cat)
+    const cats = (await Promise.all(batch.map(obj => fetch(obj.url)
+        .then(res => !res.ok ? null : ({cat: res.body,type: new Headers({"content-type": res.headers.get("content-type")})}))
+    ))).filter(cat => cat)
 
-    const R2Obj = await Promise.all(cats.map(async (kitten) =>
+    const R2Obj = await Promise.all(cats.map((kitten) =>
         context.env.CAT_BUCKET.put((metrics.cat_amount)++, kitten.cat, {httpMetadata: kitten.type})))
 
     for (const obj of R2Obj) {
