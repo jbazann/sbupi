@@ -14,8 +14,6 @@ export async function onRequestGet(context) {
         cat_size: 0
     }
 
-    if (metrics.cat_amount < 12000 && metrics.cat_size < gbtb(5)) await fetchCats(context,metrics)
-
     const ids = Array.from({ length: IMG_AMOUNT },
         () => Math.floor(Math.random() * metrics.cat_amount));
     let response = {
@@ -23,6 +21,7 @@ export async function onRequestGet(context) {
         amount: metrics.cat_amount,
         size: metrics.cat_size
     }
+    if (metrics.cat_amount < 12000 && metrics.cat_size < gbtb(5)) context.waitUntil(fetchCats(context,metrics))
     return new Response(JSON.stringify(response));
 }
 
