@@ -30,10 +30,10 @@ export function registerButtons(btns, menu, under, underMenu) {
 }
 
 function action(button) {
-    const back = button.elem.innerText === 'Back'
-    button.elem.innerText = back ? button.label : 'Back'
+    const isLastPressed = pressedButtons.at(-1)?.name === button.name
+    button.elem.innerText = !isLastPressed ? button.label : 'Back'
     button.chk.click(); button.menuchk.click(); button.under?.submenuchk?.click()
-    if (!back && button.focusOnAction) document.getElementById(button.focusOnAction).focus()
+    if (isLastPressed && button.focusOnAction) {}document.getElementById(button.focusOnAction).focus();
 }
 
 
@@ -87,12 +87,11 @@ function buttonListener(key) {
 
 export function init() {
     clicksPushState = false
+    rememberClicks = false
     while (pressedButtons.length > 0) {
-        rememberClicks = false
-        let btn = pressedButtons.pop()
-        btn.elem.click()
-        rememberClicks = true
+        pressedButtons.pop().elem.click()
     }
+    rememberClicks = true
     let path = window.location.pathname
         .split('/')
         .filter(s => s !== '')
@@ -100,6 +99,7 @@ export function init() {
     let menu = 1;
     let button
     while (button = buttons.get(path.pop() + menu++)) {
+        if (button.elem.innerText === 'Back') button.elem.click()
         button.elem.click()
     }
     clicksPushState = true
