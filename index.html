@@ -301,7 +301,14 @@
 
       let batch, nextBatch
       const cat = document.getElementById('catimg')
-      whyIsTopLevelAwaitSomethingIHaveToConfigureManIHateJavascript()
+      document.getElementById('catbtn1').addEventListener('click', async () => {
+        batch = await cats()
+        brutelyCache(batch)
+        cat.src = batch.pop().url
+        nextBatch = await cats()
+        brutelyCache(nextBatch)
+      }, {once: true})
+
       document.getElementById('anothercat').addEventListener('click', async () => {
         const next = batch.pop()
         if (next) {
@@ -324,14 +331,6 @@
         // btch.forEach(async (i) => {
         //   new Image().src = i.url
         // })
-      }
-
-      async function whyIsTopLevelAwaitSomethingIHaveToConfigureManIHateJavascript() {
-        batch = await cats()
-        brutelyCache(batch)
-        cat.src = batch.pop().url
-        nextBatch = await cats()
-        brutelyCache(nextBatch)
       }
 
       document.addEventListener('DOMContentLoaded',init)
