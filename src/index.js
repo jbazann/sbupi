@@ -110,8 +110,7 @@ export function init() {
     let menu = 1;
     let button
     while (button = buttons.get(path.pop() + menu++)) {
-        if (button.elem.innerText === 'Back') button.elem.click()
-        button.elem.click()
+        if (button.elem.innerText !== 'Back') button.elem.click()
     }
     clicksPushState = true
 }
