@@ -37,6 +37,17 @@ function action(button) {
 }
 
 
+const caniusesomeoneelsescats = "An error occurred while fetching my cats. " +
+    "Do you want to attempt to fetch cats from thecatapi.com instead? " +
+    "They are just as cute, just not under my supervision."
+let catConsent = false
+let alreadyAsked = false
+
+function permissionForCats() {
+    if (!alreadyAsked) setTimeout(() => alreadyAsked = true) // don't ask why
+    return alreadyAsked ? catConsent : catConsent = confirm(caniusesomeoneelsescats)
+}
+
 export async function cats() {
     let surelyThisWontHappen = false
     let kittens = await fetch('/w/cats')
@@ -50,8 +61,8 @@ export async function cats() {
     // I am also sorry for exposing your IP to third parties.
     // And I apologize for whatever other security risk I unknowingly exposed you to.
     // Such is life.
-    if (surelyThisWontHappen) {
-        console.log("falling back to thecatapi's cats")
+
+    if (surelyThisWontHappen && permissionForCats()) {
         kittens = await ((await fetch('https://api.thecatapi.com/v1/images/search?limit=10')).json())
     }
     return kittens
