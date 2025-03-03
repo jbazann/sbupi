@@ -39,7 +39,11 @@ function action(button) {
 
 const caniusesomeoneelsescats = "An error occurred while fetching my cats. " +
     "Do you want to attempt to fetch cats from thecatapi.com instead? " +
-    "They are just as cute, just not under my supervision."
+    "They are just as cute, just not under my supervision. \n\n" +
+    "If you are seeing this after refreshing the page just to see the loading" +
+    "animation again, this is a known bug that I don't feel like fixing right now. " +
+    "Just click cancel, and refresh again " +
+    "if the cats don't show up after 5 seconds."
 let catConsent = false
 let alreadyAsked = false
 
