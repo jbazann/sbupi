@@ -213,10 +213,12 @@
                   <div class="relative size-full">
                     <div class="absolute inset-0 m-2 flex flex-col flex-grow justify-center">
                       <div id="catloadingdiv" class="size-fit self-center flex flex-col justify-center">
-                        <p id="catloadingp" class="self-center">Fetching cats.</p>
+                        <p class="self-center">This is Bobby, he will bring the cats.</p>
+                        <p id="catloadingp" class="self-center">Please wait.</p>
                       </div>
                       <div class="size-full contain-size flex flex-col justify-center self-center">
-                        <img id="catimg" src="/icon/waiting.gif" alt="A random cat image." class="block min-h-0 min-w-0 w-auto h-auto max-h-full max-w-full grow aspect-auto self-center">
+                        <img id="bobimg" src="/icon/Bobby.gif" alt="Bobby, he likes cats." class="block min-h-0 min-w-0 w-auto h-auto max-h-full max-w-full grow aspect-auto self-center">
+                        <img id="catimg" src="" alt="Random cat media." class="hidden min-h-0 min-w-0 w-auto h-auto max-h-full max-w-full grow aspect-auto self-center">
                       </div>
                     </div>
                   </div>
@@ -332,11 +334,14 @@
         setTimeout(async () => {
           document.getElementById("anothercat").disabled = false
           document.getElementById("catloadingdiv").remove()
+          document.querySelector("#bobimg").remove()
+          cat.classList.remove("hidden")
+          cat.classList.add("block")
           cat.src = batch.pop().url
           nextBatch = await cats()
           brutelyCache(nextBatch)
           catloaded = true
-        }, 3500)
+        }, 6622)
       }, {once: true})
 
       document.getElementById('anothercat').addEventListener('click', async () => {
@@ -360,9 +365,9 @@
       const catloadingp = document.getElementById("catloadingp")
       function catloadingpCycle() {
         let legends = [
-          "Fetching cats.",
-          "Fetching cats..",
-          "Fetching cats..."
+          "Please wait.",
+          "Please wait..",
+          "Please wait..."
         ], interval = 500
         if (!catloaded) {
           catloadingp.innerText = legends.at(index = ((index + 1) % 3));
