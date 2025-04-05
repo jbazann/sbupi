@@ -9,16 +9,23 @@
   "author": "jbazann",
   "type": "module",
   "scripts": {
-    "dev": "vite --debug",
-    "build": "vite build",
-    "preview": "vite preview"
+    "vite": "vite",
+    "debug": "vite --debug",
+    "dev": "vike dev",
+    "build": "vike build",
+    "preview": "vike preview"
   },
   "devDependencies": {
     "vite": "^6.2.5",
     "vite-plugin-mkcert": "^1.17.8"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.1.2",
-    "tailwindcss": "^4.1.2"
+    "@tailwindcss/vite": "^4.1.3",
+    "@vitejs/plugin-react": "^4.3.4",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "tailwindcss": "^4.1.3",
+    "vike": "0.4.228",
+    "vike-react": "^0.6.1"
   }
 }
