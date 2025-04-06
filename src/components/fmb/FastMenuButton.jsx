@@ -1,7 +1,7 @@
-import styles from "./fast-menu-button.module.css";
-import placeholders from "./main-menu.module.css";
-import {noneState, offBtn, offState, onBtn, onState, parentContainerState} from "../lib/common";
-import FastMenuButtonContainer from "../components/FastMenuButtonContainer";
+import styles from "./FastMenuButton.module.css";
+import placeholders from "../MainMenu.module.css";
+import {noneState, offBtn, offState, onBtn, onState, parentContainerState} from "../../lib/common.js";
+import FastMenuButtonContainer from "./FastMenuButtonContainer.jsx";
 
 
 export default function FastMenuButton({label, menu, id, outerId}) {

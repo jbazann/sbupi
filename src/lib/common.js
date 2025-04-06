@@ -10,7 +10,7 @@ export const parentContainerState = 'parent_container_state'
 
 let previousIds = new Map()
 let idCounter = 0
-export function identifier(scope = idCounter++,key = '') {
+export function id(key = '', scope = idCounter++) {
     return key ?
         (previousIds.has(key) ?
             previousIds :
@@ -19,5 +19,5 @@ export function identifier(scope = idCounter++,key = '') {
 }
 
 function _identifier(scope) {
-    return 'i_' + scope + 'i_fcknghtjs_'
+    return 'i' + scope + '_jssucks'
 }

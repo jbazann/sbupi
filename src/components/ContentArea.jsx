@@ -1,6 +1,6 @@
-import styles from "./content-area.module.css";
+import styles from "./ContentArea.module.css";
 
-export default function ({header, mainContent, footer}) {
+export default function ({header, content, footer}) {
     return (
         <div className={styles.contentArea}>
             <header className={`relative-container`}>
@@ -10,7 +10,9 @@ export default function ({header, mainContent, footer}) {
                 {header}
             </header>
             <main id="main-content-container" className={`relative-container flex-col center-children`}>
-                {mainContent}
+                <div className={`flex-col center-children ${styles.menuContainer}`}>
+                    {content}
+                </div>
             </main>
             <footer className={`relative-container`}>
                 <div className={`absolute-container ${styles.footerBorderContainer}`}>

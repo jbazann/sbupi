@@ -1,9 +1,7 @@
-export { Layout }
-
 import React from 'react'
 import './Layout.css'
 
-function Layout({ children }) {
+export default function Layout({ children }) {
     return (
         <React.StrictMode>
             {children}

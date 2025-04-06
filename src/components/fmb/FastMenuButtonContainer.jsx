@@ -1,5 +1,5 @@
-import styles from "./fast-menu-button-container.module.css"
-import {containerState} from "../lib/common";
+import styles from "./FastMenuButtonContainer.module.css"
+import {containerState} from "../../lib/common.js";
 
 export default function FastMenuButtonContainer({buttons, id}) {
     const idFn = (str) => id + '_' + str;

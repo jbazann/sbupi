@@ -1,4 +1,4 @@
-import {containerState, noneState, offBtn, offState, onBtn, onState, parentContainerState} from "../lib/common";
+import {containerState, noneState, offBtn, offState, onBtn, onState, parentContainerState} from "../../lib/common.js";
 import {useEffect} from "react";
 
 export default function FastMenuButtonScript({id, outerId}) {

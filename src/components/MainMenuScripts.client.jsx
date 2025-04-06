@@ -1,5 +1,5 @@
-import placeholders from './main-menu.module.css'
-import FastMenuButtonScript from "./FastMenuButtonScript.jsx";
+import placeholders from './MainMenu.module.css'
+import FastMenuButtonScript from "./fmb/FastMenuButtonScript.jsx";
 
 export default function MainMenuScripts() {
     const fmb = document.querySelectorAll('.'+placeholders.fastMenuButtonScript)
