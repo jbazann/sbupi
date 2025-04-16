@@ -11,8 +11,8 @@
     height: var(--height);
     width: var(--width);
     box-sizing: border-box;
-    border: antiquewhite solid 1px; /* TODO colors */
-    border-radius: 5px;
+    border: var(--color-border) solid 1px;
+    border-radius: 0.5rem;
 }
 
 .header {
@@ -41,8 +41,8 @@
     justify-content: end;
 }
 
-.menuContainer {
+.contentContainer {
     position: relative;
     height: 100%;
-    width: 70%;
+    width: 80%;
 }

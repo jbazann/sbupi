@@ -10,3 +10,9 @@
     height: 100%;
     width: 100%;
 }
+
+.submenuOnToggle {}
+
+.container:has(.submenuOnToggle:checked) > div:not(:has( input.submenuOnToggle:checked)) {
+    display: none;
+}

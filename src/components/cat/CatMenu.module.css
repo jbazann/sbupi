@@ -1,0 +1,22 @@
+.imageContainer {
+    height: 100%;
+    width: 100%;
+    contain: size;
+    margin: calc(2 * 0.22rem);
+}
+
+.catImage {
+    display: block;
+    min-height: 0;
+    min-width: 0;
+    height: auto;
+    width: auto;
+    max-height: 100%;
+    max-width: 100%;
+    flex-grow: 1;
+    aspect-ratio: auto;
+}
+
+.loadingP {
+    margin: 0.22rem 0 0 0;
+}

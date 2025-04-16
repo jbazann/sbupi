@@ -6,15 +6,15 @@
     display: block
 }
 
-.noneRadio:checked ~ .closeButton {
+.subRadio:checked ~ .closeButton {
     display: none;
 }
 
-.onRadio:checked ~ .contentDiv, .noneRadio:checked ~ .contentDiv {
+.onRadio:checked ~ .contentDiv, .subRadio:checked ~ .contentDiv {
     display: block
 }
 
-.displayCheck, .onRadio, .offRadio, .noneRadio {
+.displayCheck, .onRadio, .offRadio, .subRadio {
     display: none;
 }
 

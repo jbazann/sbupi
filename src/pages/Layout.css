@@ -1,26 +1,40 @@
 :root {
 
+  --margin-y-base: 6.12vh;
+  --margin-x-base: 6vw;
+  --margin-y-wide: 4.12vh;
+  --margin-x-wide: 9vw;
+  --margin-y-desk: 9.12vh;
+  --margin-x-desk: calc(2 * 2.12vw + 12vw);
+  --margin-y: var(--margin-y-base);
+  --margin-x: var(--margin-x-base);
 
-  --margin-y: 6.12vh;
-  --margin-x: 6vw;
+  @media (orientation: landscape) {
+    --margin-y: var(--margin-y-wide);
+    --margin-x: var(--margin-x-wide);
+  }
+  @media (min-width: 900px) and (orientation: landscape) {
+    --margin-y: var(--margin-y-desk);
+    --margin-x: var(--margin-x-desk);
+  }
+
   --height: calc(100vh - 2 * var(--margin-y)); /* "calc" is slang for calculator btw */
   --width: calc(100vw - 2 * var(--margin-x));
   --header-height: 2.22rem;
   --header-max-height: calc(var(--height) * 0.22);
-  --content-height: calc(var(--height) - 2 * min(var(--header-height),var(--header-max-height)));
+  --content-height: calc(var(--height) - 2 * min(var(--header-height), var(--header-max-height)));
 
-
-
-  --max-width: 1100px;
-  --border-radius: 12px;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
   "Liberation Mono", "Cascadia Mono", "Segoe UI Mono",
   "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
   "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
 
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+
+  --color-background: oklch(0.12 0.0288 243.66);
+  --color-text: oklch(0.97 0.013 243.66);
+  --color-border: var(--color-text);
+  --color-highlight: oklch(0.81 0.1293 223.68);
+
 
   --primary-glow: conic-gradient(
           from 180deg at 50% 50%,
@@ -30,6 +44,7 @@
           #0071ff33 160deg,
           transparent 360deg
   );
+
   --secondary-glow: radial-gradient(
           rgba(255, 255, 255, 1),
           rgba(255, 255, 255, 0)
@@ -47,43 +62,32 @@
           #00000080
   );
 
-  --callout-rgb: 238, 240, 241;
-  --callout-border-rgb: 172, 175, 176;
-  --card-rgb: 180, 185, 188;
-  --card-border-rgb: 131, 134, 135;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
+  @media (prefers-color-scheme: dark) {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
 
     --primary-glow: radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0));
     --secondary-glow: linear-gradient(
-      to bottom right,
-      rgba(1, 65, 255, 0),
-      rgba(1, 65, 255, 0),
-      rgba(1, 65, 255, 0.3)
+            to bottom right,
+            rgba(1, 65, 255, 0),
+            rgba(1, 65, 255, 0),
+            rgba(1, 65, 255, 0.3)
     );
 
     --tile-start-rgb: 2, 13, 46;
     --tile-end-rgb: 2, 5, 19;
     --tile-border: conic-gradient(
-      #ffffff80,
-      #ffffff40,
-      #ffffff30,
-      #ffffff20,
-      #ffffff10,
-      #ffffff10,
-      #ffffff80
+            #ffffff80,
+            #ffffff40,
+            #ffffff30,
+            #ffffff20,
+            #ffffff10,
+            #ffffff10,
+            #ffffff80
     );
-
-    --callout-rgb: 20, 20, 20;
-    --callout-border-rgb: 108, 108, 108;
-    --card-rgb: 100, 100, 100;
-    --card-border-rgb: 200, 200, 200;
   }
+
 }
 
 * {
@@ -99,13 +103,10 @@ body {
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  background-color: var(--color-background);
+  border-color: red;
 }
 
 a {
@@ -113,51 +114,12 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark),
+(prefers-color-scheme: no-preference ) {
   html {
     color-scheme: dark;
   }
 }
-
-/*
- * STD ELEMENTS
- */
-
-/* BUTTON */
-.menu-button {
-  margin: 0.22rem 0;
-  padding: 0.52rem 1rem;
-  user-select: none;
-  font-family: var(--font-mono);
-  font-size: 1rem;
-  background: none;
-  border: none;
-  text-underline-offset: 0;
-  text-decoration-thickness: 1px;
-}
-
-.menu-button:hover {
-  scale: 112%;
-  text-underline-offset: 0.42rem;
-  text-decoration-thickness: 12%;
-  text-decoration-line: underline;
-  cursor: pointer;
-}
-
-.menu-button:focus {
-  text-underline-offset: 0.22rem;
-  text-decoration-thickness: 12%;
-  text-decoration-line: underline;
-}
-
-.menu-button:active {
-  scale: 92%;
-  text-underline-offset: 0.08rem;
-  text-decoration-thickness: 22%;
-  text-decoration-line: underline;
-}
-
-
 
 /* #### */
 
@@ -166,6 +128,10 @@ a {
 /*
  * UTILITIES
  */
+
+.inline {
+  display: inline;
+}
 
 .hidden {
   display: none
@@ -200,27 +166,29 @@ a {
 }
 
 .center-children {
-  justify-content: center;
-  justify-items: center;
-  align-content: center;
-  align-items: center;
+  justify-content: safe center;
+  justify-items: safe center;
+  align-content: safe center;
+  align-items: safe center;
 }
 
 .relative-container {
   position: relative;
+  contain: strict;
   height: 100%;
   width: 100%;
 }
 
-.absolute-container {
+.absolute-underlay {
   position: absolute;
+  z-index: -1;
   inset: 0 0;
 }
 
 .hr {
   height: 0;
-  width: 72%;
-  border-bottom: antiquewhite solid 1px; /* TODO colors */
+  width: calc(72% + 2 * 2 * 2%);
+  border-bottom: var(--color-border) solid 1px;
 }
 
 .auto-scroll-y {

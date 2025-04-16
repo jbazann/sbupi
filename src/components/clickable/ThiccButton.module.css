@@ -1,0 +1,37 @@
+.menuButton {
+    margin: 0.22rem;
+    padding: 0.52rem 1rem;
+    user-select: none;
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    background: none;
+    border: none;
+    text-underline-offset: 0;
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--color-highlight);
+    opacity: 92%;
+
+    &:hover {
+        opacity: 100%;
+        text-underline-offset: 0.42rem;
+        text-decoration-thickness: 3px;
+        text-decoration-line: underline;
+        cursor: pointer;
+    }
+
+    &:focus {
+        opacity: 100%;
+        text-underline-offset: 0.42rem;
+        text-decoration-thickness: 3px;
+        text-decoration-line: underline;
+    }
+
+    &:active {
+        scale: 112%;
+        opacity: 100%;
+        text-underline-offset: 0.08rem;
+        text-decoration-thickness: 2px;
+        text-decoration-line: underline;
+    }
+
+}

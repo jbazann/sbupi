@@ -4,18 +4,18 @@ export default function ({header, content, footer}) {
     return (
         <div className={styles.contentArea}>
             <header className={`relative-container`}>
-                <div className={`absolute-container ${styles.headerBorderContainer}`}>
+                <div className={`absolute-underlay ${styles.headerBorderContainer}`}>
                     <div className={`hr`}></div>
                 </div>
                 {header}
             </header>
             <main id="main-content-container" className={`relative-container flex-col center-children`}>
-                <div className={`flex-col center-children ${styles.menuContainer}`}>
+                <div className={`flex-col center-children ${styles.contentContainer}`}>
                     {content}
                 </div>
             </main>
             <footer className={`relative-container`}>
-                <div className={`absolute-container ${styles.footerBorderContainer}`}>
+                <div className={`absolute-underlay ${styles.footerBorderContainer}`}>
                     <div className={`hr`}></div>
                 </div>
                 {footer}
