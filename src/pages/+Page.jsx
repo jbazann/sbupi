@@ -1,10 +1,10 @@
 import ContentArea from "../components/ContentArea.jsx";
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
-import MainMenu from "../components/MainMenu.jsx";
+import MainMenu from "../components/menu/main/MainMenu.jsx";
 import {clientOnly} from "vike-react/clientOnly";
 
-const MainMenuScripts = clientOnly(() => import("../components/MainMenuScripts.client.jsx"))
+const MainMenuScripts = clientOnly(() => import("../components/menu/main/MainMenuScripts.client.jsx"))
 
 export default function Home() {
     return (

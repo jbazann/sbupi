@@ -1,4 +1,4 @@
-import ThiccButton from "../clickable/ThiccButton.jsx";
+import ThiccButton from "../../clickable/ThiccButton.jsx";
 
 export default function LinksMenu() {
     return <>

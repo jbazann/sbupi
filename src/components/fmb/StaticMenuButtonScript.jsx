@@ -1,22 +1,22 @@
-import {offBtn, offState, onBtn, onState} from "../../lib/common.js";
+import {getIdCounter, } from "../../lib/common.js";
 import {useEffect} from "react";
-import {getIdFn, subState} from "./StaticMenuButton.jsx";
+import {subState, offBtn, offState, onBtn, onState} from "./StaticMenuButton.jsx";
 
 export default function StaticMenuButtonScript({id, outerId}) {
     useEffect(() => {
-        const idFn = getIdFn(id)
-        const outerFn = getIdFn(outerId)
+        const idFn = getIdCounter(id)
+        const outerFn = getIdCounter(outerId)
 
-        const onStateElem = document.querySelector('#' + idFn(onState));
-        const offStateElem = document.querySelector('#' + idFn(offState));
-        const onBtnElem = document.querySelector('#' + idFn(onBtn));
-        const offBtnElem = document.querySelector('#' + idFn(offBtn));
+        const onStateElem = document.getElementById(idFn(onState));
+        const offStateElem = document.getElementById(idFn(offState));
+        const onBtnElem = document.getElementById(idFn(onBtn));
+        const offBtnElem = document.getElementById(idFn(offBtn));
 
         let outerSubmenuStateElem;
         let outerOnStateElem;
         if (outerId) {
-            outerSubmenuStateElem = document.querySelector('#' + outerFn(subState));
-            outerOnStateElem = document.querySelector('#' + outerFn(onState));
+            outerSubmenuStateElem = document.getElementById(outerFn(subState));
+            outerOnStateElem = document.getElementById(outerFn(onState));
         }
 
         const onClickHandler = () => {

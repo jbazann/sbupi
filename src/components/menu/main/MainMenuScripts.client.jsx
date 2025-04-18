@@ -1,5 +1,5 @@
 import placeholders from './MainMenu.module.css'
-import StaticMenuButtonScript from "./fmb/StaticMenuButtonScript.jsx";
+import StaticMenuButtonScript from "../../fmb/StaticMenuButtonScript.jsx";
 
 export default function MainMenuScripts() {
     const fmb = document.querySelectorAll('.'+placeholders.menuButtonScript)

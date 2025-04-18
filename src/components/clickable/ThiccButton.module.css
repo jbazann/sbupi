@@ -1,6 +1,6 @@
 .menuButton {
-    margin: 0.22rem;
-    padding: 0.52rem 1rem;
+    margin: 0.12rem;
+    padding: 0.62rem 1rem;
     user-select: none;
     font-family: var(--font-mono);
     font-size: 1rem;
@@ -11,8 +11,16 @@
     text-decoration-color: var(--color-highlight);
     opacity: 92%;
 
+    transition:
+        opacity 0.22s ease-in-out,
+        scale 0.22s ease-in-out,
+        text-underline-offset 0.22s ease-in-out,
+        text-decoration-thickness 0.22s ease-in-out
+    ;
+
     &:hover {
         opacity: 100%;
+        scale: 112%;
         text-underline-offset: 0.42rem;
         text-decoration-thickness: 3px;
         text-decoration-line: underline;
@@ -21,14 +29,16 @@
 
     &:focus {
         opacity: 100%;
+        scale: 112%;
         text-underline-offset: 0.42rem;
         text-decoration-thickness: 3px;
         text-decoration-line: underline;
     }
 
     &:active {
-        scale: 112%;
-        opacity: 100%;
+        transition: text-underline-offset 0.12s;
+        scale: 118%;
+        opacity: 12%;
         text-underline-offset: 0.08rem;
         text-decoration-thickness: 2px;
         text-decoration-line: underline;

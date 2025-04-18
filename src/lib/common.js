@@ -1,44 +1,29 @@
-// TODO come up with better name for these hehe
-export const
-    onBtn = 'on_button',
-    offBtn = 'off_button',
-    onState = 'on_state',
-    offState =  'off_state',
-    noneState = 'none_state',
-    containerState = 'container_state',
-    parentContainerState = 'parent_container_state'
 
-let previousIds = new Map()
-let idCounter = 0
-export function id(key = '', scope = idCounter++) {
-    return key ?
-        (previousIds.has(key) ?
-            previousIds :
-            previousIds.set(key,_identifier(scope))).get(key) :
-        _identifier(scope)
-}
+let scopeCounter = 0, scopes = new Map()
 
-function _identifier(scope) {
-    return 'i' + scope + '_jssucks'
-}
-
-let scopeCounter = 0
-let scopes = new Map()
+/**
+ * Provides ID generators that are guaranteed to provide unique IDs on every call
+ * without parameters, and always the same ID for a given key, when one is provided
+ * as the only parameter.
+ * @param scope An ID namespace. Must be a valid HTML5 ID string.
+ * A unique scope is automatically generated if omitted.
+ * @returns A function with an ID map in its closure. The same function entity is returned
+ * by all calls with the same scope (therefore containing all the mappings created by
+ * previously returned instances). If called with a key argument, the function returns the same
+ * ID for all subsequent calls with said ID.
+ */
 export function getIdCounter(scope = scopeCounter++) {
-    return (scopes.has(scope) ?
-        scopes :
-        scopes.set(scope, getIdFunctionForScope(scope)))
-            .get(scope)
+    return scopes.get(scope) ||
+        scopes.set(scope, createIdFunctionForScope(scope)).get(scope)
 }
 
-function getIdFunctionForScope(scope) {
-    let keyMap = new Map()
-    let idCounter = 0
-    return (key) => {
-        if (key) {
-            if ( !keyMap.has(key) ) keyMap.set(key, _identifier(scope + '_' + idCounter++))
-            return keyMap.get(key)
-        }
-        return _identifier(scope + '_' + idCounter++)
-    }
+function createIdFunctionForScope(scope) {
+    let idCounter = 0, keyMap = new Map()
+    return (key) => key ? (keyMap.get(key) ||
+        keyMap.set(key, identifier(scope, idCounter++)).get(key)) :
+        identifier(scope, idCounter++)
+}
+
+function identifier(scope, id) {
+    return 's' + scope + 'i' + id
 }

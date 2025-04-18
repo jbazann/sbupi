@@ -1,17 +1,19 @@
 import styles from './CatMenu.module.css'
-import {id} from "../../lib/common.js";
 import {clientOnly} from "vike-react/clientOnly";
+import {getIdCounter} from "../../../lib/common.js";
+import ThiccButton from "../../clickable/ThiccButton.jsx";
 
 // TODO cleanup
+export const
+    catimg = 'catimg',
+    another = 'anothercat',
+    loadingDiv = 'loadingdiv',
+    loadingP = 'loadingp'
 
-const
-    catimg = id(),
-    another = id(),
-    loadingDiv = id(),
-    loadingP = id()
 const CatMenuScript = clientOnly(() => import('./CatMenuScript.jsx'))
 
 export default function CatMenu({catButtonId}) {
+    const id = getIdCounter(catButtonId)
     return <>
         <div className="relative-container">
             <div className="absolute-underlay flex-col center-children">
@@ -24,7 +26,7 @@ export default function CatMenu({catButtonId}) {
                 </div>
             </div>
         </div>
-        <button id={id(another)} disabled className={`menu-button`} >Another!</button>
-        <CatMenuScript anotherButtonId={id(another)} loadingP={id(loadingP)} loadingDiv={id(loadingDiv)} catButtonId={catButtonId} />
+        <ThiccButton id={id(another)} disabled={true}>Another!</ThiccButton>
+        <CatMenuScript catButtonId={catButtonId} />
     </>
 };

@@ -1,7 +1,7 @@
 import styles from "./ContentArea.module.css";
 
-export default function ({header, content, footer}) {
-    return (
+export default function ContentArea({header, content, footer}) {
+    return <>
         <div className={styles.contentArea}>
             <header className={`relative-container`}>
                 <div className={`absolute-underlay ${styles.headerBorderContainer}`}>
@@ -21,5 +21,5 @@ export default function ({header, content, footer}) {
                 {footer}
             </footer>
         </div>
-    );
+    </>
 };

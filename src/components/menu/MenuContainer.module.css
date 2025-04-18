@@ -1,0 +1,23 @@
+.intermediateContainer {
+    height: 100%;
+    width: 100%;
+    padding: 0.12rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: safe center;
+    align-items: safe center;
+    overflow: hidden auto;
+}
+
+.submenuOnToggle {}
+
+.intermediateContainer:has(.submenuOnToggle:checked) > div:not(:has( input.submenuOnToggle:checked)) {
+    display: none;
+}
+
+.leafContainer {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    padding: 0.12rem;
+}
