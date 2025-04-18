@@ -56,8 +56,7 @@ function cycleLoadingIndicator(catloadingp) {
 }
 
 export async function fetchCats() {
-    // TODO there is something wrong here
-    return await fetch('https://jbazann.dev/w/cats')
+    return await fetch('/w/cats')
         .then(r => r.status === 200 ? r.json() : {})
         .then(kitties => kitties.cats?.map(feline => ({url: feline}))) || []
 }
