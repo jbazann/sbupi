@@ -1,3 +1,4 @@
+import {devmode} from "./environment.js";
 
 let scopeCounter = 0, scopes = new Map()
 
@@ -26,4 +27,20 @@ function createIdFunctionForScope(scope) {
 
 function identifier(scope, id) {
     return 's' + scope + 'i' + id
+}
+
+
+// Let the wind lead the sail, let disorder create order.
+export function devLog(thing, typeThing) {
+    if (devmode) {
+        if (typeThing) {
+            console.log(Object.assign(Object.create(typeThing),thing))
+        } else {
+            console.log(thing)
+        }
+    }
+}
+
+export function devErr(err) {
+    if (devmode) console.error(err)
 }

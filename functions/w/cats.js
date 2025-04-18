@@ -20,9 +20,10 @@ export async function onRequestGet(context) {
         cats: await Promise.all(ids.map(((id) => context.env.CAT_BUCKET.get(id).then(r2o => r2o.text())))),
         amount: metrics.cat_amount,
         size: metrics.cat_size
-    }
+    }, headers = new Headers()
+    headers.set('Content-Type','application/json')
     if (metrics.cat_amount < 12000 && metrics.cat_size < gbtb(5)) context.waitUntil(fetchCats(context,metrics))
-    return new Response(JSON.stringify(response));
+    return new Response(JSON.stringify(response),{headers});
 }
 
 function gbtb(gb) {
@@ -51,7 +52,7 @@ async function fetchCats(context,metrics) {
             }
             const buffer = await res.arrayBuffer()
             return 'data:'+res.headers.get("content-type")+';base64,'+arrayBufferToBase64(buffer)
-        })
+        }).catch(err => console.log(err))
     ))).filter(cat => cat !== '')
 
     await Promise.all(cats.map((kitten) => context.env.CAT_BUCKET

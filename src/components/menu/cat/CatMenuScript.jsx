@@ -1,7 +1,8 @@
 import {useEffect} from "react";
 import {onBtn} from "../../fmb/StaticMenuButton.jsx";
-import {getIdCounter} from "../../../lib/common.js";
+import {devErr, devLog, getIdCounter} from "../../../lib/common.js";
 import {another, loadingDiv, loadingP, catimg} from "./CatMenu.jsx";
+import {get} from '../../../lib/net.js'
 
 export default function CatMenuScript({catButtonId}) {
     useEffect(() => {
@@ -16,6 +17,7 @@ export default function CatMenuScript({catButtonId}) {
         const handler = async() => {
             cycleLoadingIndicator(catloadingp)
             batch = await fetchCats()
+            devLog({batch},class KittyBatch{}.prototype)
             setTimeout(async () => {
                 catloadingdiv.remove()
                 catloaded = true
@@ -25,6 +27,7 @@ export default function CatMenuScript({catButtonId}) {
                     anotherButton.disabled = false
                 } else {
                     batch = await nextBatch
+                    devLog({batch},class KittyBatch{}.prototype)
                     if (batch.length > 0) {
                         img.src = batch.pop().url
                         anotherButton.disabled = false
@@ -56,14 +59,14 @@ function cycleLoadingIndicator(catloadingp) {
 }
 
 export async function fetchCats() {
-    return await fetch('/w/cats')
-        .then(r => r.status === 200 ? r.json() : {})
-        .then(kitties => kitties.cats?.map(feline => ({url: feline}))) || []
+    return await get('/w/cats')
+        .then(kitties => kitties.cats.map(feline => ({url: feline})))
+        .catch(e => {devErr(e); return []})
 }
 
 function offerReload() {
     if (confirm(
-        "Something went wrong while fetching the cats; everything is about to explode." +
-        " Reload the page to try again?"
+        "Something went wrong while fetching the cats; everything is about to explode. " +
+        "Reload the page to try again?"
     )) window.location.reload();
 }

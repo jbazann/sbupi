@@ -13,7 +13,7 @@
     "debug": "vite --debug",
     "dev": "vike dev",
     "build": "vike build",
-    "preview": "vike build && vike preview"
+    "preview": "vike build && npx wrangler pages dev dist/client --r2=CAT_BUCKET --port=12012 --log-level=info"
   },
   "devDependencies": {
     "vite": "^6.2.5",
