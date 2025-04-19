@@ -8,6 +8,9 @@ import Soon from "../../soon/Soon.jsx";
 import {getIdCounter} from "../../../lib/common.js";
 import Developer from "../../text/Developer.jsx";
 import Language from "../settings/Language.jsx";
+import Style from "../settings/Style.jsx";
+import Theme from "../settings/Theme.jsx";
+import Cookies from "../settings/Cookies.jsx";
 
 const id = getIdCounter()
 
@@ -23,6 +26,7 @@ const main = 'main_menu',
             lang = 'language',
             cookies = 'cookies',
             theme = 'theme',
+            style = 'style',
         secret = 'top_secret',
         ___m21AA_C = '_________________________________'
 
@@ -53,12 +57,15 @@ export default function MainMenu() {
                 <StaticMenuButton key={id()} label={"Language"} id={id(lang)}
                                   outerId={id(settings)} clean={true} menu={
                     <Language /> } />,
-                <StaticMenuButton key={id()} label={"Cookies"} id={id(cookies)}
-                                outerId={id(settings)} clean={true} menu={
-                    <Soon /> } />,
                 <StaticMenuButton key={id()} label={"Theme"} id={id(theme)}
                                 outerId={id(settings)} clean={true} menu={
-                    <Soon /> } />,
+                    <Theme /> } />,
+                <StaticMenuButton key={id()} label={"Style"} id={id(style)}
+                                  outerId={id(settings)} clean={true} menu={
+                    <Style /> } />,
+                <StaticMenuButton key={id()} label={"Cookies"} id={id(cookies)}
+                                  outerId={id(settings)} clean={true} menu={
+                    <Cookies /> } />,
             ]} />,
             <StaticMenuButton disabled={true} key={id()} label={"T&# M$__5='_"} id={id(___m21AA_C)}
                               clean={true} menu={

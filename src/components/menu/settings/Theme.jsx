@@ -4,11 +4,11 @@ import {getIdCounter} from "../../../lib/common.js";
 
 const id = getIdCounter()
 
-export default function Language() {
+export default function Theme() {
     return <>
         <div className={styles.container}>
-            <ThiccButton id={id()} >English</ThiccButton>
-            <ThiccButton id={id()} disabled={true}>Español</ThiccButton>
+            <ThiccButton id={id()} >Dark</ThiccButton>
+            <ThiccButton id={id()} >Light</ThiccButton>
         </div>
     </>
 };
