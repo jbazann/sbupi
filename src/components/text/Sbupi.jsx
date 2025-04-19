@@ -51,10 +51,13 @@ export default function Sbupi() {
                     </ol>
                 </li>
                 <li>
-                    Integration with <a href="https://thecatapi.com">
-                    TheCatAPI</a>, and <a href="https://www.cloudflare.com/developer-platform/products/r2/">
+                    Integration with
+                    <a href="https://thecatapi.com" target="_blank">
+                    TheCatAPI
+                    </a>, and
+                    <a href="https://www.cloudflare.com/developer-platform/products/r2/" target="_blank">
                     Cloudflare R2
-                </a>.
+                    </a>.
                     <ol>
                         <li>
                             Navigating to <a href="https://jbazann.dev/cat">
