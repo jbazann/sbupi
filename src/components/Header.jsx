@@ -5,7 +5,7 @@ export default function () {
         <>
             <div className="absolute-underlay flex-col center-children">
                 <div className={styles.headerContainer}>
-                    <p className={styles.p}>jbazann.dev</p>
+                    <p className={styles.p}>Disponible en español a partir del 28/04/2025</p>
                 </div>
             </div>
         </>
