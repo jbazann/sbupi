@@ -7,6 +7,7 @@ import LinksMenu from "../links/LinksMenu.jsx";
 import Soon from "../../soon/Soon.jsx";
 import {getIdCounter} from "../../../lib/common.js";
 import Developer from "../../text/Developer.jsx";
+import Language from "../settings/Language.jsx";
 
 const id = getIdCounter()
 
@@ -51,7 +52,7 @@ export default function MainMenu() {
             <StaticMenuButton key={id()} label={"Settings"} id={id(settings)} menu={[
                 <StaticMenuButton key={id()} label={"Language"} id={id(lang)}
                                   outerId={id(settings)} clean={true} menu={
-                    <Soon /> } />,
+                    <Language /> } />,
                 <StaticMenuButton key={id()} label={"Cookies"} id={id(cookies)}
                                 outerId={id(settings)} clean={true} menu={
                     <Soon /> } />,
