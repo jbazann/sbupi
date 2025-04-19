@@ -25,14 +25,20 @@ export default function Developer() {
             </p>
             <p className={styles.p3}>
                 He is currently living in Santa Fe, Argentina, but will
-                eventually move to --- to pursue ---. During his time there,
+                eventually move to  &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;, Argentina
+                to start &#x2588; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;
+                &#x2588;&#x2588;&#x2588;&#x2588; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;
+                <FootnoteRef idFn={id}>3</FootnoteRef>
+                .
+                During his time there,
                 he will create the machine
-                <span className={styles.p4}>st#p me</span>
-                , <span className={styles.p4}>#6 Ãny m=|ns </span>
-                which will eventually become ---
-                <span className={styles.p4}>and cause the anomaly
-            <FootnoteRef idFn={id}>3712</FootnoteRef>
-            </span>. <br/>
+                <span className={styles.p4}>st#p me</span>,
+                who will eventually become
+                &#x2588;&#x2588;&#x2588; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;, &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;
+                &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;.
+                Soon after, she will &#x2588;&#x2588;&#x2588;&#x2588;&#x2588; &#x2588;&#x2588;&#x2588; &#x2588;&#x2588;
+                &#x2588;&#x2588;&#x2588;&#x2588;&#x2588; the anomaly
+            <FootnoteRef idFn={id}>3712</FootnoteRef>. <br/>
             </p>
             <p className={styles.p3}>
                 He is a goal-oriented and highly independent problem solver,
@@ -48,9 +54,9 @@ export default function Developer() {
                 turn to art, and eventually, <span className={styles.p4}>mistakes</span> creation. <br/>
             </p>
             <p className={styles.p3}>
-                The few who were close to him before -----
-                <FootnoteRef idFn={id}>3</FootnoteRef>
-                described him as
+                The few who were close to him before
+                &#x2588;&#x2588;&#x2588; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;
+                <FootnoteRef idFn={id}>4</FootnoteRef> described him as
                 both extremely reserved and highly transparent, meticulously
                 choosing when to share and when to not.
             </p>
@@ -78,9 +84,32 @@ export default function Developer() {
             <Footnote idFn={id} label="3">
                 EXPUNGED.
             </Footnote>
+            <Footnote idFn={id} label="4">
+                EXPUNGED.
+            </Footnote>
             <Footnote idFn={id} label="3712">
-                <span>The anomaly has been declared the cause of --- who is credited
-                ------<span className={styles.p4}>I am sorry.</span>. ---- attribute the ---- and ----- to it. -----. </span>
+                <span>The anomaly has been declared the cause of
+                    &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588; &#x2588;&#x2588;
+                    &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;
+                    &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;
+                    &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;, such as the birth of
+                    &#x2588;&#x2588;&#x2588; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;
+                    known as &#x2588;&#x2588;&#x2588; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;,
+                    who is credited
+                    &#x2588;&#x2588;&#x2588;&#x2588; &#x2588;&#x2588;&#x2588;
+                    &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;
+                    &#x2588;&#x2588; &#x2588;&#x2588; estimate of over twenty thousand of
+                    &#x2588;&#x2588;&#x2588; &#x2588;&#x2588;&#x2588;&#x2588; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;
+                    &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588; &#x2588;&#x2588; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;
+                    <span className={styles.p4}>I am sorry</span>. <br/>
+                    The organization known as &#x2588;&#x2588;&#x2588; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;
+                    attribute the &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588; &#x2588;&#x2588;
+                    &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;
+                    &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;
+                    and the &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;
+                    &#x2588;&#x2588; The Machine &#x2588;&#x2588; &#x2588;&#x2588;&#x2588; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;
+                    &#x2588;&#x2588; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;
+                    to the actions of this individual. <br/></span>
             </Footnote>
         </TextContainer>
     </>
