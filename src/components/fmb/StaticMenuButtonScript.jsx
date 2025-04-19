@@ -35,5 +35,5 @@ export default function StaticMenuButtonScript({id, outerId}) {
             onBtnElem?.removeEventListener("click", onClickHandler);
             offBtnElem?.removeEventListener("click", offClickHandler);
         };
-    }, [id, outerId]);
+    });
 }

@@ -6,11 +6,12 @@ import Lady from "../../text/Lady.jsx";
 import LinksMenu from "../links/LinksMenu.jsx";
 import Soon from "../../soon/Soon.jsx";
 import {getIdCounter} from "../../../lib/common.js";
+import Developer from "../../text/Developer.jsx";
 
 const id = getIdCounter()
 
 const main = 'main_menu',
-        me = 'me',
+        developer = 'developer',
         projects = 'projects',
             sbupi = 'sbupi',
             skwidl = 'skwidl',
@@ -27,8 +28,8 @@ const main = 'main_menu',
 export default function MainMenu() {
     return <>
         <MenuContainer menu={[
-            <StaticMenuButton key={id()} label={"Me"} id={id(me)} clean={true} menu={
-                <Soon /> } />,
+            <StaticMenuButton key={id()} label={"Developer"} id={id(developer)} clean={true} menu={
+                <Developer /> } />,
             <StaticMenuButton key={id()} label={"Projects"} id={id(projects)}
                             menu={[
                 <StaticMenuButton key={id()} label={"Sbupi"} id={id(sbupi)}

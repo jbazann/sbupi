@@ -78,10 +78,7 @@ export default function Sbupi() {
                     And more!
                     <ol>
                         <li>
-                            I prefer doing backend work, I want to go do that now.
-                        </li>
-                        <li>
-                            So I will list the other stuff another day&trade;.
+                            The archiver will return to this section at a future time.
                         </li>
                     </ol>
                 </li>
