@@ -34,7 +34,7 @@ const main = 'main_menu',
 export default function MainMenu() {
     return <>
         <MenuContainer menu={[
-            <StaticMenuButton key={id()} label={"Developer"} id={id(developer)} clean={true} menu={
+            <StaticMenuButton key={id()} label={"The Developer"} id={id(developer)} clean={true} menu={
                 <Developer /> } />,
             <StaticMenuButton key={id()} label={"Projects"} id={id(projects)}
                             menu={[
