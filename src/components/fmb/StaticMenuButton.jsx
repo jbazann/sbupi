@@ -3,7 +3,8 @@ import global from "../menu/MenuContainer.module.css";
 import placeholders from "../menu/main/MainMenu.module.css";
 import MenuContainer from "../menu/MenuContainer.jsx";
 import ThiccButton from "../clickable/ThiccButton.jsx";
-import {getIdCounter} from "../../lib/common.js";
+import {devLog, getIdCounter} from "../../lib/common.js";
+import {nav, pop, setRoutes} from "../../lib/routing.js";
 
 export const
     onBtn = 'on_button',
@@ -12,8 +13,14 @@ export const
     offState =  'off_state',
     subState = 'submenu_state'
 
-export default function StaticMenuButton({label, id, menu, outerId, disabled, clean = false}) {
+export default function StaticMenuButton({label, id, menu, outerId, disabled, clean = false, routes, parentRoute}) {
     const idFn = getIdCounter(id)
+    if (routes) {
+        devLog({parentRoute,routes,from: parentRoute || 'root'}, class RouteRegister{}.prototype)
+        setRoutes(routes,idFn(onBtn),parentRoute || 'root')
+    } else {
+        routes = [label]
+    }
     return <>
         <div className="contents">
             <input type="radio" id={idFn(subState)} name={id} className={`${styles.subRadio} ${global.submenuOnToggle}`}/>
@@ -22,9 +29,11 @@ export default function StaticMenuButton({label, id, menu, outerId, disabled, cl
             <div className={styles.contentDiv}>
                 <MenuContainer menu={menu} clean={clean}/>
             </div>
-            <ThiccButton id={idFn(offBtn)} classes={styles.closeButton}>
+            <ThiccButton id={idFn(offBtn)} classes={styles.closeButton}
+                action={pop}>
                 Back</ThiccButton>
-            <ThiccButton disabled={disabled} id={idFn(onBtn)} classes={styles.openButton}>
+            <ThiccButton disabled={disabled} id={idFn(onBtn)} classes={styles.openButton}
+                         action={() => nav(routes[0],parentRoute || 'root')}>
                 {label}</ThiccButton>
         </div>
         <div data-id={id} data-outerid={outerId} className={placeholders.menuButtonScript}></div>

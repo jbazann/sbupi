@@ -1,0 +1,47 @@
+.container, .spacedContainer {
+    position: relative;
+    height: fit-content;
+    width: 72%;
+    display: flex;
+    flex-direction: row;
+    justify-content: safe center;
+    align-items: safe center;
+    flex-wrap: wrap;
+    overflow: hidden;
+    contain: content;
+}
+
+.spacedContainer {
+    padding: .56rem 2rem 1rem 2rem;
+}
+
+.container {
+    padding: 2rem;
+}
+
+.input {
+    display: none;
+    &:checked + button {
+        text-decoration-line: underline;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 4px;
+        scale: 100%;
+    }
+}
+
+.titleContainer {
+    position: relative;
+    height: fit-content;
+    width: 72%;
+    padding: 1rem 0 0 0;
+    overflow: hidden;
+    contain: content;
+}
+/* TODO font sizes and padding and stuff */
+.title {
+    width: 100%;
+    text-wrap: wrap;
+    text-align: center;
+    font-size: 1.42rem;
+    font-style: italic;
+}

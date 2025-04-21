@@ -1,14 +1,18 @@
 import styles from './Settings.module.css'
-import ThiccButton from "../../clickable/ThiccButton.jsx";
 import {getIdCounter} from "../../../lib/common.js";
+import Options from "./options/Options.jsx";
+import {Option} from "./options/Options.jsx"
 
 const id = getIdCounter()
 
 export default function Language() {
     return <>
         <div className={styles.container}>
-            <ThiccButton id={id()} >English</ThiccButton>
-            <ThiccButton id={id()} disabled={true}>Español</ThiccButton>
+            <div className="hr"></div>
+            <Options options={Option.group(id(), [
+                "English",
+            ])}/>
+            <div className="hr"></div>
         </div>
     </>
 };

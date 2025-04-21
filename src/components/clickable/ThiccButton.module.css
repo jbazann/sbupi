@@ -6,6 +6,7 @@
     font-size: 1rem;
     background: none;
     border: none;
+    color: var(--color-text);
     text-underline-offset: 0;
     text-decoration-thickness: 1px;
     text-decoration-color: var(--color-highlight);
@@ -18,7 +19,11 @@
         text-decoration-thickness 0.22s ease-in-out
     ;
 
-    &:hover {
+    &:disabled {
+        opacity: 42%;
+    }
+
+    &:not(:disabled):hover {
         opacity: 100%;
         scale: 112%;
         text-underline-offset: 0.42rem;
@@ -27,7 +32,7 @@
         cursor: pointer;
     }
 
-    &:focus {
+    &:not(:disabled):focus {
         opacity: 100%;
         scale: 112%;
         text-underline-offset: 0.42rem;
@@ -35,7 +40,7 @@
         text-decoration-line: underline;
     }
 
-    &:active {
+    &:not(:disabled):active {
         transition: text-underline-offset 0.12s;
         scale: 118%;
         opacity: 12%;

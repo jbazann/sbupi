@@ -1,14 +1,43 @@
 import styles from './Settings.module.css'
-import ThiccButton from "../../clickable/ThiccButton.jsx";
 import {getIdCounter} from "../../../lib/common.js";
+import Options, {Option} from "./options/Options.jsx";
+import {get, set} from "../../../lib/localStore.js";
 
 const id = getIdCounter()
 
 export default function Theme() {
     return <>
         <div className={styles.container}>
-            <ThiccButton id={id()} >Dark</ThiccButton>
-            <ThiccButton id={id()} >Light</ThiccButton>
+            <div className="hr"></div>
+            <Options options={Option.group(id(), [
+                {
+                    label: "Default",
+                    isDefault: shouldBeDefault('theme', 'default'),
+                    action: () => _set('theme','default')},
+            ])} title="Theme"/>
+            <div className="hr2"></div>
+            <Options options={Option.group(id(), [
+                {
+                    label: "Dark",
+                    isDefault: shouldBeDefault('theme-variant', 'dark'),
+                    action: () => _set('theme-variant','dark')
+                },
+                {
+                    label: "Light",
+                    isDefault: shouldBeDefault('theme-variant', 'light'),
+                    action: () => _set('theme-variant','light')
+                },
+            ])} title="Variant"/>
+            <div className="hr"></div>
         </div>
     </>
 };
+
+function _set(key, val) {
+    set(key, val)
+    document.documentElement.setAttribute('data-'+key, val)
+}
+
+function shouldBeDefault(key, val) {
+    return val && val === get(key, val)
+}

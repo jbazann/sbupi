@@ -7,11 +7,8 @@ import LinksMenu from "../links/LinksMenu.jsx";
 import Soon from "../../soon/Soon.jsx";
 import {getIdCounter} from "../../../lib/common.js";
 import Developer from "../../text/Developer.jsx";
-import Language from "../settings/Language.jsx";
-import Style from "../settings/Style.jsx";
-import Theme from "../settings/Theme.jsx";
-import Cookies from "../settings/Cookies.jsx";
 import Expunged from "../../soon/Expunged.jsx";
+import SettingsMenu from "../settings/SettingsMenu.jsx";
 
 const id = getIdCounter()
 
@@ -24,54 +21,49 @@ const main = 'main_menu',
         links = 'links',
         cat = 'cats',
         settings = 'settings',
-            lang = 'language',
-            cookies = 'cookies',
-            theme = 'theme',
-            style = 'style',
         secret = 'top_secret',
         ___m21AA_C = '_________________________________',
         ___m21AB_C = '___________###____________#######'
 export default function MainMenu() {
     return <>
         <MenuContainer menu={[
-            <StaticMenuButton key={id()} label={"The Developer"} id={id(developer)} clean={true} menu={
+            <StaticMenuButton key={id()} label={"The Developer"} routes={['about']}
+                              id={id(developer)} clean={true} menu={
                 <Developer /> } />,
-            <StaticMenuButton key={id()} label={"Projects"} id={id(projects)}
-                            menu={[
+            <StaticMenuButton key={id()} label={"Projects"} routes={['projects']}
+                              id={id(projects)} menu={[
                 <StaticMenuButton key={id()} label={"Skwidl"} id={id(skwidl)}
+                                  routes={['skwidl']} parentRoute={'projects'}
                                   outerId={id(projects)} clean={true} menu={
                     <Soon /> } />,
                 <StaticMenuButton key={id()} label={"Sbupi"} id={id(sbupi)}
+                                  routes={['sbupi']} parentRoute={'projects'}
                                 outerId={id(projects)} clean={true} menu={
                     <Sbupi /> } />,
                 <StaticMenuButton key={id()} label={"Lady"} id={id(lady)}
+                                  routes={['lady']} parentRoute={'projects'}
                                 outerId={id(projects)} clean={true} menu={
                     <Lady /> } />,
                 <StaticMenuButton key={id()} label={"Machine"} id={id(___m21AB_C)}
+                                  routes={['machine']} parentRoute={'projects'}
                                   outerId={id(projects)} clean={true} menu={
                     <Expunged /> } />,
             ]} />,
-            <StaticMenuButton key={id()} label={"Links"} id={id(links)} menu={
+            <StaticMenuButton key={id()} label={"Links"} routes={['links']}
+                              id={id(links)} menu={
                 <LinksMenu /> } />,
-            <StaticMenuButton key={id()} label={"Cat"} id={id(cat)} menu={
+            <StaticMenuButton key={id()} label={"Cat"} routes={['cat']}
+                              id={id(cat)} menu={
                 <CatMenu catButtonId={id(cat)} />} />,
-            <StaticMenuButton key={id()} label={"????"} id={id(secret)} clean={true} menu={
+            <StaticMenuButton key={id()} label={"????"} routes={['notyet']}
+                              id={id(secret)} clean={true} menu={
                 <Soon /> } />,
-            <StaticMenuButton key={id()} label={"Settings"} id={id(settings)} menu={[
-                <StaticMenuButton key={id()} label={"Language"} id={id(lang)}
-                                  outerId={id(settings)} clean={true} menu={
-                    <Language /> } />,
-                <StaticMenuButton key={id()} label={"Theme"} id={id(theme)}
-                                outerId={id(settings)} clean={true} menu={
-                    <Theme /> } />,
-                <StaticMenuButton key={id()} label={"Style"} id={id(style)}
-                                  outerId={id(settings)} clean={true} menu={
-                    <Style /> } />,
-                <StaticMenuButton key={id()} label={"Cookies"} id={id(cookies)}
-                                  outerId={id(settings)} clean={true} menu={
-                    <Cookies /> } />,
-            ]} />,
-            <StaticMenuButton disabled={true} key={id()} label={"T&# M$__5='_"} id={id(___m21AA_C)}
+            <StaticMenuButton key={id()} label={"Settings"} routes={['settings']}
+                              id={id(settings)} menu={
+                <SettingsMenu id={id()} outerId={id(settings)}/>
+            } />,
+            <StaticMenuButton key={id()} disabled={true}
+                              label={"T&# M$__5='_"} id={id(___m21AA_C)}
                               clean={true} menu={
                 <Soon /> } />,
         ]} />
