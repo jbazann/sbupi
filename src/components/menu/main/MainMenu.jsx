@@ -8,6 +8,7 @@ import Soon from "../../soon/Soon.jsx";
 import {getIdCounter} from "../../../lib/common.js";
 import Developer from "../../text/Developer.jsx";
 import Expunged from "../../soon/Expunged.jsx";
+import Skwidl from "../../text/Skwidl.jsx";
 import SettingsMenu from "../settings/SettingsMenu.jsx";
 
 const id = getIdCounter()
@@ -35,7 +36,7 @@ export default function MainMenu() {
                 <StaticMenuButton key={id()} label={"Skwidl"} id={id(skwidl)}
                                   routes={['skwidl']} parentRoute={'projects'}
                                   outerId={id(projects)} clean={true} menu={
-                    <Soon /> } />,
+                    <Skwidl /> } />,
                 <StaticMenuButton key={id()} label={"Sbupi"} id={id(sbupi)}
                                   routes={['sbupi']} parentRoute={'projects'}
                                 outerId={id(projects)} clean={true} menu={
