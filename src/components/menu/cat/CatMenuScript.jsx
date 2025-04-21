@@ -38,9 +38,27 @@ export default function CatMenuScript({catButtonId}) {
             }, 3500)
         }, opts = {once: true}
 
+        const anotherHandler = async() => {
+            if (batch.length > 0) {
+                img.src = batch.pop().url
+                if (batch.length === 0) {
+                    batch = await nextBatch
+                    nextBatch = fetchCats()
+                }
+            } else {
+                batch = await nextBatch
+                if (batch.length > 0) {
+                    img.src = batch.pop().url
+                } else {
+                    offerReload()
+                }
+            }
+        }
         catButton.addEventListener('click', handler, opts)
+        anotherButton.addEventListener('click', anotherHandler)
         return () => {
             catButton.removeEventListener('click', handler, opts)
+            anotherButton.removeEventListener('click', anotherHandler)
         }
     },[catButtonId])
 }
