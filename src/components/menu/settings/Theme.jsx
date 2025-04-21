@@ -20,12 +20,18 @@ export default function Theme() {
                 {
                     label: "Dark",
                     isDefault: shouldBeDefault('theme-variant', 'dark'),
-                    action: () => _set('theme-variant','dark')
+                    action: () => {
+                        initTheme()
+                        _set('theme-variant', 'dark')
+                    }
                 },
                 {
                     label: "Light",
                     isDefault: shouldBeDefault('theme-variant', 'light'),
-                    action: () => _set('theme-variant','light')
+                    action: () => {
+                        initTheme()
+                        _set('theme-variant', 'light')
+                    }
                 },
             ])} title="Variant"/>
             <div className="hr"></div>
@@ -36,6 +42,12 @@ export default function Theme() {
 function _set(key, val) {
     set(key, val)
     document.documentElement.setAttribute('data-'+key, val)
+}
+
+function initTheme() {
+    if (!document.documentElement.hasAttribute('theme')) {
+        _set('theme', 'default');
+    }
 }
 
 function shouldBeDefault(key, val) {
