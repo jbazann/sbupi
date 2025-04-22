@@ -14,7 +14,7 @@ export default function Skwidl() {
             <div className={`hr ${styles.hr}`}></div>
             <p className={styles.p3}>
                 More details to come after 24/04/2025. A slightly outdated
-                description can be found at <a href="https://v1.jbazann.dev">v1.jbazann.dev</a>. <br/>
+                description can be found at <a href="https://v2.jbazann.dev">v2.jbazann.dev</a>. <br/>
                 The code is publicly available in <a href="https://github.com/jbazann/skwidl" target="_blank">
                 this</a> GitHub repository.
             </p>
