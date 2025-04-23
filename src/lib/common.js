@@ -13,9 +13,14 @@ let scopeCounter = 0, scopes = new Map()
  * previously returned instances). If called with a key argument, the function returns the same
  * ID for all subsequent calls with said ID.
  */
-export function getIdCounter(scope = scopeCounter++) {
+export function getIdScope(scope = scopeCounter++) {
     return scopes.get(scope) ||
         scopes.set(scope, createIdFunctionForScope(scope)).get(scope)
+}
+
+const globalId = getIdScope()
+export function getGlobalId(key) {
+    return globalId(key)
 }
 
 function createIdFunctionForScope(scope) {
@@ -43,4 +48,33 @@ export function devLog(thing, typeThing) {
 
 export function devErr(err) {
     if (devmode) console.error(err)
+}
+
+export function debounce(f, tms, that) {
+    let timer
+    return (...args) => {
+        clearTimeout(timer)
+        timer = setTimeout(() => f.apply(that || this, args), tms)
+    }
+}
+
+export function throttle(f, tms, that) {
+    let timer
+    return (...args) => {
+        if (!timer) {
+            timer = setTimeout(() => {
+                timer = false
+                return f.apply(that || this, args)
+            }, tms)
+        }
+    }
+}
+
+export function throunce(f, ttms, tdms = ttms, that) {
+    const t = throttle(f, ttms, that)
+    const d = debounce(f, tdms, that)
+    return (args) => {
+        t(args)
+        d(args)
+    }
 }

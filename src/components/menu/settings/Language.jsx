@@ -1,9 +1,9 @@
 import styles from './Settings.module.css'
-import {getIdCounter} from "../../../lib/common.js";
+import {getIdScope} from "../../../lib/common.js";
 import Options from "./options/Options.jsx";
 import {Option} from "./options/Options.jsx"
 
-const id = getIdCounter()
+const id = getIdScope()
 
 export default function Language() {
     return <>

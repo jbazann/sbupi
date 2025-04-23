@@ -1,5 +1,5 @@
-import TextContainer from "../text/TextContainer.jsx";
-import styles from '../text/TextContainer.module.css'
+import TextContainer from "../../text/TextContainer.jsx";
+import styles from '../../text/TextContainer.module.css'
 
 export default function Expunged() {
     return <>

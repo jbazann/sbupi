@@ -1,7 +1,7 @@
-import {getIdCounter} from "../../../lib/common.js";
-import Soon from "../../soon/Soon.jsx";
+import {getIdScope} from "../../../lib/common.js";
+import Soon from "../bare/Soon.jsx";
 
-const id = getIdCounter()
+const id = getIdScope()
 
 export default function Style() {
     return <>

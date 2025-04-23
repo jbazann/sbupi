@@ -1,6 +1,6 @@
 import styles from './Header.module.css'
 
-export default function () {
+export default function Header() {
     return (
         <>
             <div className="absolute-underlay flex-col center-children">

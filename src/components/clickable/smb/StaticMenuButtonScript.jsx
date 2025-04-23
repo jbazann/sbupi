@@ -1,11 +1,11 @@
-import {getIdCounter, } from "../../lib/common.js";
+import {devLog, getIdScope,} from "../../../lib/common.js";
 import {useEffect} from "react";
 import {subState, offBtn, offState, onBtn, onState} from "./StaticMenuButton.jsx";
 
-export default function StaticMenuButtonScript({id, outerId}) {
+export default function StaticMenuButtonScript({scope, outerScope}) {
     useEffect(() => {
-        const idFn = getIdCounter(id)
-        const outerFn = getIdCounter(outerId)
+        const idFn = getIdScope(scope)
+        const outerFn = getIdScope(outerScope)
 
         const onStateElem = document.getElementById(idFn(onState));
         const offStateElem = document.getElementById(idFn(offState));
@@ -14,10 +14,21 @@ export default function StaticMenuButtonScript({id, outerId}) {
 
         let outerSubmenuStateElem;
         let outerOnStateElem;
-        if (outerId) {
+        if (outerScope) {
             outerSubmenuStateElem = document.getElementById(outerFn(subState));
             outerOnStateElem = document.getElementById(outerFn(onState));
         }
+
+        devLog({
+            scope,
+            outerScope,
+            onStateElem,
+            offStateElem,
+            onBtnElem,
+            offBtnElem,
+            outerSubmenuStateElem,
+            outerOnStateElem,
+        }, class SMBScript{}.prototype)
 
         const onClickHandler = () => {
             if (onStateElem) onStateElem.checked = true;
@@ -35,5 +46,5 @@ export default function StaticMenuButtonScript({id, outerId}) {
             onBtnElem?.removeEventListener("click", onClickHandler);
             offBtnElem?.removeEventListener("click", offClickHandler);
         };
-    });
+    }, [scope, outerScope]);
 }

@@ -1,9 +1,9 @@
 import styles from './Settings.module.css'
-import {getIdCounter} from "../../../lib/common.js";
+import {getIdScope} from "../../../lib/common.js";
 import Options, {Option} from "./options/Options.jsx";
 import {get, set} from "../../../lib/localStore.js";
 
-const id = getIdCounter()
+const id = getIdScope()
 
 export default function Theme() {
     return <>

@@ -1,32 +1,54 @@
-import StaticMenuButton from "../../fmb/StaticMenuButton.jsx";
+import StaticMenuButton from "../../clickable/smb/StaticMenuButton.jsx";
 import Language from "./Language.jsx";
-import Theme from "./Theme.jsx";
 import Style from "./Style.jsx";
 import Cookies from "./Cookies.jsx";
-import {getIdCounter} from "../../../lib/common.js";
+import {getGlobalId, getIdScope} from "../../../lib/common.js";
 import {clientOnly} from "vike-react/clientOnly";
 
 const Script = clientOnly(() => import('./SettingsMenuScript.jsx'))
+const Theme = clientOnly(() => import('./Theme.jsx'))
 
-export default function SettingsMenu({id,outerId}) {
-    id = getIdCounter(id)
+export const scope = getGlobalId(),
+    language = getGlobalId(),
+    theme = getGlobalId(),
+    cookies = getGlobalId(),
+    style = getGlobalId()
+
+export default function SettingsMenu() {
+    const id = getIdScope(scope)
     return <>
-        <StaticMenuButton key={id()} routes={['language']} parentRoute={'settings'}
-                          label={"Language"} id={id()}
-                          outerId={outerId} clean={true} menu={
-            <Language /> } />
-        <StaticMenuButton key={id()} routes={['theme']} parentRoute={'settings'}
-                          label={"Theme"} id={id()}
-                          outerId={outerId} clean={true} menu={
-            <Theme /> } />
-        <StaticMenuButton key={id()} routes={['style']} parentRoute={'settings'}
-                          label={"Style"} id={id()}
-                          outerId={outerId} clean={true} menu={
-            <Style /> } />
-        <StaticMenuButton key={id()} routes={['cookies']} parentRoute={'settings'}
-                          label={"Cookies"} id={id()}
-                          outerId={outerId} clean={true} menu={
-            <Cookies /> } />
-        <Script fallback="" />
+        <StaticMenuButton key={id()} label={"Settings"}
+                          routes={['settings']}
+                          scope={scope} >
+            <StaticMenuButton key={id()} label={"Language"}
+                              routes={['language']}
+                              parentRoute={'settings'}
+                              scope={language}
+                              outerScope={scope} clean={true} >
+                <Language />
+            </StaticMenuButton>
+            <StaticMenuButton key={id()} label={"Theme"}
+                              routes={['theme']}
+                              parentRoute={'settings'}
+                              scope={theme}
+                              outerScope={scope} clean={true} >
+                <Theme />
+            </StaticMenuButton>
+            <StaticMenuButton key={id()} label={"Style"}
+                              routes={['style']}
+                              parentRoute={'settings'}
+                              scope={style}
+                              outerScope={scope} clean={true} >
+                <Style />
+            </StaticMenuButton>
+            <StaticMenuButton key={id()} label={"Cookies"}
+                              routes={['cookies']}
+                              parentRoute={'settings'}
+                              scope={cookies}
+                              outerScope={scope} clean={true} >
+                <Cookies />
+            </StaticMenuButton>
+            <Script fallback="" />
+        </StaticMenuButton>
     </>
 }

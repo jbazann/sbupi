@@ -1,18 +1,18 @@
 import {useEffect} from "react";
-import {onBtn} from "../../fmb/StaticMenuButton.jsx";
-import {devErr, devLog, getIdCounter} from "../../../lib/common.js";
-import {another, loadingDiv, loadingP, catimg} from "./CatMenu.jsx";
+import {onBtn} from "../../clickable/smb/StaticMenuButton.jsx";
+import {devErr, devLog, getIdScope} from "../../../lib/common.js";
+import {another, loadingDiv, loadingP, catImg} from "./CatMenu.jsx";
 import {get} from '../../../lib/net.js'
 
-export default function CatMenuScript({catButtonId}) {
+export default function CatMenuScript({scope}) {
     useEffect(() => {
         let batch,nextBatch
-        const id = getIdCounter(catButtonId),
+        const id = getIdScope(scope),
             anotherButton = document.getElementById(id(another)),
             catloadingp = document.getElementById(id(loadingP)),
             catloadingdiv = document.getElementById(id(loadingDiv)),
             catButton = document.getElementById(id(onBtn)),
-            img = document.getElementById(id(catimg))
+            img = document.getElementById(id(catImg))
 
         const handler = async() => {
             cycleLoadingIndicator(catloadingp)
@@ -60,7 +60,7 @@ export default function CatMenuScript({catButtonId}) {
             catButton.removeEventListener('click', handler, opts)
             anotherButton.removeEventListener('click', anotherHandler)
         }
-    },[catButtonId])
+    },[scope])
 }
 
 let catloaded = false, index = -1

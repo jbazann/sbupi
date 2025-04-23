@@ -7,7 +7,7 @@ export default {
     reactStrictMode: false, // TODO TEMPORARY REMEMBER
     extends: vikeReact,
     prerender: true,
-    ssr: false,
+    ssr: true,
     title: "jbazann.dev",
     description: "Joaquín Bazán. Systems engineering student. Back-end developer. Java. Spring framework.",
 }

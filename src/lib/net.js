@@ -4,7 +4,6 @@
  * @module jbazann/net
  */
 import {devErr, devLog} from "./common.js";
-import {netlog} from "./environment.js";
 
 class RequestBuilder {
     #baseUrl

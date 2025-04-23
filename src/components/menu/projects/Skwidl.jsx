@@ -1,8 +1,8 @@
-import TextContainer from "./TextContainer.jsx";
-import styles from './TextContainer.module.css'
-import {getIdCounter} from "../../lib/common.js";
+import TextContainer from "../../text/TextContainer.jsx";
+import styles from '../../text/TextContainer.module.css'
+import {getIdScope} from "../../../lib/common.js";
 
-const id = getIdCounter()
+const id = getIdScope()
 
 export default function Skwidl() {
     return <>

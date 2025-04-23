@@ -1,6 +1,6 @@
 import styles from './Footer.module.css'
 
-export default function () {
+export default function Footer() {
     return (
         <div className={`${styles.footingContainer} relative-container flex-col`}>
             <p className={`${styles.footingText} center-self`}>contact: mail@jbazann.dev</p> {/* TODO overflow, dynamic fetch, etc etc etc*/}

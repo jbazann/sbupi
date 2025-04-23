@@ -11,7 +11,7 @@ export default function Popover({children,id}) {
                         </p>
                     </div>
                     <button popoverTarget={id} popoverTargetAction="hide" className={styles.popoverButton}>
-                        <img src="/icon/favicon.png" alt="Thumbs up. Click to dismiss dialog."
+                        <img src="/icon/favicon.png" alt="Click to dismiss dialog."
                              className={styles.popoverIcon}/>
                     </button>
                 </div>

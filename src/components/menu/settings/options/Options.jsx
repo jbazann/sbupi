@@ -1,9 +1,9 @@
 import styles from './Options.module.css'
 import OptionButton from "../../../clickable/OptionButton.jsx";
-import {getIdCounter} from "../../../../lib/common.js";
+import {getIdScope} from "../../../../lib/common.js";
 
-const key = getIdCounter()
-const id = getIdCounter()
+const key = getIdScope()
+const id = getIdScope()
 
 export default function Options({options,title}) {
     return <>

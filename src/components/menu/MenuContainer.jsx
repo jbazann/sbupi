@@ -1,9 +1,9 @@
 import styles from "./MenuContainer.module.css"
 
-export default function MenuContainer({menu, clean = false}) {
+export default function MenuContainer({children, clean = false}) {
     return <>
         <div className={clean ? styles.bareContainer : styles.scrollableContainer}>
-            {menu}
+            {children}
         </div>
     </>
 

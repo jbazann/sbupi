@@ -3,8 +3,15 @@
     width: 62%;
     height: min(1.32rem,62%);
     overflow: hidden;
+
+    --markee-duration: 121212s;
 }
 
 .p {
     text-align: center;
+}
+
+@keyframes marquee {
+    from { transform: translateY(0%); }
+    to { transform: translateX(-100%); }
 }

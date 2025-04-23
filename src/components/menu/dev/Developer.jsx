@@ -1,10 +1,10 @@
-import TextContainer from "./TextContainer.jsx";
-import styles from './TextContainer.module.css';
-import {getIdCounter} from "../../lib/common.js";
-import FootnoteRef from "../footnote/FootnoteRef.jsx";
-import Footnote from "../footnote/Footnote.jsx";
+import TextContainer from "../../text/TextContainer.jsx";
+import styles from '../../text/TextContainer.module.css';
+import {getIdScope} from "../../../lib/common.js";
+import FootnoteRef from "../../clickable/footnote/FootnoteRef.jsx";
+import Footnote from "../../clickable/footnote/Footnote.jsx";
 
-const id = getIdCounter()
+const id = getIdScope()
 
 export default function Developer() {
     return <>
