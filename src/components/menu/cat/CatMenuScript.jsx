@@ -54,11 +54,13 @@ export default function CatMenuScript({scope}) {
                 }
             }
         }
-        catButton.addEventListener('click', handler, opts)
-        anotherButton.addEventListener('click', anotherHandler)
+
+        devLog({catButton,anotherButton}, class CatScriptButtons{}.prototype)
+        if (catButton) catButton.addEventListener('click', handler, opts)
+        if (anotherButton) anotherButton.addEventListener('click', anotherHandler)
         return () => {
-            catButton.removeEventListener('click', handler, opts)
-            anotherButton.removeEventListener('click', anotherHandler)
+            if (catButton) catButton.removeEventListener('click', handler, opts)
+            if (anotherButton) anotherButton.removeEventListener('click', anotherHandler)
         }
     },[scope])
 }

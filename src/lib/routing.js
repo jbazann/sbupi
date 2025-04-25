@@ -3,11 +3,22 @@ import {devLog} from "./common.js";
 const nodes = new Map()
 
 export function setRoutes(routes, to, from = 'root') {
+    devLog({
+        nodes,
+        routes: routes.toString()
+        ,to,from
+    }, class PreSetRoute{}.prototype)
+
     const edges = nodes.get(from) || new Map()
     for (const route of routes) {
         edges.set(route, to)
     }
     nodes.set(from, edges)
+
+    devLog({
+        nodes,
+        edges
+    }, class SetRoute{}.prototype)
 }
 
 let stack = []
