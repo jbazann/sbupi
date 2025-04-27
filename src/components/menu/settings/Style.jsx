@@ -1,9 +1,9 @@
-import {getIdScope} from "../../../lib/common.js";
+import {getScopedId} from "../../../lib/common.js";
 import Soon from "../bare/Soon.jsx";
 
-const id = getIdScope()
 
-export default function Style() {
+export default function Style({scope}) {
+    const id = getScopedId(scope)
     return <>
         <Soon />
     </>

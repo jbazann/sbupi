@@ -1,13 +1,13 @@
 import {useEffect} from "react";
 import {onBtn} from "../../clickable/smb/StaticMenuButton.jsx";
-import {devErr, devLog, getIdScope} from "../../../lib/common.js";
+import {devErr, devLog, getScopedId} from "../../../lib/common.js";
 import {another, loadingDiv, loadingP, catImg} from "./CatMenu.jsx";
 import {get} from '../../../lib/net.js'
 
 export default function CatMenuScript({scope}) {
     useEffect(() => {
         let batch,nextBatch
-        const id = getIdScope(scope),
+        const id = getScopedId(scope),
             anotherButton = document.getElementById(id(another)),
             catloadingp = document.getElementById(id(loadingP)),
             catloadingdiv = document.getElementById(id(loadingDiv)),
@@ -55,12 +55,12 @@ export default function CatMenuScript({scope}) {
             }
         }
 
-        devLog({catButton,anotherButton}, class CatScriptButtons{}.prototype)
-        if (catButton) catButton.addEventListener('click', handler, opts)
-        if (anotherButton) anotherButton.addEventListener('click', anotherHandler)
+        devLog({catButton,anotherButton,scope, catId: id(onBtn), anotherId: id(another)}, class CatScriptButtons{}.prototype)
+        catButton?.addEventListener('click', handler, opts)
+        anotherButton?.addEventListener('click', anotherHandler)
         return () => {
-            if (catButton) catButton.removeEventListener('click', handler, opts)
-            if (anotherButton) anotherButton.removeEventListener('click', anotherHandler)
+            catButton?.removeEventListener('click', handler, opts)
+            anotherButton?.removeEventListener('click', anotherHandler)
         }
     },[scope])
 }

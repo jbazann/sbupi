@@ -1,23 +1,23 @@
 import styles from './CatMenu.module.css'
-import {clientOnly} from "vike-react/clientOnly";
-import {getGlobalId, getIdScope} from "../../../lib/common.js";
+import {devLog, getScopedId} from "../../../lib/common.js";
 import ThiccButton from "../../clickable/ThiccButton.jsx";
-import StaticMenuButton from "../../clickable/smb/StaticMenuButton.jsx";
+import StaticMenuButton, {onBtn} from "../../clickable/smb/StaticMenuButton.jsx";
+import {clientOnly} from "vike-react/clientOnly";
 
-export const scope = getGlobalId(),
-    smb = 'smb',
+export const
     catImg = 'catimg',
     another = 'anothercat',
     loadingDiv = 'loadingdiv',
     loadingP = 'loadingp'
 
-// const CatMenuScript = clientOnly(() => import('./CatMenuScript.jsx'))
+const CatMenuScript = clientOnly(() => import('./CatMenuScript.jsx'))
 
-export default function CatMenu() {
-    const id = getIdScope(scope)
+export default function CatMenu({scope}) {
+    const id = getScopedId(scope)
     return <>
-        <StaticMenuButton key={id()} label={"Cat"} routes={['cat']}
-                          id={id(smb)} >
+        <StaticMenuButton key={id('key1')} label={"Cat"}
+                          routes={['cat']}
+                          scope={scope} >
             <div className="relative-container">
                 <div className="absolute-underlay flex-col center-children">
                     <div id={id(loadingDiv)} className="flex-col center-children">
@@ -30,7 +30,7 @@ export default function CatMenu() {
                 </div>
             </div>
             <ThiccButton id={id(another)} disabled={true}>Another!</ThiccButton>
-            {/*<CatMenuScript scope={scope} />*/}
+            <CatMenuScript scope={scope} />
         </StaticMenuButton>
     </>
 };

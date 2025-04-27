@@ -1,5 +1,5 @@
 import {useEffect} from "react";
-import {get} from "../../../lib/localStore.js";
+import {get} from "../../../lib/stores.js";
 
 export default function SettingsMenuScript() {
     useEffect(() => {

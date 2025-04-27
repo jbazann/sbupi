@@ -2,28 +2,28 @@ import CatMenu from "../cat/CatMenu.jsx";
 import MenuContainer from "../MenuContainer.jsx";
 import StaticMenuButton from "../../clickable/smb/StaticMenuButton.jsx";
 import Soon from "../bare/Soon.jsx";
-import {getIdScope} from "../../../lib/common.js";
+import {getScopedId} from "../../../lib/common.js";
 import DeveloperMenu from "../dev/DeveloperMenu.jsx";
 import SettingsMenu from "../settings/SettingsMenu.jsx";
 import ProjectsMenu from "../projects/ProjectsMenu.jsx";
 import LinksMenu from "../bare/LinksMenu.jsx";
 
-const id = getIdScope()
-
-export default function MainMenu() {
+export default function MainMenu({scope}) {
+    const id = getScopedId(scope)
+    let idCounter = 0
     return <>
         <MenuContainer >
-            <DeveloperMenu />
-            <ProjectsMenu />
-            <LinksMenu />
-            <CatMenu />
-            <StaticMenuButton key={id()} label={"????"} routes={['notyet']}
-                              scope={id()} clean={true}>
+            <DeveloperMenu scope={id(idCounter++)} />
+            <ProjectsMenu scope={id(idCounter++)} />
+            <LinksMenu scope={id(idCounter++)} />
+            <CatMenu scope={id(idCounter++)} />
+            <StaticMenuButton key={id(idCounter++)} label={"????"} routes={['notyet']}
+                              scope={id('unk')} clean={true}>
                 <Soon />
             </StaticMenuButton>
-            <SettingsMenu />
-            <StaticMenuButton key={id()} label={"T&# M$__5='_"} routes={['machine']}
-                              scope={id()} disabled={true} clean={true}>
+            <SettingsMenu scope={id(idCounter++)} />
+            <StaticMenuButton key={id(idCounter++)} label={"T&# M$__5='_"} routes={['machine']}
+                              scope={id('unc')} disabled={true} clean={true}>
                 <Soon />
             </StaticMenuButton>
         </MenuContainer>

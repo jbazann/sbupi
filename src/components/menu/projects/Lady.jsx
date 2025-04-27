@@ -1,16 +1,15 @@
 import TextContainer from "../../text/TextContainer.jsx";
 import styles from '../../text/TextContainer.module.css'
-import {getIdScope} from "../../../lib/common.js";
+import {getScopedId} from "../../../lib/common.js";
 import Footnote from "../../clickable/footnote/Footnote.jsx";
 import FootnoteRef from "../../clickable/footnote/FootnoteRef.jsx";
 
-const id = getIdScope()
-
-export default function Lady() {
+export default function Lady({scope}) {
+    const id = getScopedId(scope);
     return <>
         <TextContainer>
             <h2 className={styles.h1}><b>The PostLady project</b>
-                <FootnoteRef idFn={id}>1</FootnoteRef>
+                <FootnoteRef target={id('1')}>1</FootnoteRef>
             </h2>
             <p className={styles.h2}>
                 A Postman alternative that doesn't use Javascript in the backend.<br/>
@@ -24,7 +23,7 @@ export default function Lady() {
             <p className={styles.p1}>
                 References:
             </p>
-            <Footnote idFn={id} label='1'>
+            <Footnote id={id('1')} label='1'>
                 I promise will change the project name to something that isn't likely to get
                 me sued if I ever release this.
             </Footnote>

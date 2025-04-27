@@ -1,10 +1,9 @@
 import TextContainer from "../../text/TextContainer.jsx";
 import styles from '../../text/TextContainer.module.css'
-import {getIdScope} from "../../../lib/common.js";
+import {getScopedId} from "../../../lib/common.js";
 
-const id = getIdScope()
-
-export default function Skwidl() {
+export default function Skwidl({scope}) {
+    const id = getScopedId(scope)
     return <>
         <TextContainer>
             <h2 className={styles.h1}><b>The Skwidl project</b></h2>

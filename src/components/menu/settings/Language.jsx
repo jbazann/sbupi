@@ -1,15 +1,16 @@
 import styles from './Settings.module.css'
-import {getIdScope} from "../../../lib/common.js";
+import {getScopedId} from "../../../lib/common.js";
 import Options from "./options/Options.jsx";
 import {Option} from "./options/Options.jsx"
 
-const id = getIdScope()
 
-export default function Language() {
+export default function Language({scope}) {
+    const id = getScopedId(scope)
     return <>
         <div className={styles.container}>
             <div className="hr"></div>
-            <Options options={Option.group(id(), [
+            <Options scope={id('language_options')}
+                     options={Option.group(id('language_group'), [
                 "English",
             ])}/>
             <div className="hr"></div>

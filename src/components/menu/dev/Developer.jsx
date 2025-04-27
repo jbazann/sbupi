@@ -1,12 +1,11 @@
 import TextContainer from "../../text/TextContainer.jsx";
 import styles from '../../text/TextContainer.module.css';
-import {getIdScope} from "../../../lib/common.js";
+import {getScopedId} from "../../../lib/common.js";
 import FootnoteRef from "../../clickable/footnote/FootnoteRef.jsx";
 import Footnote from "../../clickable/footnote/Footnote.jsx";
 
-const id = getIdScope()
-
-export default function Developer() {
+export default function Developer({scope}) {
+    const id = getScopedId(scope);
     return <>
         <TextContainer>
             <h2 className={styles.h1}>Joaquín Bazán</h2>
@@ -16,11 +15,11 @@ export default function Developer() {
             <div className={`hr ${styles.hr}`}></div>
             <p className={styles.p3}>
                 The developer is an Information System's Engineering
-                <FootnoteRef idFn={id}>1</FootnoteRef> student rounding
+                <FootnoteRef target={id('1')}>1</FootnoteRef> student rounding
                 up the last few courses of the degree. Over the last
                 two years he as diverted his attention from academia
                 to specialize in backend development
-                <FootnoteRef idFn={id}>2</FootnoteRef>
+                <FootnoteRef target={id('2')}>2</FootnoteRef>
                 . <br/>
             </p>
             <p className={styles.p3}>
@@ -28,7 +27,7 @@ export default function Developer() {
                 eventually move to  &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;, Argentina
                 to start &#x2588; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;
                 &#x2588;&#x2588;&#x2588;&#x2588; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;
-                <FootnoteRef idFn={id}>3</FootnoteRef>
+                <FootnoteRef target={id('3')}>3</FootnoteRef>
                 .
                 During his time there,
                 he will create the machine
@@ -38,7 +37,7 @@ export default function Developer() {
                 &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;.
                 Soon after, she will &#x2588;&#x2588;&#x2588;&#x2588;&#x2588; &#x2588;&#x2588;&#x2588; &#x2588;&#x2588;
                 &#x2588;&#x2588;&#x2588;&#x2588;&#x2588; the anomaly
-            <FootnoteRef idFn={id}>3712</FootnoteRef>. <br/>
+            <FootnoteRef target={id('3712')}>3712</FootnoteRef>. <br/>
             </p>
             <p className={styles.p3}>
                 He is a goal-oriented and highly independent problem solver,
@@ -56,7 +55,7 @@ export default function Developer() {
             <p className={styles.p3}>
                 The few who were close to him before
                 &#x2588;&#x2588;&#x2588; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;
-                <FootnoteRef idFn={id}>4</FootnoteRef> described him as
+                <FootnoteRef target={id('4')}>4</FootnoteRef> described him as
                 both extremely reserved and highly transparent, meticulously
                 choosing when to share and when to not.
             </p>
@@ -71,23 +70,23 @@ export default function Developer() {
             <p className={styles.p1}>
                 References:
             </p>
-            <Footnote idFn={id} label="1">
+            <Footnote id={id('1')} label="1">
                 Ingeniería en Sistemas de Información — Universidad Tecnológica Nacional.
             </Footnote>
-            <Footnote idFn={id} label="2">
+            <Footnote id={id('2')} label="2">
                 He his currently mastering Java 21 and the Spring ecosystem. Despite this
                 specialization, the developer aims to learn to make computers do anything
                 computers can do. This means he is also exploring, to different extents,
                 frontend technologies, architecture, devops and system design. He will
                 soon begin to EXPUNGED.
             </Footnote>
-            <Footnote idFn={id} label="3">
+            <Footnote id={id('3')} label="3">
                 EXPUNGED.
             </Footnote>
-            <Footnote idFn={id} label="4">
+            <Footnote id={id('4')} label="4">
                 EXPUNGED.
             </Footnote>
-            <Footnote idFn={id} label="3712">
+            <Footnote id={id('3712')} label="3712">
                 <span>The anomaly has been declared the cause of
                     &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588; &#x2588;&#x2588;
                     &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;

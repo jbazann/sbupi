@@ -1,6 +1,16 @@
 import {devmode} from "./environment.js";
 
-let scopeCounter = 0, scopes = new Map()
+// TODO come up with abstractions that make these id generators actually understandable
+
+let scopes = new Map()
+let globalId = getScopedId('g')
+let globalKeys = new Set(['g'])
+
+export function reset() {
+    scopes = new Map()
+    globalId = getScopedId('g')
+    globalKeys = new Set(['g'])
+}
 
 /**
  * Provides ID generators that are guaranteed to provide unique IDs on every call
@@ -13,27 +23,36 @@ let scopeCounter = 0, scopes = new Map()
  * previously returned instances). If called with a key argument, the function returns the same
  * ID for all subsequent calls with said ID.
  */
-export function getIdScope(scope = scopeCounter++) {
+export function getScopedId(scope) {
+    if (!scope) devErr("getScopedId was called without a scope: " + scope)
     return scopes.get(scope) ||
         scopes.set(scope, createIdFunctionForScope(scope)).get(scope)
 }
 
-const globalId = getIdScope()
 export function getGlobalId(key) {
+    if (!key) devErr("getGlobalId was called without a key.")
+    if (globalKeys.has(key)) {
+        devErr(`Key collision at ${key}`)
+    } else {
+        globalKeys.add(key)
+    }
     return globalId(key)
 }
 
 function createIdFunctionForScope(scope) {
     let idCounter = 0, keyMap = new Map()
-    return (key) => key ? (keyMap.get(key) ||
-        keyMap.set(key, identifier(scope, idCounter++)).get(key)) :
-        identifier(scope, idCounter++)
+    return (key) => {
+        return key ? (keyMap.get(key) ||
+                keyMap.set(key, identifier(scope, idCounter++)).get(key)) :
+            identifier(scope, idCounter++)
+    }
 }
 
-function identifier(scope, id) {
-    return 's' + scope + 'i' + id
+export function identifier(scope, id) {
+    return scope + 'i' + id
 }
 
+export function noop() {}
 
 // Let the wind lead the sail, let disorder create order.
 export function devLog(thing, typeThing) {

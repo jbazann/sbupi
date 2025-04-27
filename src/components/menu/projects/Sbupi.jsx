@@ -1,12 +1,11 @@
 import TextContainer from "../../text/TextContainer.jsx";
 import styles from '../../text/TextContainer.module.css'
-import {getIdScope} from "../../../lib/common.js";
+import {getScopedId} from "../../../lib/common.js";
 import Footnote from "../../clickable/footnote/Footnote.jsx";
 import FootnoteRef from "../../clickable/footnote/FootnoteRef.jsx";
 
-const id = getIdScope()
-
-export default function Sbupi() {
+export default function Sbupi({scope}) {
+    const id = getScopedId(scope);
     return <>
         <TextContainer>
             <h2 className={styles.h1}><b>The Sbupi project</b></h2>
@@ -22,14 +21,14 @@ export default function Sbupi() {
             <p className={styles.p3}>
                 This project was rebooted four times, so though it is listed
                 as just one, it's actually the latest product of a long and methodic learning process
-                <FootnoteRef idFn={id}>1</FootnoteRef>
+                <FootnoteRef target={id('1')}>1</FootnoteRef>
                 .
             </p>
             <p className={styles.p3}>
                 The current version is built with Vite, it leverages Vike to scaffold the annoying parts
                 of integrating React, but the code actively avoids letting
                 the framework handle state (where viable)
-                <FootnoteRef idFn={id}>2</FootnoteRef>
+                <FootnoteRef target={id('2')}>2</FootnoteRef>
                 . <br/>
             </p>
             <p className={styles.p1}>
@@ -39,7 +38,7 @@ export default function Sbupi() {
                 <li>
                     Custom e-mail addresses such as mail@jbazann.dev, without using nor implementing
                     an actual mailing service
-                    <FootnoteRef idFn={id}>3</FootnoteRef>
+                    <FootnoteRef target={id('3')}>3</FootnoteRef>
                     .
                     <ol>
                         <li>
@@ -66,7 +65,7 @@ export default function Sbupi() {
                         <li>
                             The worker checks the limits (stored in R2) of its API key,
                             and when possible, scrapes cat images into the bucket
-                            <FootnoteRef idFn={id}>4</FootnoteRef>
+                            <FootnoteRef target={id('4')}>4</FootnoteRef>
                             .
                         </li>
                         <li>
@@ -88,27 +87,27 @@ export default function Sbupi() {
             <p className={styles.p1}>
                 References:
             </p>
-            <Footnote idFn={id} label="1">
+            <Footnote id={id('1')} label="1">
                 The previous versions are unavailable, as they do not represent my current
                 knowledge and expertise. They were built using different
                 approaches, with TailwindCSS v3 and v4, and at some point Alpinejs.
                 Feel free to ask about them when you interview me for an awesome big money job.
             </Footnote>
-            <Footnote idFn={id} label="2">
+            <Footnote id={id('2')} label="2">
                 This deviates from React's principles in order
                 to develop a deeper understanding of the benefits and
                 drawbacks of programmatic rendering, and all the ways
                 a more vanilla approach can be more advantageous.
                 I also enjoy doing things my own away and learning from the consequences.
             </Footnote>
-            <Footnote idFn={id} label="3">
+            <Footnote id={id('3')} label="3">
                 Though it doesn't replace the reliability of a dedicated
                 and complete service, it is a simple and free alternative
                 that integrates both platforms smoothly.
                 It also minimizes technical overhead while still looking cool
                 in a resume.
             </Footnote>
-            <Footnote idFn={id} label="4">
+            <Footnote id={id('4')} label="4">
                 The amount per execution is limited by Cloudflare Workers' free plan runtime
                 and sub-request limits. The actual workflow consists of dispatching
                 requests asynchronously, then immediately responding with randomly

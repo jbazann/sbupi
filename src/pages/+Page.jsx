@@ -1,22 +1,25 @@
-import ContentArea from "../components/ContentArea.jsx";
-import Header from "../components/Header.jsx";
-import Footer from "../components/Footer.jsx";
+import ContentArea from "../components/area/ContentArea.jsx";
+import Header from "../components/area/Header.jsx";
+import Footer from "../components/area/Footer.jsx";
 import MainMenu from "../components/menu/main/MainMenu.jsx";
 import {clientOnly} from "vike-react/clientOnly";
+import {getGlobalId, getScopedId} from "../lib/common.js";
+import PreContentScript from "../components/script/PreContentScript.jsx";
 
-const Routing = clientOnly(() => import('../components/misc/RoutingScript.jsx'))
+const PostContent = clientOnly(() => import('../components/script/PostContentScript.jsx'));
+// const PreContent = clientOnly(() => import('../components/script/PreContentScript.jsx'));
 
 export default function Page() {
+    const id = getScopedId(getGlobalId('homepage'))
     return (
         <>
-            <ContentArea header={
-                <Header />
-            } content={
-                <MainMenu />
-            } footer={
-                <Footer />}
+            <PreContentScript />
+            <ContentArea
+                header={ <Header /> }
+                content={ <MainMenu scope={id('main')} /> }
+                footer={ <Footer />}
             />
-            <Routing/>
+            <PostContent fallback="" />
         </>
     )
 }

@@ -1,29 +1,34 @@
 import styles from './Options.module.css'
 import OptionButton from "../../../clickable/OptionButton.jsx";
-import {getIdScope} from "../../../../lib/common.js";
+import {devErr, getScopedId} from "../../../../lib/common.js";
+import {useEffect, useRef, useState} from "react";
+import {PostContentTaskMap} from "../../../script/PreContentScript.jsx";
 
-const key = getIdScope()
-const id = getIdScope()
-
-export default function Options({options,title}) {
+export default function Options({options,title,scope}) {
+    const id = getScopedId(scope)
+    let idCounter = 0
     return <>
         {title ?
         <div className={styles.titleContainer}>
             <p className={styles.title}>{title}</p>
         </div> : null
         }
-        <div className={title ? styles.spacedContainer : styles.container}>
+        <div className={title ? styles.spacedContainer : styles.container} >
             {
                 options.map(opt => {
-                    let inputKey = key()
-                    return <div key={id()} className="contents">
-                        <input id={id(inputKey)} type={opt.check ? 'checkbox' : 'radio'}
+                    let inputId = id(idCounter++)
+                    const ref = useRef(null)
+                    useEffect(() => {{
+                        ref.current.checked = !!opt.isDefault
+                    }})
+                    return <div key={id(idCounter++)} className="contents" >
+                        <input id={inputId} type={opt.check ? 'checkbox' : 'radio'}
                                name={opt.group ? opt.group : ""}
                                onClick={(e) => {opt.action && opt.action(); e.stopPropagation()}}
                                className={styles.input}
-                               defaultChecked={!!opt.isDefault}
+                               ref={ref}
                         />
-                        <OptionButton label={opt.label} id={id()} inputId={id(inputKey)}/>
+                        <OptionButton label={opt.label} id={id(idCounter++)} inputId={inputId}/>
                     </div>
                 })
             }
