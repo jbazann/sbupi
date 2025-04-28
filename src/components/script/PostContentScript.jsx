@@ -7,7 +7,7 @@ import {PostContentTaskMap} from "./PreContentScript.jsx";
 export default function PostContentScript() {
     // Run scheduled tasks
     useEffect(() => {
-        for (const [key,task] of PostContentTaskMap.entries()) {
+        for (const [key,task] of PostContentTaskMap) {
             devLog({key}, class PostContentSchedule{}.prototype)
             if (task.run instanceof Function) {
                 task.run()
