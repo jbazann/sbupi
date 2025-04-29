@@ -3,6 +3,8 @@ import {devLog, getScopedId} from "../../../lib/common.js";
 import ThiccButton from "../../clickable/ThiccButton.jsx";
 import StaticMenuButton, {onBtn} from "../../clickable/smb/StaticMenuButton.jsx";
 import {clientOnly} from "vike-react/clientOnly";
+import {eugh} from "../../../lib/translation.js";
+import {lang} from "../../../lib/environment.js";
 
 export const
     catImg = 'catimg',
@@ -16,6 +18,7 @@ export default function CatMenu({scope}) {
     const id = getScopedId(scope)
     return <>
         <StaticMenuButton key={id('key1')} label={"Cat"}
+                          translationKey={'root.mainMenu.cat.button'}
                           routes={['cat']}
                           scope={scope} >
             <div className="relative-container">
@@ -29,7 +32,10 @@ export default function CatMenu({scope}) {
                     </div>
                 </div>
             </div>
-            <ThiccButton id={id(another)} disabled={true}>Another!</ThiccButton>
+            <ThiccButton id={id(another)} translationKey={'root.mainMenu.cat.another'}
+                         disabled={true}>
+                {eugh(lang,'root.mainMenu.cat.another',"Another!")}
+            </ThiccButton>
             <CatMenuScript scope={scope} />
         </StaticMenuButton>
     </>

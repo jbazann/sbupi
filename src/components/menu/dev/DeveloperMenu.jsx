@@ -6,6 +6,7 @@ export default function DeveloperMenu({scope}) {
     const id = getScopedId(scope)
     return <>
         <StaticMenuButton key={id('key1')} label={"The Developer"}
+                          translationKey={'root.mainMenu.dev.button'}
                           routes={['about']}
                           scope={id('scope')} clean={true} >
             <Developer scope={id('dev')} />

@@ -1,8 +1,9 @@
 import {devErr, devLog, reset as resetCommon} from "../../lib/common.js";
 import {reset as resetRouting} from "../../lib/routing.js"
 import {fixmeSoon, initNav, setStack} from "../../lib/routing.js";
-import {get, setDoc} from "../../lib/stores.js";
+import {get, set, setDoc} from "../../lib/stores.js";
 import {settings} from "../../lib/enum.js";
+import {fixLang} from "../../lib/environment.js";
 
 export let PostContentTaskMap = new Map()
 
@@ -19,6 +20,11 @@ export default function PreContentScript() {
         }
         if ((val = get(settings.theme.variant.key))) {
             setDoc(settings.theme.variant.attr, val)
+        }
+        set(settings.lang.key,'es')
+        if ((val = get(settings.lang.key))) {
+            setDoc(settings.lang.attr, val)
+            fixLang(val) // TODO fix this idiocy
         }
 
         // Setup location initlization task

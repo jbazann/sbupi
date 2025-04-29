@@ -1,12 +1,12 @@
 import styles from './Popover.module.css'
 
-export default function Popover({children,id}) {
+export default function Popover({children,id, translationKey}) {
     return <>
         <div id={id} popover="auto" className={`${styles.popoverContainer}`}>
             <div className={`${styles.popoverFlexContainer}`}>
                 <div className={`${styles.popoverBox}`}>
                     <div className={styles.popoverContent}>
-                        <p>
+                        <p data-i18n-key={translationKey}>
                             {children}
                         </p>
                     </div>

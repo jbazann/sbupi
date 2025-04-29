@@ -12,9 +12,11 @@ export default function SettingsMenu({scope}) {
     const id = getScopedId(scope)
     return <>
         <StaticMenuButton key={id('key0')} label={"Settings"}
+                          translationKey={'root.mainMenu.settings.button'}
                           routes={['settings']}
                           scope={id('settings_button')} >
             <StaticMenuButton key={id('key1')} label={"Language"}
+                              translationKey={'root.settingsMenu.language.button'}
                               routes={['language']}
                               parentRoute={'settings'}
                               scope={id('language_button')}
@@ -22,6 +24,7 @@ export default function SettingsMenu({scope}) {
                 <Language scope={id('language_menu')} />
             </StaticMenuButton>
             <StaticMenuButton key={id('key2')} label={"Theme"}
+                              translationKey={'root.settingsMenu.theme.button'}
                               routes={['theme']}
                               parentRoute={'settings'}
                               scope={id('theme_button')}
@@ -29,6 +32,7 @@ export default function SettingsMenu({scope}) {
                 <Theme scope={id('theme_menu')} />
             </StaticMenuButton>
             <StaticMenuButton key={id('key3')} label={"Style"}
+                              translationKey={'root.settingsMenu.style.button'}
                               routes={['style']}
                               parentRoute={'settings'}
                               scope={id('style_button')}
