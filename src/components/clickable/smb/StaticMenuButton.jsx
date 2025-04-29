@@ -5,6 +5,8 @@ import ThiccButton from "../ThiccButton.jsx";
 import {devLog, getScopedId} from "../../../lib/common.js";
 import {nav, pop, setRoutes} from "../../../lib/routing.js";
 import {clientOnly} from "vike-react/clientOnly";
+import {eugh} from "../../../lib/translation.js";
+import {lang} from "../../../lib/environment.js";
 
 const Script = clientOnly(() => import('./StaticMenuButtonScript.jsx'));
 
@@ -15,7 +17,7 @@ export const
     offState =  'off_state',
     subState = 'submenu_state'
 
-export default function StaticMenuButton({children, label, scope, outerScope, disabled, clean = false, routes, parentRoute}) {
+export default function StaticMenuButton({children, label, scope, outerScope, disabled, clean = false, routes, parentRoute, translationKey}) {
     let id = getScopedId(scope)
     if (routes) {
         devLog({parentRoute,routes,from: parentRoute || 'root'}, class RouteRegister{}.prototype)
@@ -36,11 +38,13 @@ export default function StaticMenuButton({children, label, scope, outerScope, di
                 </MenuContainer>
             </div>
             <ThiccButton id={id(offBtn)} classes={styles.closeButton}
+                         translationKey={'misc.back'}
                 action={pop}>
-                Back</ThiccButton>
+                {eugh(lang,'misc.back',"Back")}</ThiccButton>
             <ThiccButton disabled={disabled} id={id(onBtn)} classes={styles.openButton}
+                         translationKey={translationKey}
                          action={() => nav(routes[0],parentRoute || 'root')}>
-                {label}</ThiccButton>
+                {eugh(lang,translationKey,label)}</ThiccButton>
         </div>
         <Script fallback='' scope={scope} outerScope={outerScope} />
     </>

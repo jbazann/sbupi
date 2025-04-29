@@ -14,6 +14,10 @@ export const settings = {
             key: 'theme-variant',
             attr: 'data-theme-variant',
         }
+    },
+    lang: {
+        key: 'lang',
+        attr: 'lang'
     }
 }
 

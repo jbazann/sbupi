@@ -9,6 +9,7 @@ export default function ProjectsMenu({scope}) {
     const id = getScopedId(scope)
     return <>
         <StaticMenuButton key={id('key1')} label={"Projects"}
+                          translationKey={'root.mainMenu.projects.button'}
                           routes={['projects']}
                           scope={id('projects_button')} >
             <StaticMenuButton key={id('key2')} label={"Skwidl"}

@@ -6,6 +6,7 @@ export default function LinksMenu({scope}) {
     const id = getScopedId(scope);
     return <>
         <StaticMenuButton key={id('key1')} label={"Links"}
+                          translationKey={'root.mainMenu.links.button'}
                           routes={['links']}
                           scope={id('scope')}>
             <ThiccButton key={id('key2')}>
