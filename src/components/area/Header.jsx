@@ -5,7 +5,7 @@ export default function Header() {
         <>
             <div className="absolute-underlay flex-col center-children">
                 <div className={styles.headerContainer}>
-                    <p className={styles.p}>Disponible en español a partir del 30/04/2025</p>
+                    <p className={styles.p}>jbazann.dev</p>
                 </div>
             </div>
         </>
