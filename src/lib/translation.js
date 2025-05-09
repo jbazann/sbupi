@@ -4,12 +4,6 @@ export default function translate(lang,key = '') {
     return typeof val === 'string' ? val : null
 };
 
-// TODO fix React and remove this bs
-export function eugh(lang, key, v) {
-    if (lang === 'en' || !key ) return v
-    return translate(lang, key)
-}
-
 const es = {
     misc: {
         back: {}
