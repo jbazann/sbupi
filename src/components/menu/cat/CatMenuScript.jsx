@@ -1,46 +1,39 @@
 import {useEffect} from "react";
-import {onBtn} from "../../clickable/smb/StaticMenuButton.jsx";
-import {devErr, devLog, getScopedId} from "../../../lib/common.js";
-import {another, loadingDiv, loadingP, catImg} from "./CatMenu.jsx";
+import {devErr, devLog} from "../../../lib/common.js";
 import {get} from '../../../lib/net.js'
 
-export default function CatMenuScript({scope}) {
+export default function CatMenuScript({loadingDiv,loadingP,anotherButton,catImg,contextId}) {
     useEffect(() => {
-        let batch,nextBatch
-        const id = getScopedId(scope),
-            anotherButton = document.getElementById(id(another)),
-            catloadingp = document.getElementById(id(loadingP)),
-            catloadingdiv = document.getElementById(id(loadingDiv)),
-            catButton = document.getElementById(id(onBtn)),
-            img = document.getElementById(id(catImg))
+        let batch, nextBatch, handler, handlerOpts, anotherHandler
 
-        const handler = async() => {
-            cycleLoadingIndicator(catloadingp)
+        const contextDiv = document.getElementById(contextId),
+            context = JSON.parse(contextDiv?.getAttribute('data-context'))
+
+        const anotherButtonElem = document.getElementById(anotherButton),
+            loadingPElem = document.getElementById(loadingP),
+            loadingDivElem = document.getElementById(loadingDiv),
+            onBtnElem = document.getElementById(context?.onBtn),
+            catImgElem = document.getElementById(catImg)
+
+        onBtnElem?.addEventListener('click', handler = async() => {
+            let loadingIndicator = cycleLoadingIndicator(loadingPElem)
             batch = await fetchCats()
-            devLog({batch},class KittyBatch{}.prototype)
             setTimeout(async () => {
-                catloadingdiv.remove()
-                catloaded = true
+                clearTimeout(loadingIndicator.current)
+                loadingDivElem.remove()
                 nextBatch = fetchCats()
                 if (batch.length > 0) {
-                    img.src = batch.pop().url
-                    anotherButton.disabled = false
+                    catImgElem.src = batch.pop().url
+                    anotherButtonElem.disabled = false
                 } else {
-                    batch = await nextBatch
-                    devLog({batch},class KittyBatch{}.prototype)
-                    if (batch.length > 0) {
-                        img.src = batch.pop().url
-                        anotherButton.disabled = false
-                    } else {
-                        offerReload()
-                    }
+                    offerReload()
                 }
-            }, 3500)
-        }, opts = {once: true}
+            }, 3210)
+        }, handlerOpts = {once: true})
 
-        const anotherHandler = async() => {
+        anotherButtonElem?.addEventListener('click', anotherHandler = async() => {
             if (batch.length > 0) {
-                img.src = batch.pop().url
+                catImgElem.src = batch.pop().url
                 if (batch.length === 0) {
                     batch = await nextBatch
                     nextBatch = fetchCats()
@@ -48,34 +41,31 @@ export default function CatMenuScript({scope}) {
             } else {
                 batch = await nextBatch
                 if (batch.length > 0) {
-                    img.src = batch.pop().url
+                    catImgElem.src = batch.pop().url
                 } else {
                     offerReload()
                 }
             }
-        }
-
-        devLog({catButton,anotherButton,scope, catId: id(onBtn), anotherId: id(another)}, class CatScriptButtons{}.prototype)
-        catButton?.addEventListener('click', handler, opts)
-        anotherButton?.addEventListener('click', anotherHandler)
+        })
         return () => {
-            catButton?.removeEventListener('click', handler, opts)
-            anotherButton?.removeEventListener('click', anotherHandler)
+            onBtnElem?.removeEventListener('click', handler, handlerOpts)
+            anotherButtonElem?.removeEventListener('click', anotherHandler)
         }
-    },[scope])
+    })
 }
 
-let catloaded = false, index = -1
-function cycleLoadingIndicator(catloadingp) {
+let index = -1, timeout = {}
+function cycleLoadingIndicator(pElem) {
     const legends = [
         "Fetching cats.",
         "Fetching cats..",
         "Fetching cats..."
     ], interval = 500
-    if (!catloaded && catloadingp) {
-        catloadingp.innerText = legends.at(index = ((index + 1) % 3));
-        setTimeout(cycleLoadingIndicator, interval, catloadingp);
+    if (pElem) {
+        pElem.innerText = legends.at(index = ((index + 1) % 3));
+        timeout.current = setTimeout(cycleLoadingIndicator, interval, pElem);
     }
+    return timeout
 }
 
 export async function fetchCats() {
@@ -86,7 +76,7 @@ export async function fetchCats() {
 
 function offerReload() {
     if (confirm(
-        "Something went wrong while fetching the cats; everything is about to explode. " +
+        "Something went wrong while fetching the cats; horrible things are about to happen. " +
         "Reload the page to try again?"
     )) window.location.reload();
 }

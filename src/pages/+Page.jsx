@@ -1,25 +1,35 @@
-import ContentArea from "../components/area/ContentArea.jsx";
-import Header from "../components/area/Header.jsx";
-import Footer from "../components/area/Footer.jsx";
-import MainMenu from "../components/menu/main/MainMenu.jsx";
-import {clientOnly} from "vike-react/clientOnly";
-import {getGlobalId, getScopedId} from "../lib/common.js";
-import PreContentScript from "../components/script/PreContentScript.jsx";
+import {createContext} from "react";
+import './Layout.css'
+import {useData} from "vike-react/useData";
 
-const PostContent = clientOnly(() => import('../components/script/PostContentScript.jsx'));
-// const PreContent = clientOnly(() => import('../components/script/PreContentScript.jsx'));
-
-export default function Page() {
-    const id = getScopedId(getGlobalId('homepage'))
-    return (
-        <>
-            <PreContentScript />
-            <ContentArea
-                header={ <Header /> }
-                content={ <MainMenu scope={id('main')} /> }
-                footer={ <Footer />}
-            />
-            <PostContent fallback="" />
-        </>
-    )
+export default function Page(data = {}) {
+    if (import.meta.env.SSR) {
+        let Context = data.Context
+        if (!Context) Context = createContext({lang: 'en'})
+        const {
+            ContentArea,
+            Header,
+            MainMenu,
+            Footer,
+            Router
+        } = useData()
+        return (
+            <>
+                <ContentArea
+                    header={ <Header /> }
+                    content={ <MainMenu Context={Context} /> }
+                    footer={<Footer />}
+                />
+                <Router />
+            </>
+        )
+    } else {
+        return {
+            StaticMenuButtonScript: import('../components/clickable/smb/StaticMenuButtonScript.client.jsx'),
+            ActionButtonScript: import('../components/clickable/ActionButtonScript.client.jsx'),
+            CatMenuScript: import('../components/menu/cat/CatMenuScript.jsx'),
+            SettingsMenuScript: import('../components/menu/settings/SettingsMenuScript.client.jsx'),
+            Router: import("../components/Router.shared.jsx"),
+        }
+    }
 }

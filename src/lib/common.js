@@ -1,61 +1,34 @@
 import {devmode} from "./environment.js";
 
-// TODO come up with abstractions that make these id generators actually understandable
-
-let scopes = new Map()
-let globalId = getScopedId('g')
-let globalKeys = new Set(['g'])
-
-export function reset() {
-    scopes = new Map()
-    globalId = getScopedId('g')
-    globalKeys = new Set(['g'])
+export {
+    devLog,
+    devErr,
+    debounce,
+    throttle,
+    throunce,
+    ids
 }
 
-/**
- * Provides ID generators that are guaranteed to provide unique IDs on every call
- * without parameters, and always the same ID for a given key, when one is provided
- * as the only parameter.
- * @param scope An ID namespace. Must be a valid HTML5 ID string.
- * A unique scope is automatically generated if omitted.
- * @returns A function with an ID map in its closure. The same function entity is returned
- * by all calls with the same scope (therefore containing all the mappings created by
- * previously returned instances). If called with a key argument, the function returns the same
- * ID for all subsequent calls with said ID.
- */
-export function getScopedId(scope) {
-    if (!scope) devErr("getScopedId was called without a scope: " + scope)
-    return scopes.get(scope) ||
-        scopes.set(scope, createIdFunctionForScope(scope)).get(scope)
-}
-
-export function getGlobalId(key) {
-    if (!key) devErr("getGlobalId was called without a key.")
-    if (globalKeys.has(key)) {
-        devErr(`Key collision at ${key}`)
-    } else {
-        globalKeys.add(key)
+let idCounter = 0
+function ids(amount, scope) {
+    const arr = new Array(amount)
+    for (let i = 0; i < arr.length; i++) {
+        // why is there no built-in way to fill an array with a supplier is JavaScript even a language
+        arr[i] = scope ? scopedId(scope,idCounter++) : id(idCounter++)
     }
-    return globalId(key)
+    return arr
 }
 
-function createIdFunctionForScope(scope) {
-    let idCounter = 0, keyMap = new Map()
-    return (key) => {
-        return key ? (keyMap.get(key) ||
-                keyMap.set(key, identifier(scope, idCounter++)).get(key)) :
-            identifier(scope, idCounter++)
-    }
-}
-
-export function identifier(scope, id) {
+function scopedId(scope, id) {
     return scope + 'i' + id
 }
 
-export function noop() {}
+function id(id) {
+    return 'i' + id
+}
 
 // Let the wind lead the sail, let disorder create order.
-export function devLog(thing, typeThing) {
+function devLog(thing, typeThing) {
     if (devmode) {
         if (typeThing) {
             console.log(Object.assign(Object.create(typeThing),thing))
@@ -65,11 +38,11 @@ export function devLog(thing, typeThing) {
     }
 }
 
-export function devErr(err) {
+function devErr(err) {
     if (devmode) console.error(err)
 }
 
-export function debounce(f, tms, that) {
+function debounce(f, tms, that) {
     let timer
     return (...args) => {
         clearTimeout(timer)
@@ -77,7 +50,7 @@ export function debounce(f, tms, that) {
     }
 }
 
-export function throttle(f, tms, that) {
+function throttle(f, tms, that) {
     let timer
     return (...args) => {
         if (!timer) {
@@ -89,7 +62,7 @@ export function throttle(f, tms, that) {
     }
 }
 
-export function throunce(f, ttms, tdms = ttms, that) {
+function throunce(f, ttms, tdms = ttms, that) {
     const t = throttle(f, ttms, that)
     const d = debounce(f, tdms, that)
     return (args) => {
