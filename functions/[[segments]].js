@@ -104,16 +104,18 @@ function redirect(target) {
 
 function setupRouter(htmlRewriter, segments) {
     let current, previous = 'root'
+    segments = segments.reverse()
     while ((current = segments.pop())) {
         htmlRewriter
             .on(`[data-route="${current}"]`,
                 new ElementCheckSetter())
             .on(`[data-route-off="${current}"]`,
                 new ElementCheckRemover())
-            .on(`[data-route="${previous}"]`,
-                new ElementCheckRemover())
             .on(`[data-route-sub="${previous}"]`,
                 new ElementCheckSetter())
+            .on(`[data-route="${previous}"]`,
+                new ElementCheckRemover())
+        previous = current
     }
     return htmlRewriter
 }
