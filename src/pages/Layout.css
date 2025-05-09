@@ -72,13 +72,9 @@
     }
   }
 
-  #root {
-    display: none;
-  }
-
-  &[data-ready] {
+  &[data-styling] {
     #root {
-      display: block;
+      display: none;
     }
   }
 
