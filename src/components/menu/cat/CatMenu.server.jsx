@@ -5,15 +5,23 @@ import StaticMenuButton from "../../clickable/smb/StaticMenuButton.server.jsx";
 import HydrationRoot from "../../client/HydrationRoot.server.jsx";
 import {placeholders} from "../../../lib/placeholders.shared.js";
 import ServerContextSerializer from "../../ServerContextSerializer.server.jsx";
+import {useContext} from "react";
+import translate from "../../../lib/translation.js";
+import {Lang, MenuContext} from "../../../lib/context.js";
 
-export default function CatMenu({Context}) {
+export default function CatMenu() {
     const [loadingDiv, loadingP, catImg, anotherButton, contextId] =
         ids(5)
+    const lang = useContext(Lang)
+    const loadingLabels = JSON.stringify([
+        translate(lang, 'root.catMenu.loading.a') || "Fetching cats.",
+        translate(lang, 'root.catMenu.loading.b') || "Fetching cats..",
+        translate(lang, 'root.catMenu.loading.c') || "Fetching cats...",
+    ])
     return <>
         <StaticMenuButton key="CatMenu" label={"Cat"}
                           labelId={'root.mainMenu.cat.button'}
-                          routes={['cat']}
-                          Context={Context} >
+                          routes={['cat']} >
             <div className="relative-container">
                 <div className="absolute-underlay flex-col center-children">
                     <div id={loadingDiv} className="flex-col center-children">
@@ -27,15 +35,14 @@ export default function CatMenu({Context}) {
                     </div>
                 </div>
             </div>
-            <ActionButton id={anotherButton} translationKey={'root.mainMenu.cat.another'}
-                          disabled={true}>
-                Another!
+            <ActionButton id={anotherButton} disabled={true}>
+                {translate(lang,'root.mainMenu.cat.another') || "Another!"}
             </ActionButton>
             <ServerContextSerializer id={contextId}
-                                     Context={Context}
+                                     Context={MenuContext}
                                      extractor={(context) => ({onBtn: context.onBtn})} />
             <HydrationRoot comp={placeholders.CatMenuScript}
-                           data={{loadingDiv,loadingP,anotherButton,catImg,contextId}} />
+                           data={{loadingDiv,loadingP,anotherButton,catImg,contextId,loadingLabels}} />
         </StaticMenuButton>
     </>
 };

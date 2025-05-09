@@ -2,11 +2,9 @@ import TextContainer from "../../text/TextContainer.server.jsx";
 import styles from '../../text/TextContainer.module.css';
 import FootnoteRef from "../../clickable/footnote/FootnoteRef.server.jsx";
 import Footnote from "../../clickable/footnote/Footnote.server.jsx";
-import {lang} from "../../../lib/environment.js";
-import {eugh} from "../../../lib/translation.js";
 import {ids} from "../../../lib/common.js";
 
-export default function Developer({}) {
+export default function Developer() {
     const [
         ref1, ref2, ref3, ref4, ref3712
     ] = ids(5)

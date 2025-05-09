@@ -3,30 +3,34 @@ import {devLog, ids} from "../../../lib/common.js";
 import Options, {Option} from "./options/Options.server.jsx";
 import HydrationRoot from "../../client/HydrationRoot.server.jsx";
 import {placeholders} from "../../../lib/placeholders.shared.js";
+import translate from "../../../lib/translation.js";
+import {useContext} from "react";
+import {Lang} from "../../../lib/context.js";
 
 export default function Theme() {
     const [
         theme, darkThmId, lightThmId, variant, defVrntId
     ] = ids(5)
+    const lang = useContext(Lang)
     return <>
         <div className={styles.container}>
             <div className="hr"></div>
-            <Options title="Theme"
+            <Options title={translate(lang,'theme.titles.theme') || "Theme"}
                      options={Option.group(theme, [
                 {
-                    label: "Default",
+                    label: translate(lang, 'theme.default') || "Default",
                     id: defVrntId
                 }
             ])} />
             <div className="hr2"></div>
-            <Options title="Variant"
+            <Options title={translate(lang,'theme.title.variant') || "Variant"}
                      options={Option.group(variant, [
                 {
-                    label: "Dark",
+                    label: translate(lang,'theme.dark') || "Dark",
                     id: darkThmId
                 },
                 {
-                    label: "Light",
+                    label: translate(lang,'theme.light') || "Light",
                     id: lightThmId
                 },
             ])} />

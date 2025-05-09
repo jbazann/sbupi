@@ -1,11 +1,11 @@
-import {createContext} from "react";
 import './Layout.css'
 import {useData} from "vike-react/useData";
+import {useContext} from "react";
+import {Lang} from "../lib/context.js";
 
-export default function Page(data = {}) {
+export default function Page() {
     if (import.meta.env.SSR) {
-        let Context = data.Context
-        if (!Context) Context = createContext({lang: 'en'})
+        const lang = useContext(Lang)
         const {
             ContentArea,
             Header,
@@ -15,12 +15,14 @@ export default function Page(data = {}) {
         } = useData()
         return (
             <>
-                <ContentArea
-                    header={ <Header /> }
-                    content={ <MainMenu Context={Context} /> }
-                    footer={<Footer />}
-                />
-                <Router />
+                <Lang value={lang}>
+                    <ContentArea
+                        header={ <Header/> }
+                        content={ <MainMenu /> }
+                        footer={<Footer />}
+                    />
+                    <Router />
+                </Lang>
             </>
         )
     } else {
