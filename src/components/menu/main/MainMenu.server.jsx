@@ -7,20 +7,20 @@ import SettingsMenu from "../settings/SettingsMenu.server.jsx";
 import ProjectsMenu from "../projects/ProjectsMenu.server.jsx";
 import LinksMenu from "../bare/LinksMenu.server.jsx";
 
-export default function MainMenu({Context}) {
+export default function MainMenu() {
     return <>
         <MenuContainer >
-            <DeveloperMenu Context={Context} />
-            <ProjectsMenu Context={Context} />
-            <LinksMenu Context={Context} />
-            <CatMenu Context={Context} />
+            <DeveloperMenu />
+            <ProjectsMenu />
+            <LinksMenu />
+            <CatMenu />
             <StaticMenuButton key={'idkman'} label={"????"} routes={['notyet']}
-                              Context={Context} clean={true}>
+                              clean={true}>
                 <Soon />
             </StaticMenuButton>
-            <SettingsMenu Context={Context} />
+            <SettingsMenu />
             <StaticMenuButton key={'T&#_M___5_ERR_'} label={"T&# M$__5='_"} routes={['machine']}
-                              Context={Context} disabled={true} clean={true}>
+                              disabled={true} clean={true}>
                 <Soon />
             </StaticMenuButton>
         </MenuContainer>

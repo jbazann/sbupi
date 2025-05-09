@@ -9,12 +9,10 @@ export const kinds = {
     None: 'None'
 }
 
-export default function ActionButton({children, id, classes, disabled = false, translationKey, kind = kinds.None, data}) {
-    let attr = {}
-    if (translationKey) attr['data-i18n-key'] = translationKey
+export default function ActionButton({children, id, classes, disabled = false, kind = kinds.None, data}) {
     return <>
-        <button disabled={disabled} id={id} className={styles.actionButton + (classes ? ' ' + classes : '')}
-                {...attr} >
+        <button disabled={disabled} id={id}
+                className={styles.actionButton + (classes ? ' ' + classes : '')} >
             {children}
         </button>
         {kind === kinds.None ? null :

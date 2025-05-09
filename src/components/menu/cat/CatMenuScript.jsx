@@ -2,9 +2,11 @@ import {useEffect} from "react";
 import {devErr, devLog} from "../../../lib/common.js";
 import {get} from '../../../lib/net.js'
 
-export default function CatMenuScript({loadingDiv,loadingP,anotherButton,catImg,contextId}) {
+export default function CatMenuScript({loadingDiv,loadingP,anotherButton,catImg,contextId,loadingLabels}) {
     useEffect(() => {
         let batch, nextBatch, handler, handlerOpts, anotherHandler
+
+        loadingLabels = JSON.parse(loadingLabels)
 
         const contextDiv = document.getElementById(contextId),
             context = JSON.parse(contextDiv?.getAttribute('data-context'))
@@ -16,7 +18,7 @@ export default function CatMenuScript({loadingDiv,loadingP,anotherButton,catImg,
             catImgElem = document.getElementById(catImg)
 
         onBtnElem?.addEventListener('click', handler = async() => {
-            let loadingIndicator = cycleLoadingIndicator(loadingPElem)
+            let loadingIndicator = cycleLoadingIndicator(loadingPElem,loadingLabels)
             batch = await fetchCats()
             setTimeout(async () => {
                 clearTimeout(loadingIndicator.current)
@@ -55,12 +57,8 @@ export default function CatMenuScript({loadingDiv,loadingP,anotherButton,catImg,
 }
 
 let index = -1, timeout = {}
-function cycleLoadingIndicator(pElem) {
-    const legends = [
-        "Fetching cats.",
-        "Fetching cats..",
-        "Fetching cats..."
-    ], interval = 500
+function cycleLoadingIndicator(pElem,legends) {
+    const interval = 500
     if (pElem) {
         pElem.innerText = legends.at(index = ((index + 1) % 3));
         timeout.current = setTimeout(cycleLoadingIndicator, interval, pElem);

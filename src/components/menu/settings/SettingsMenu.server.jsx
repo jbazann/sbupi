@@ -6,37 +6,36 @@ import Theme from "./Theme.server.jsx";
 import HydrationRoot from "../../client/HydrationRoot.server.jsx";
 import {placeholders} from "../../../lib/placeholders.shared.js";
 
-export default function SettingsMenu({Context}) {
+export default function SettingsMenu() {
     return <>
         <StaticMenuButton key="SettingsMenu" label={"Settings"}
-                          translationKey={'root.mainMenu.settings.button'}
-                          routes={['settings']}
-                          Context={Context} >
+                          labelId={'root.mainMenu.settings.button'}
+                          routes={['settings']} >
             <StaticMenuButton key="language" label={"Language"}
-                              translationKey={'root.settingsMenu.language.button'}
+                              labelId={'root.settingsMenu.language.button'}
                               routes={['language']}
                               parentRoute={'settings'}
-                              Context={Context} clean={true} >
+                              clean={true} >
                 <Language />
             </StaticMenuButton>
             <StaticMenuButton key="theme" label={"Theme"}
-                              translationKey={'root.settingsMenu.theme.button'}
+                              labelId={'root.settingsMenu.theme.button'}
                               routes={['theme']}
                               parentRoute={'settings'}
-                              Context={Context} clean={true} >
+                              clean={true} >
                 <Theme />
             </StaticMenuButton>
             <StaticMenuButton key="style" label={"Style"}
-                              translationKey={'root.settingsMenu.style.button'}
+                              labelId={'root.settingsMenu.style.button'}
                               routes={['style']}
                               parentRoute={'settings'}
-                              Context={Context} clean={true} >
+                              clean={true} >
                 <Style />
             </StaticMenuButton>
             <StaticMenuButton key="cookies" label={"Cookies"}
                               routes={['cookies']}
                               parentRoute={'settings'}
-                              Context={Context} clean={true} >
+                              clean={true} >
                 <CookiesServer />
             </StaticMenuButton>
             <HydrationRoot comp={placeholders.SettingsMenuScript}/>

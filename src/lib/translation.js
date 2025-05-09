@@ -6,41 +6,70 @@ export default function translate(lang,key = '') {
 
 const es = {
     misc: {
-        back: {}
+        back: 'Volver',
+        expunged: {
+            header: 'EXPURGADO.',
+            desc: 'A ella no le gustó esto.'
+        },
+        soon: {
+            header: 'Proximamente!',
+            desc: 'Esta sección está casi lista.'
+        },
+        popover: {
+            dismiss: 'Click aquí para ocultar este diálogo.'
+        }
+    },
+    theme: {
+        titles: {
+            theme: 'Tema',
+            variant: 'Variante',
+        },
+        dark: 'Oscuro',
+        light: 'Claro'
+    },
+    cookies: {
+        desc: "Perdón, las cookies son obligatorias."
     },
     root: {
         mainMenu: {
-            dev: {},
-            projects: {},
-            links: {},
-            cat: {},
-            settings: {},
+            dev: {
+                button: 'Desarrollador'
+            },
+            projects: {
+                button: 'Proyectos'
+            },
+            links: {
+                button: 'Enlaces'
+            },
+            cat: {
+                button: 'Gatos',
+                another: 'Otro!'
+            },
+            settings: {
+                button: 'Preferencias'
+            },
         },
         settingsMenu: {
-            language: {},
-            theme: {},
-            style: {},
+            language: 'Lenguaje',
+            theme: 'Tema',
+            style: 'Estilo',
+        },
+        catMenu: {
+            loading: {
+                a: 'Buscando gatitos.',
+                b: 'Buscando gatitos..',
+                c: 'Buscando gatitos...',
+            }
         },
         dev: {
-
+            title: 'Desarrollador backend.'
         }
     }
 }
 
 const langs = {es}
 
-es.misc.back = 'Volver'
-es.misc.expunged = 'EXPURGADO.'
-es.root.mainMenu.dev.button = 'Desarrollador'
-es.root.mainMenu.projects.button = 'Proyectos'
-es.root.mainMenu.links.button = 'Enlaces'
-es.root.mainMenu.cat.button = 'Gatos'
-es.root.mainMenu.cat.another = 'Otro!'
-es.root.mainMenu.settings.button = 'Preferencias'
-es.root.settingsMenu.language.button = 'Lenguaje'
-es.root.settingsMenu.theme.button = 'Tema'
-es.root.settingsMenu.style.button = 'Estilo'
-es.root.dev.title = "Desarrollador backend."
+
 es.root.dev.a = "El desarrollador es un estudiante de Ingeniería en Sistemas de Información"
 es.root.dev.b = " redondeando las últimas materias de la carrera. A lo largo de los últimos dos años ha desviado su atención de la universidad a su especialización en desarrollo backend"
 es.root.dev.c = "Vive actualmente en Santa Fe, Argentina, pero eventualmente se mudará a "

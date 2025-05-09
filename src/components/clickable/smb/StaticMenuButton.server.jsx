@@ -7,16 +7,18 @@ import {setRoutes} from "../../../lib/routing.js";
 import {useContext} from "react";
 import HydrationRoot from "../../client/HydrationRoot.server.jsx";
 import {placeholders} from "../../../lib/placeholders.shared.js";
+import translate from "../../../lib/translation.js";
+import {Lang, MenuContext} from "../../../lib/context.js";
 
 // TODO review parameter 'clean'
-export default function StaticMenuButton({children, disabled, clean = false, routes, parentRoute, labelId, label, Context}) {
+export default function StaticMenuButton({children, disabled, clean = false, routes, parentRoute, labelId, label}) {
     const [ onBtn, offBtn, subState, onState, offState, radioGroupName ] =
         ids(6)
-    const context = useContext(Context) || {}
+    const lang = useContext(Lang) || {}
+    const menuContext = useContext(MenuContext)
     if (routes) {
         setRoutes(routes,onBtn,parentRoute || 'root')
     }
-
     return <>
         <div className="contents">
             <input type="radio" id={subState} name={radioGroupName}
@@ -29,28 +31,27 @@ export default function StaticMenuButton({children, disabled, clean = false, rou
                    data-route-off={routes}
                    className={styles.offRadio} defaultChecked/>
             <div className={styles.contentDiv}>
-                <Context value={{onBtn, subState, onState, parentContext: context}}>
+                <MenuContext value={{onBtn, subState, onState, parentContext: menuContext}}>
                     <MenuContainer clean={clean} >
                         {children}
                     </MenuContainer>
-                </Context>
+                </MenuContext>
             </div>
             <ActionButton id={offBtn} classes={styles.closeButton}
-                          translationKey={'misc.back'}
                           kind={kinds.BackNav}>
-                Back
+                {translate(lang,'misc.back') || "Back"}
             </ActionButton>
             <ActionButton disabled={true} id={onBtn} classes={styles.openButton}
                           translationKey={labelId}
                           kind={kinds.ForwardNav}
                           data={{route: routes[0], parentRoute: parentRoute || 'root'}}>
-                {label}
+                {translate(lang,labelId) || label}
             </ActionButton>
             <HydrationRoot comp={placeholders.StaticMenuButtonScript}
                            data={{
                                onBtn, offBtn, onState, offState,
-                               parentSubState: context.subState,
-                               parentOnState: context.onState,
+                               parentSubState: menuContext.subState,
+                               parentOnState: menuContext.onState,
                                disabled
                            }}/>
         </div>

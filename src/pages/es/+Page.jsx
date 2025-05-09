@@ -1,8 +1,9 @@
-import {createContext} from "react";
 import RootPage from "../+Page.jsx";
 import '../Layout.css'
+import {Lang} from "../../lib/context.js";
 
 export default function Page() {
-    const Context = createContext({lang: 'es'})
-    return RootPage({Context})
+    return <Lang value={'es'}>
+        <RootPage />
+    </Lang>
 }

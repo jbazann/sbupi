@@ -1,12 +1,11 @@
 import ActionButton from "../../clickable/ActionButton.server.jsx";
 import StaticMenuButton from "../../clickable/smb/StaticMenuButton.server.jsx";
 
-export default function LinksMenu({Context}) {
+export default function LinksMenu() {
     return <>
         <StaticMenuButton key="LinksMenu" label={"Links"}
                           labelId={'root.mainMenu.links.button'}
-                          routes={['links']}
-                          Context={Context} >
+                          routes={['links']} >
             <ActionButton key="LinkedIn">
                 <a href="https://www.linkedin.com/in/jbazann/" target="_blank">
                     LinkedIn
