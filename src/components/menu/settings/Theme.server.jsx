@@ -23,7 +23,7 @@ export default function Theme() {
                 }
             ])} />
             <div className="hr2"></div>
-            <Options title={translate(lang,'theme.title.variant') || "Variant"}
+            <Options title={translate(lang,'theme.titles.variant') || "Variant"}
                      options={Option.group(variant, [
                 {
                     label: translate(lang,'theme.dark') || "Dark",
