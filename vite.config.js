@@ -13,6 +13,12 @@ export default defineConfig({
             hosts: ['local.jbazann.dev', 'localhost'],
         })
     ],
+    resolve: {
+        alias: {
+            "@": "/src",
+            "@c": "/src/components/"
+        },
+    },
     server: {
         port: 443,
         host: ['local.jbazann.dev','localhost'],

@@ -27,11 +27,11 @@ export default function Page() {
         )
     } else {
         return {
-            StaticMenuButtonScript: import('../components/clickable/smb/StaticMenuButtonScript.client.jsx'),
-            ActionButtonScript: import('../components/clickable/ActionButtonScript.client.jsx'),
-            CatMenuScript: import('../components/menu/cat/CatMenuScript.jsx'),
-            SettingsMenuScript: import('../components/menu/settings/SettingsMenuScript.client.jsx'),
-            Router: import("../components/Router.shared.jsx"),
+            StaticMenuButtonScript: import('@c/clickable/smb/StaticMenuButtonScript.client.jsx'),
+            ActionButtonScript: import('@c/clickable/ActionButtonScript.client.jsx'),
+            CatMenuScript: import('@c/menu/cat/CatMenuScript.jsx'),
+            SettingsMenuScript: import('@c/menu/settings/SettingsMenuScript.client.jsx'),
+            Router: import("@c/Router.shared.jsx"),
         }
     }
 }
