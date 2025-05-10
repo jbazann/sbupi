@@ -12,7 +12,7 @@ const es = {
             desc: 'A ella no le gustó esto.'
         },
         soon: {
-            header: 'Proximamente!',
+            header: 'Próximamente!',
             desc: 'Esta sección está casi lista.'
         },
         popover: {
