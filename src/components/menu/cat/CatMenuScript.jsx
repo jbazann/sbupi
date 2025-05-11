@@ -17,7 +17,10 @@ export default function CatMenuScript({loadingDiv,loadingP,anotherButton,catImg,
             onBtnElem = document.getElementById(context?.onBtn),
             catImgElem = document.getElementById(catImg)
 
-        onBtnElem?.addEventListener('click', handler = async() => {
+        /// TODO replace this with an event pattern
+        const isLandingPage = window.location.pathname.endsWith('/cat')
+
+        handler = async() => {
             let loadingIndicator = cycleLoadingIndicator(loadingPElem,loadingLabels)
             batch = await fetchCats()
             setTimeout(async () => {
@@ -31,7 +34,13 @@ export default function CatMenuScript({loadingDiv,loadingP,anotherButton,catImg,
                     offerReload()
                 }
             }, 3210)
-        }, handlerOpts = {once: true})
+        }
+
+        if (isLandingPage) {
+            handler()
+        } else {
+            onBtnElem?.addEventListener('click', handler, handlerOpts = {once: true})
+        }
 
         anotherButtonElem?.addEventListener('click', anotherHandler = async() => {
             if (batch.length > 0) {
@@ -60,8 +69,8 @@ let index = -1, timeout = {}
 function cycleLoadingIndicator(pElem,legends) {
     const interval = 500
     if (pElem) {
-        pElem.innerText = legends.at(index = ((index + 1) % 3));
-        timeout.current = setTimeout(cycleLoadingIndicator, interval, pElem);
+        pElem.innerText = legends.at(index = ((index + 1) % 3))
+        timeout.current = setTimeout(cycleLoadingIndicator, interval, pElem, legends)
     }
     return timeout
 }
@@ -72,7 +81,7 @@ export async function fetchCats() {
         .catch(e => {devErr(e); return []})
 }
 
-function offerReload() {
+function offerReload() { // TODO translate this
     if (confirm(
         "Something went wrong while fetching the cats; horrible things are about to happen. " +
         "Reload the page to try again?"
