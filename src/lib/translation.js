@@ -55,6 +55,7 @@ const es = {
             style: 'Estilo',
         },
         catMenu: {
+            img: 'Una imagen aleatoria de un gato.',
             loading: {
                 a: 'Buscando gatitos.',
                 b: 'Buscando gatitos..',

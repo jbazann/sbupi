@@ -26,11 +26,11 @@ export default function CatMenu() {
                 <div className="absolute-underlay flex-col center-children">
                     <div id={loadingDiv} className="flex-col center-children">
                         <p id={loadingP} className={"center-self " + styles.loadingP}>
-                            Fetching cats.
+                            {translate(lang,'root.catMenu.loading.a') || "Fetching cats."}
                         </p>
                     </div>
                     <div className={"flex-col center-self center-children " + styles.imageContainer}>
-                        <img id={catImg} src="/icon/waiting.gif" alt="A random cat image."
+                        <img id={catImg} src="/icon/waiting.gif" alt={translate(lang, 'root.catMenu.img') || "A random cat image."}
                              className={"center-self " + styles.catImage}/>
                     </div>
                 </div>
