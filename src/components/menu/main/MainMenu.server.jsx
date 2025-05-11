@@ -1,11 +1,11 @@
-import CatMenu from "../cat/CatMenu.server.jsx";
-import MenuContainer from "../MenuContainer.server.jsx";
-import StaticMenuButton from "../../clickable/smb/StaticMenuButton.server.jsx";
-import Soon from "../bare/Soon.server.jsx";
-import DeveloperMenu from "../dev/DeveloperMenu.server.jsx";
-import SettingsMenu from "../settings/SettingsMenu.server.jsx";
-import ProjectsMenu from "../projects/ProjectsMenu.server.jsx";
-import LinksMenu from "../bare/LinksMenu.server.jsx";
+import CatMenu from "@c/menu/cat/CatMenu.server.jsx";
+import MenuContainer from "@c/menu/MenuContainer.server.jsx";
+import StaticMenuButton from "@c/clickable/smb/StaticMenuButton.server.jsx";
+import Soon from "@c/menu/bare/Soon.server.jsx";
+import DeveloperMenu from "@c/menu/dev/DeveloperMenu.server.jsx";
+import SettingsMenu from "@c/menu/settings/SettingsMenu.server.jsx";
+import ProjectsMenu from "@c/menu/projects/ProjectsMenu.server.jsx";
+import LinksMenu from "@c/menu/bare/LinksMenu.server.jsx";
 
 export default function MainMenu() {
     return <>
@@ -14,7 +14,7 @@ export default function MainMenu() {
             <ProjectsMenu />
             <LinksMenu />
             <CatMenu />
-            <StaticMenuButton key={'idkman'} label={"????"} routes={['notyet']}
+            <StaticMenuButton key={'idkman'} label={"??????"} routes={['notyet']}
                               clean={true}>
                 <Soon />
             </StaticMenuButton>
