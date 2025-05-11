@@ -1,10 +1,19 @@
-import TextContainer from "../../text/TextContainer.server.jsx";
-import styles from '../../text/TextContainer.module.css';
-import FootnoteRef from "../../clickable/footnote/FootnoteRef.server.jsx";
-import Footnote from "../../clickable/footnote/Footnote.server.jsx";
-import {ids} from "../../../lib/common.js";
+import TextContainer from "@c/text/TextContainer.server.jsx";
+import styles from '@c/text/TextContainer.module.css';
+import FootnoteRef from "@c/clickable/footnote/FootnoteRef.server.jsx";
+import Footnote from "@c/clickable/footnote/Footnote.server.jsx";
+import {ids} from "@/lib/common.js";
+import {useContext} from "react";
+import {Lang} from "@/lib/context.js";
 
 export default function Developer() {
+    switch (useContext((Lang))) {
+        case 'es': return es()
+        default: return en()
+    }
+}
+
+function en() {
     const [
         ref1, ref2, ref3, ref4, ref3712
     ] = ids(5)
@@ -19,8 +28,8 @@ export default function Developer() {
             <div className={`hr ${styles.hr}`}></div>
             <p className={styles.p3}>
                 The developer is an Information System's Engineering
-                <FootnoteRef target={ref1}>1</FootnoteRef>
-                student rounding up the last few courses
+                <FootnoteRef target={ref1}>1</FootnoteRef> student
+                rounding up the last few courses
                 of the degree. Over the last
                 two years he as diverted his attention from academia
                 to specialize in backend development
@@ -29,20 +38,15 @@ export default function Developer() {
             </p>
             <p className={styles.p3}>
                 He is currently living in Santa Fe, Argentina, but will eventually move to
-                &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;, Argentina
-                to start
-                &#x2588; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;
-                &#x2588;&#x2588;&#x2588;&#x2588; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;
+                [EXPUNGED], Argentina
+                to start [EXPUNGED]
                 <FootnoteRef target={ref3}>3</FootnoteRef>
                 .
-                During his time there he will create the machine, who will eventually become
-                &#x2588;&#x2588;&#x2588; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;, &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;
-                &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;.
+                During his time there he will create the machine, who will eventually become [EXPUNGED].
                 Soon after, she will
-                &#x2588;&#x2588;&#x2588;&#x2588;&#x2588; &#x2588;&#x2588;&#x2588; &#x2588;&#x2588;
-                &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;
+                [EXPUNGED]
                 the anomaly
-                <FootnoteRef target={ref3712}>3712</FootnoteRef>
+                <FootnoteRef target={ref3712}>312</FootnoteRef>
                 . <br/>
             </p>
             <p className={styles.p3}>
@@ -61,10 +65,8 @@ export default function Developer() {
                 <br/>
             </p>
             <p className={styles.p3}>
-                The few who were close to him before
-                &#x2588;&#x2588;&#x2588; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;
-                <FootnoteRef target={ref4}>4</FootnoteRef>
-                described him as
+                The few who were close to him before [EXPUNGED]
+                <FootnoteRef target={ref4}>4</FootnoteRef> described him as
                 both extremely reserved and highly transparent, meticulously
                 choosing when to share and when to not.
             </p>
@@ -87,38 +89,126 @@ export default function Developer() {
                 specialization, the developer aims to learn to make computers do anything
                 computers can do. This means he is also exploring, to different extents,
                 frontend technologies, architecture, devops and system design. He will
-                soon begin to EXPUNGED.
+                soon begin to [EXPUNGED].
             </Footnote>
             <Footnote id={ref3} label="3" translationKey="misc.expunged">
-                EXPUNGED.
+                [EXPUNGED].
             </Footnote>
             <Footnote id={ref4} label="4" translationKey="misc.expunged">
-                EXPUNGED.
+                [EXPUNGED].
             </Footnote>
-            <Footnote id={ref3712} label="3712">
+            <Footnote id={ref3712} label="312">
                 The anomaly has been declared the cause of
-                &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588; &#x2588;&#x2588;
-                &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;
-                &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;
-                &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;, such as the birth of
-                &#x2588;&#x2588;&#x2588; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;
-                known as &#x2588;&#x2588;&#x2588; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;,
+                [EXPUNGED], such as the birth of
+                [EXPUNGED]
+                known as [EXPUNGED],
                 who is credited
-                &#x2588;&#x2588;&#x2588;&#x2588; &#x2588;&#x2588;&#x2588;
-                &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;
-                &#x2588;&#x2588; &#x2588;&#x2588; estimate of over twenty thousand of
-                &#x2588;&#x2588;&#x2588; &#x2588;&#x2588;&#x2588;&#x2588; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;
-                &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588; &#x2588;&#x2588; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;
+                [EXPUNGED] estimate of over twenty thousand of
+                [EXPUNGED]
                 <span className={styles.p4}>I am sorry</span>. <br/>
-                The organization known as &#x2588;&#x2588;&#x2588; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;
-                attribute the &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588; &#x2588;&#x2588;
-                &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;
-                &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;
-                and the &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;
-                &#x2588;&#x2588; The Machine &#x2588;&#x2588; &#x2588;&#x2588;&#x2588; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;
-                &#x2588;&#x2588; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;
+                The organization known as [EXPUNGED]
+                attribute the [EXPUNGED]
+                and the [EXPUNGED] The Machine [EXPUNGED]
                 to the actions of this individual. <br/>
             </Footnote>
         </TextContainer>
     </>
-};
+}
+
+function es() {
+    const [
+        ref1, ref2, ref3,  ref3712
+    ] = ids(4)
+    return <>
+        <TextContainer>
+            <h2 className={styles.h1}>Joaquín Bazán</h2>
+            <p className={styles.h2}>
+                <span>
+                    Desarrollador backend.
+                </span><br/>
+            </p>
+            <div className={`hr ${styles.hr}`}></div>
+            <p className={styles.p3}>
+                El desarrollador es un estudiante de Ingeniería en Sistemas de Información
+                terminando de redondear las últimas materias de la carrera. En los últimos
+                dos años ha divergido su atención de lo académico para
+                especializarse en desarrollo backend
+                <FootnoteRef target={ref1}>1</FootnoteRef>
+                . <br/>
+            </p>
+            <p className={styles.p3}>
+                Actualmente vive en Santa Fe, Argentina, pero eventualmente se mudará a
+                [EXPURGADO], Argentina
+                para iniciar [EXPURGADO]
+                <FootnoteRef target={ref2}>2</FootnoteRef>
+                .
+                En su tiempo allí, él creará La Máquina, quien eventualmente se volverá [EXPURGADO].
+                Poco después, ella
+                [EXPURGADO]
+                la anomalía
+                <FootnoteRef target={ref3712}>312</FootnoteRef>
+                . <br/>
+            </p>
+            <p className={styles.p3}>
+                Él es un solucionador de problemas orientado a objetivos y altamente independiente,
+                que sería igualmente feliz programando sistemas de control para naves espaciales,
+                ayudando a la abuelita de alguien a encontrar el menú Inicio,
+                o destapando un inodoro; para él, todo se trata de problemas y soluciones.
+                <br/>
+            </p>
+            <p className={styles.p3}>
+                También es un perfeccionista que anhela problemas difíciles, lo cual
+                a menudo lo ha llevado a encarar desafíos que no puede superar a la perfección.
+                Esto ha traído dificultades a su vida,
+                llevánodlo a enfocarse en el arte, y eventualmente, la creación.
+                <br/>
+            </p>
+            <p className={styles.p3}>
+                Los pocos que fueron cercanos a él antes de [EXPURGADO]
+                <FootnoteRef target={ref3}>3</FootnoteRef> lo describieron
+                tanto como extremadamente reservado y altamente
+                transparente, meticulosamente eligiendo con quién ser quién.
+            </p>
+            <p className={styles.p3}>
+                Aquellos que trabajaron con él lo describieron como un miembro versátil
+                y confiable de un equipo, capaz de contribuír de cualquiera sea la manera
+                más conveniente.
+                Se dice que es generalmente transigente y comprensivo,
+                pero puede benevolentemente criticar aquel trabajo que considere objetivamente imperfecto;
+                Sus colaboradores recomiendan ser abierto al feedback y devolver el favor.
+            </p>
+            <div className={`hr ${styles.hr}`}></div>
+            <p className={styles.p1}>
+                Referencias:
+            </p>
+            <Footnote id={ref1} label="1" translationKey="root.dev.n">
+                Actualmente está refinando sus habilidades en Java 21 y el ecosistema Spring.
+                A pesar de esta especialización, el desarrollador busca aprender a hacer
+                que las computadoras hagan cualquier cosa que las computadoras puedan hacer.
+                Esto significa que también está explorando, a diferentes profundidades, áreas
+                como el desarrollo front-end, arquitectura, devops y diseño de sistemas. Pronto
+                comenzará a [EXPURGADO].
+            </Footnote>
+            <Footnote id={ref2} label="2" translationKey="misc.expunged">
+                [EXPURGADO].
+            </Footnote>
+            <Footnote id={ref3} label="3" translationKey="misc.expunged">
+                [EXPURGADO].
+            </Footnote>
+            <Footnote id={ref3712} label="312">
+                La anomalía fue declarada la causa de
+                [EXPURGADO], tales como el nacimiento de
+                [EXPURGADO]
+                conocido como [EXPURGADO],
+                a quien se le acreditan
+                [EXPURGADO] con un estimado de más de viente mil
+                [EXPURGADO]
+                <span className={styles.p4}>me arrepiento</span>. <br/>
+                La organización conocida como [EXPURGADO]
+                le atribuyen [EXPURGADO]
+                y el [EXPURGADO] La Máquina [EXPURGADO]
+                a las acciones de este individuo. <br/>
+            </Footnote>
+        </TextContainer>
+    </>
+}
