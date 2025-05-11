@@ -18,7 +18,7 @@ export default function CatMenuScript({loadingDiv,loadingP,anotherButton,catImg,
             catImgElem = document.getElementById(catImg)
 
         /// TODO replace this with an event pattern
-        const isLandingPage = window.location.pathname.endsWith('/cat')
+        const isLandingPage = window.location.pathname.toLowerCase().endsWith('/cat')
 
         handler = async() => {
             let loadingIndicator = cycleLoadingIndicator(loadingPElem,loadingLabels)
