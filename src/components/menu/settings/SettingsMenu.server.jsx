@@ -1,10 +1,8 @@
-import StaticMenuButton from "../../clickable/smb/StaticMenuButton.server.jsx";
+import StaticMenuButton from "@c/clickable/smb/StaticMenuButton.server.jsx";
 import Language from "./Language.server.jsx";
 import Style from "./Style.server.jsx";
 import CookiesServer from "./Cookies.server.jsx";
 import Theme from "./Theme.server.jsx";
-import HydrationRoot from "../../client/HydrationRoot.server.jsx";
-import {placeholders} from "../../../lib/placeholders.shared.js";
 
 export default function SettingsMenu() {
     return <>
@@ -38,7 +36,6 @@ export default function SettingsMenu() {
                               clean={true} >
                 <CookiesServer />
             </StaticMenuButton>
-            <HydrationRoot comp={placeholders.SettingsMenuScript}/>
         </StaticMenuButton>
     </>
 }
