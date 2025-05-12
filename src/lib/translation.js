@@ -7,6 +7,7 @@ export default function translate(lang,key = '') {
 const es = {
     misc: {
         back: 'Volver',
+        apply: 'Aplicar',
         expunged: {
             header: 'EXPURGADO.',
             desc: 'A ella no le gustó esto.'

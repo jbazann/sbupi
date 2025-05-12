@@ -8,6 +8,7 @@ export default {
     extends: vikeReact,
     prerender: true,
     clientRouting: false,
+    htmlAttributes: { "data-theme": "default" },
     lang: 'en',
     ssr: true,
     stream: true,

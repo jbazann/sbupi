@@ -7,7 +7,7 @@ import Expunged from "../bare/Expunged.server.jsx";
 export default function ProjectsMenu() {
     return <>
         <StaticMenuButton key="ProjectsMenu" label={"Projects"}
-                          translationKey={'root.mainMenu.projects.button'}
+                          labelId={'root.mainMenu.projects.button'}
                           routes={['projects']} >
             <StaticMenuButton key="skwidl" label={"Skwidl"}
                               routes={['skwidl']}
