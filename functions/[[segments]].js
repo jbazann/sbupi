@@ -14,7 +14,7 @@ export async function onRequest(context) {
     // Redirect to localized path
     let localizedTarget = false
     if (!isLocalizedPath && (localizedTarget = prefersSupportedLanguage(language,cookies))) {
-        return redirect(localizedTarget + functionPath)
+        return redirect(replacePath(request.url,localizedTarget + functionPath  ))
     }
 
     // Parse valid path segments for routing
