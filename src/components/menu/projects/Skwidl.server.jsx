@@ -20,7 +20,7 @@ function en() {
             <div className={`hr ${styles.hr}`}></div>
             <p className={styles.p3}>
                 More details to come after 17/05/2025. A slightly outdated
-                description can be found at <a href="https://v2.jbazann.dev">v2.jbazann.dev</a>. <br/>
+                description can be found at <a href="https://v2.jbazann.dev" target="_blank">v2.jbazann.dev</a>. <br/>
                 The code is publicly available in <a href="https://github.com/jbazann/skwidl" target="_blank">
                 this</a> GitHub repository.
             </p>
@@ -47,7 +47,7 @@ function es() {
             <div className={`hr ${styles.hr}`}></div>
             <p className={styles.p3}>
                 Más detalles después del 17/05/2025. Una versión ligeramente desactualizada (y en inglés)
-                está disponible en <a href="https://v2.jbazann.dev">v2.jbazann.dev</a>. <br/>
+                está disponible en <a href="https://v2.jbazann.dev" target="_blank">v2.jbazann.dev</a>. <br/>
                 El código está disponible públicamente en <a href="https://github.com/jbazann/skwidl" target="_blank">
                 este</a> repositorio en GitHub.
             </p>
