@@ -1,8 +1,13 @@
 import styles from './Options.module.css'
 import ActionButton, {kinds} from "../../../clickable/ActionButton.server.jsx";
 import {devErr, ids} from "../../../../lib/common.js";
+import translate from "../../../../lib/translation.js";
+import {useContext, useId} from "react";
+import {Lang} from "../../../../lib/context.js";
 
-export default function Options({options,title}) {
+export default function Options({options,title,refresh = false,url = '/'}) {
+    const lang = useContext(Lang)
+    const baseId = useId()
     return <>
         {title ?
         <div className={styles.titleContainer}>
@@ -19,15 +24,21 @@ export default function Options({options,title}) {
                                className={styles.input}
                                disabled={!!opt.disabled}
                         />
-                        <ActionButton id={scope(opt.id,'b')} data={{inputId: opt.id}}
-                                      disabled={opt.disabled} kind={kinds.Option}>
+                        <ActionButton id={scope(opt.id,'b')} data={{inputId: opt.id, ...opt.data}}
+                                      disabled={opt.disabled} kind={opt.kind}>
                             {opt.label}
                         </ActionButton>
                     </div>
                 })
             }
         </div>
-
+        {refresh ?
+            <div className={styles.applyContainer}>
+                <ActionButton id={scope(baseId,'apply')} kind={kinds.Refresh} data={{url}}>
+                    {translate(lang,'misc.apply') || 'Apply'}
+                </ActionButton>
+            </div> : null
+        }
     </>
 };
 
@@ -40,7 +51,8 @@ export class Option {
     kind
     isDefault
     disabled
-    constructor(label, id, value, group, kind, check, isDefault, disabled) {
+    data
+    constructor(label, id, value, group, kind, check, isDefault, disabled, data) {
         this.label = label
         this.id = id
         this.value = value
@@ -49,6 +61,7 @@ export class Option {
         this.check = check
         this.isDefault = isDefault
         this.disabled = disabled
+        this.data = data
     }
 
     static group(group, options) {
@@ -60,7 +73,8 @@ export class Option {
             opt.kind ? opt.kind : kinds.None,
             opt.check,
             opt.isDefault,
-            opt.disabled
+            opt.disabled,
+            opt.data ? opt.data : {}
         ))
     }
 }

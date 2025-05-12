@@ -36,9 +36,15 @@ export async function onRequest(context) {
         request
     ))
 
+    const rewriter = new HTMLRewriter()
+
+    // Set user preferences
+    setTheme(rewriter,cookies)
+
     // Set initial client-routing state.
-    return serverRouter(new HTMLRewriter(), validSegments)
-        .transform(response)
+    serverRouter(rewriter, validSegments)
+
+    return rewriter.transform(response)
 }
 
 const excluded = [
@@ -69,6 +75,11 @@ function prefersSupportedLanguage(acceptLanguage, cookies) {
         return '/es'
     }
     return false
+}
+
+function setTheme(htmlRewriter, cookies) {
+    cookies["theme"] && htmlRewriter.on('html', new ELementAttributeSetter('data-theme',cookies["theme"]))
+    cookies["theme-variant"] && htmlRewriter.on('html', new ELementAttributeSetter('data-theme-variant',cookies["theme-variant"]))
 }
 
 function normalizePath(path) {
@@ -109,7 +120,16 @@ function serverRouter(htmlRewriter, segments) {
                 new ElementCheckRemover())
         previous = current
     }
-    return htmlRewriter
+}
+
+class ELementAttributeSetter {
+    constructor(key,value) {
+        this.key = key
+        this.value = value
+    }
+    element(element) {
+        element.setAttribute(this.key, this.value)
+    }
 }
 
 class ElementCheckSetter {

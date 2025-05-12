@@ -6,10 +6,11 @@ import {placeholders} from "../../../lib/placeholders.shared.js";
 import translate from "../../../lib/translation.js";
 import {useContext} from "react";
 import {Lang} from "../../../lib/context.js";
+import {kinds} from "@c/clickable/ActionButton.server.jsx";
 
 export default function Theme() {
     const [
-        theme, darkThmId, lightThmId, variant, defVrntId
+        theme, darkVarId, lightVarId, variant, defThmId
     ] = ids(5)
     const lang = useContext(Lang)
     return <>
@@ -19,7 +20,14 @@ export default function Theme() {
                      options={Option.group(theme, [
                 {
                     label: translate(lang, 'theme.default') || "Default",
-                    id: defVrntId
+                    id: defThmId,
+                    kind: kinds.Attribute,
+                    data:{
+                        attribute: 'data-theme',
+                        cookie: 'theme',
+                        value: 'default'
+                    },
+                    isDefault: true
                 }
             ])} />
             <div className="hr2"></div>
@@ -27,19 +35,31 @@ export default function Theme() {
                      options={Option.group(variant, [
                 {
                     label: translate(lang,'theme.dark') || "Dark",
-                    id: darkThmId
+                    id: darkVarId,
+                    kind: kinds.Attribute,
+                    data:{
+                        attribute: 'data-theme-variant',
+                        cookie: 'theme-variant',
+                        value: 'dark'
+                    }
                 },
                 {
                     label: translate(lang,'theme.light') || "Light",
-                    id: lightThmId
+                    id: lightVarId,
+                    kind: kinds.Attribute,
+                    data:{
+                        attribute: 'data-theme-variant',
+                        cookie: 'theme-variant',
+                        value: 'light'
+                    }
                 },
             ])} />
             <div className="hr"></div>
         </div>
         <HydrationRoot comp={placeholders.SettingsMenuScript} data={{setting: 'theme', data: {
-            dark: darkThmId,
-            light: lightThmId,
-            defV: defVrntId,
+            dark: darkVarId,
+            light: lightVarId,
+            defV: defThmId,
         }}} />
     </>
 };

@@ -1,4 +1,4 @@
-.container, .spacedContainer {
+.container, .spacedContainer, .applyContainer {
     position: relative;
     height: fit-content;
     width: 72%;
@@ -13,6 +13,10 @@
 
 .spacedContainer {
     padding: .56rem 2rem 1rem 2rem;
+}
+
+.applyContainer {
+    padding: 0 2rem 1rem 2rem;
 }
 
 .container {

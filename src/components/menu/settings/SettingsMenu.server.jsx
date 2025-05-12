@@ -10,21 +10,21 @@ export default function SettingsMenu() {
                           labelId={'root.mainMenu.settings.button'}
                           routes={['settings']} >
             <StaticMenuButton key="language" label={"Language"}
-                              labelId={'root.settingsMenu.language.button'}
+                              labelId={'root.settingsMenu.language'}
                               routes={['language']}
                               parentRoute={'settings'}
                               clean={true} >
                 <Language />
             </StaticMenuButton>
             <StaticMenuButton key="theme" label={"Theme"}
-                              labelId={'root.settingsMenu.theme.button'}
+                              labelId={'root.settingsMenu.theme'}
                               routes={['theme']}
                               parentRoute={'settings'}
                               clean={true} >
                 <Theme />
             </StaticMenuButton>
             <StaticMenuButton key="style" label={"Style"}
-                              labelId={'root.settingsMenu.style.button'}
+                              labelId={'root.settingsMenu.style'}
                               routes={['style']}
                               parentRoute={'settings'}
                               clean={true} >

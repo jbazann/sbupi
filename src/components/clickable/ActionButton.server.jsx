@@ -1,15 +1,18 @@
 import styles from './ActionButton.module.css'
-import HydrationRoot from "../client/HydrationRoot.server.jsx";
-import {placeholders} from "../../lib/placeholders.shared.js";
+import HydrationRoot from "@c/client/HydrationRoot.server.jsx";
+import {placeholders} from "@/lib/placeholders.shared.js";
 
 export const kinds = {
     BackNav: 'BackNav',
     ForwardNav: 'ForwardNav',
     Option: 'Option',
-    None: 'None'
+    None: 'None',
+    Cookie: 'Cookie',
+    Refresh: 'Refresh',
+    Attribute: 'Attribute'
 }
 
-export default function ActionButton({children, id, classes, disabled = false, kind = kinds.None, data}) {
+export default function ActionButton({children, id, classes, disabled = false, kind = kinds.None, data = {}}) {
     return <>
         <button disabled={disabled} id={id}
                 className={styles.actionButton + (classes ? ' ' + classes : '')} >
