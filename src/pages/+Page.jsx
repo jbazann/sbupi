@@ -1,10 +1,13 @@
 import './Layout.css'
 import {useData} from "vike-react/useData";
 import {useContext} from "react";
-import {Lang} from "../lib/context.js";
+import {Lang} from "@l/context.js";
+import {usePageContext} from "vike-react/usePageContext";
 
 export default function Page() {
     if (import.meta.env.SSR) {
+        const pageContext = usePageContext()
+        pageContext.lang = pageContext.lang || 'en'
         const lang = useContext(Lang)
         const {
             ContentArea,

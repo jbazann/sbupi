@@ -4,12 +4,24 @@
     max-height: 100%;
     overflow-y: auto;
     line-height: 1.6rem;
+    padding-right: 1rem;
 
     p, li, h1, h2, a {
         font-family: var(--font-mono);
         color: var(--color-text);
         text-align: start;
         white-space: pre-wrap;
+    }
+
+    em {
+        color: var(--color-highlight);
+    }
+
+    code {
+        padding: 0 0.2rem 0 0.2rem;
+        border-radius: 0.2rem;
+        background: var(--color-foreground);
+        border: 1px solid var(--color-highlight);
     }
 
     sup, a {
@@ -24,7 +36,7 @@
     li {
         list-style: disc inside;
         text-indent: 1rem;
-        margin: 1rem 0;
+        margin: 0.62rem 0;
 
         & :is(li) {
             text-indent: 2.5rem;
@@ -33,16 +45,22 @@
 }
 
 .p1, .p2, .p3, .p4 {
-    margin: .82rem 0;
+    margin: 1rem 0;
 }
 
 .p1 {
+    font-size: 1.6rem;
+    line-height: 2;
+}
+
+.p2 {
     font-size: 1.2rem;
     line-height: 2;
 }
-.p2 {
-    font-size: 1.02rem;
-    line-height: 1.5;
+
+.p3 {
+    font-size: 1rem;
+    line-height: 1.6;
 }
 
 .p4 {
@@ -55,9 +73,19 @@
 }
 
 .h1 {
-    padding-top: 2.2rem;
+    margin-top: 2.2rem;
+    margin-bottom: 1rem;
 }
 
 .h2 {
+    font-size: 1.62rem;
+    line-height: 2;
+    margin-top: 1.6rem;
+    margin-bottom: 1rem;
+}
+
+.h3 {
     font-size: 1.2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }

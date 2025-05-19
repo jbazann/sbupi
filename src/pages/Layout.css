@@ -31,6 +31,7 @@
 
  /* DEFAULTS */
   --color-background: oklch(0.12 0.0288 243.66);
+  --color-foreground: oklch(0.02 0.0288 243.66);
   --color-text: oklch(0.97 0.013 243.66);
   --color-border: var(--color-text);
   --color-highlight: oklch(0.81 0.1293 223.68);
@@ -38,12 +39,14 @@
 
   /* THEME 1 DARK */
   --color-1-dark-background: oklch(0.12 0.0288 243.66);
+  --color-1-dark-foreground: oklch(0.02 0.0288 243.66);
   --color-1-dark-text: oklch(0.97 0.013 243.66);
   --color-1-dark-border: oklch(0.97 0.013 243.66);
   --color-1-dark-highlight: oklch(0.81 0.1293 223.68);
 
   /* THEME 1 LIGHT */
   --color-1-light-background: oklch(96% 0.03 90);
+  --color-1-light-foreground: oklch(82% 0.03 90);
   --color-1-light-text: oklch(20% 0.02 90);
   --color-1-light-border: oklch(20% 0.02 90);
   --color-1-light-highlight:  oklch(60% 0.2 30);
@@ -59,6 +62,7 @@
   &[data-theme="default"] {
     &[data-theme-variant="dark"] {
       --color-background: var(--color-1-dark-background);
+      --color-foreground: var(--color-1-dark-foreground);
       --color-text: var(--color-1-dark-text);
       --color-border: var(--color-1-dark-border);
       --color-highlight: var(--color-1-dark-highlight);
@@ -66,6 +70,7 @@
 
     &[data-theme-variant="light"] {
       --color-background: var(--color-1-light-background);
+      --color-foreground: var(--color-1-light-foreground);
       --color-text: var(--color-1-light-text);
       --color-border: var(--color-1-light-border);
       --color-highlight: var(--color-1-light-highlight);

@@ -11,6 +11,7 @@ export async function onRequest(context) {
         segments = ((isLocalizedPath ? params.segments.slice(1) : params.segments) || [])
             .map(s => s.toLowerCase())
 
+    // TODO check cookie even if path is localized
     // Redirect to localized path
     let localizedTarget = false
     if (!isLocalizedPath && (localizedTarget = prefersSupportedLanguage(language,cookies))) {

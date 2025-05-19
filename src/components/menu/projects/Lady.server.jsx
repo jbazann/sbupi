@@ -22,7 +22,7 @@ function en() {
             <h2 className={styles.h1}><b>The PostLady project</b>
                 <FootnoteRef target={ref1}>1</FootnoteRef>
             </h2>
-            <p className={styles.h2}>
+            <p className={styles.h3}>
                 A Postman alternative that doesn't use Javascript in the backend.<br/>
             </p>
             <div className={`hr ${styles.hr}`}></div>
@@ -52,7 +52,7 @@ function es() {
             <h2 className={styles.h1}><b>The PostLady project</b>
                 <FootnoteRef target={ref1}>1</FootnoteRef>
             </h2>
-            <p className={styles.h2}>
+            <p className={styles.h3}>
                 Una alternativa a Postman que no usa Javascript para el backend.<br/>
             </p>
             <div className={`hr ${styles.hr}`}></div>

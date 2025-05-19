@@ -20,7 +20,7 @@ function en() {
     return <>
         <TextContainer>
             <h2 className={styles.h1}><b>The Sbupi project</b></h2>
-            <p className={styles.h2}>
+            <p className={styles.h3}>
                 The site you are currently browsing. <br/>
             </p>
             <div className={`hr ${styles.hr}`}></div>
@@ -137,7 +137,7 @@ function es() {
     return <>
         <TextContainer>
             <h2 className={styles.h1}><b>The Sbupi project</b></h2>
-            <p className={styles.h2}>
+            <p className={styles.h3}>
                 La página que está viendo. <br/>
             </p>
             <div className={`hr ${styles.hr}`}></div>

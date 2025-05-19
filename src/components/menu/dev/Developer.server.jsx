@@ -20,7 +20,7 @@ function en() {
     return <>
         <TextContainer>
             <h2 className={styles.h1}>Joaquín Bazán</h2>
-            <p className={styles.h2}>
+            <p className={styles.h3}>
                 <span>
                     Backend developer.
                 </span><br/>
@@ -122,7 +122,7 @@ function es() {
     return <>
         <TextContainer>
             <h2 className={styles.h1}>Joaquín Bazán</h2>
-            <p className={styles.h2}>
+            <p className={styles.h3}>
                 <span>
                     Desarrollador backend.
                 </span><br/>
