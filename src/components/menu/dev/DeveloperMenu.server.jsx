@@ -1,4 +1,4 @@
-import StaticMenuButton from "../../clickable/smb/StaticMenuButton.server.jsx";
+import StaticMenuButton from "@c/layout/control/StaticMenuButton.server.jsx";
 import Developer from "./Developer.server.jsx";
 
 export default function DeveloperMenu() {

@@ -1,6 +1,6 @@
 import styles from './ActionButton.module.css'
-import HydrationRoot from "@c/client/HydrationRoot.server.jsx";
-import {placeholders} from "@/lib/placeholders.shared.js";
+import HydrationRoot from "@c/system/HydrationRoot.server.jsx";
+import {placeholders} from "@l/placeholders.shared.js";
 
 export const kinds = {
     BackNav: 'BackNav',

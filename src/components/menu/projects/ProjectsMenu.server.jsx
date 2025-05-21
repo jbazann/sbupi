@@ -1,4 +1,4 @@
-import StaticMenuButton from "../../clickable/smb/StaticMenuButton.server.jsx";
+import StaticMenuButton from "@c/layout/control/StaticMenuButton.server.jsx";
 import Skwidl from "./Skwidl.server.jsx";
 import Sbupi from "./Sbupi.server.jsx";
 import Lady from "./Lady.server.jsx";

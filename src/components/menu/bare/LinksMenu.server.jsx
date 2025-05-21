@@ -1,5 +1,5 @@
-import ActionButton from "../../clickable/ActionButton.server.jsx";
-import StaticMenuButton from "../../clickable/smb/StaticMenuButton.server.jsx";
+import ActionButton from "@c/layout/control/ActionButton.server.jsx";
+import StaticMenuButton from "@c/layout/control/StaticMenuButton.server.jsx";
 
 export default function LinksMenu() {
     return <>

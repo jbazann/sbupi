@@ -1,4 +1,4 @@
-import Popover from "../../popover/Popover.server.jsx";
+import Popover from "@c/layout/popover/Popover.server.jsx";
 import styles from './Footnote.module.css'
 
 export default function Footnote({children, id, label}) {

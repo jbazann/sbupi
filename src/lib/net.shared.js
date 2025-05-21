@@ -3,11 +3,13 @@
  * usage of the fetch API.
  * @module jbazann/net
  */
-import {devErr, devLog} from "./common.js";
+import {devErr, devLog} from "@l/common.shared.js";
+import {netlog} from "@l/environment.shared.js";
 
 class RequestBuilder {
-    #baseUrl
+    #baseUrl = ''
     #path = ''
+    #params = ''
     #opt = {
         mode: 'cors'
     }
@@ -31,6 +33,13 @@ class RequestBuilder {
 
     opt(opt, clear) {
         this.#opt = clear ? {...opt} : {...this.#opt, ...opt}
+        return this
+    }
+
+    params(params) {
+        this.#params = Object.keys(params)
+            .map(key => key + '=' + params[key])
+            .join('&')
         return this
     }
 
@@ -61,7 +70,8 @@ class RequestBuilder {
     }
 
     async run() {
-        let p = fetch((this.#baseUrl || '').concat(this.#path || ''), this.#opt)
+        let p = fetch((this.#baseUrl)
+            .concat(this.#path,'?',this.#params), this.#opt)
         for (const step of this.#then) {
             p = p.then(step.then,step._catch)
         }
@@ -70,21 +80,21 @@ class RequestBuilder {
 }
 
 async function logHeaders(r) {
-    devLog(Object.fromEntries(r.headers.entries()), class Headers{}.prototype)
+    netlog && devLog(Object.fromEntries(r.headers.entries()), 'HEADERS')
     return r
 }
 
 async function logBody(body) {
-    devLog({body}, class ResponseBody{}.prototype)
+    netlog && devLog({body}, class ResponseBody{}.prototype)
     return body
 }
 
 async function neterr(r) {
-    devLog(r)
+    netlog && devLog(r)
     throw {msg: 'A RequestBuilder\'s default chain received an empty or unexpected response.', response: await r.text()}
 }
 
-export async function get(url) {
+export async function get(url, params = {}) {
     const req = new RequestBuilder(url)
-    return await req.get().run()
+    return await req.get().params(params).run()
 }

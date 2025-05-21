@@ -1,4 +1,9 @@
-export const themes = {
+export {
+    themes,
+    settings
+}
+
+const themes = {
     variants: {
         light: 'light',
         dark: 'dark',
@@ -6,7 +11,7 @@ export const themes = {
     default: 'default'
 }
 
-export const settings = {
+const settings = {
     theme: {
         key: 'theme',
         attr: 'data-theme',
@@ -19,9 +24,4 @@ export const settings = {
         key: 'lang',
         attr: 'lang'
     }
-}
-
-export const ready = {
-    key: 'data-ready',
-    val: true
 }

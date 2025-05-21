@@ -1,5 +1,5 @@
 import {useEffect} from "react";
-import {nav, pop} from "@/lib/routing.js";
+import {nav, pop} from "@l/routing.shared.js";
 
 export default function ActionButtonScript({id,kind,data}) {
     switch(kind) {

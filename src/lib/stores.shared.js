@@ -1,4 +1,4 @@
-import {devLog} from "./common.js";
+import {devLog} from "@l/common.shared.js";
 
 export function set(key, value) {
     if (typeof window !== 'undefined') {

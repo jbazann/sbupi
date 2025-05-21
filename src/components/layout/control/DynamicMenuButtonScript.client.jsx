@@ -1,4 +1,4 @@
-import {devLog} from "../../../lib/common.js";
+import {devLog} from "@l/common.shared.js";
 import {useEffect} from "react";
 
 export default function StaticMenuButtonScript(

@@ -1,10 +1,10 @@
-import TextContainer from "@c/text/TextContainer.server.jsx";
-import styles from '@c/text/TextContainer.module.css'
-import Footnote from "@c/clickable/footnote/Footnote.server.jsx";
-import FootnoteRef from "@c/clickable/footnote/FootnoteRef.server.jsx";
-import {ids} from "@/lib/common.js";
+import TextContainer from "@c/layout/text/TextContainer.server.jsx";
+import styles from '@c/layout/text/TextContainer.module.css'
+import Footnote from "@c/layout/text/footnote/Footnote.server.jsx";
+import FootnoteRef from "@c/layout/text/footnote/FootnoteRef.server.jsx";
+import {ids} from "@/lib/common.shared.js";
 import {useContext} from "react";
-import {Lang} from "@/lib/context.js";
+import {Lang} from "@l/context.shared.js";
 
 export default function Sbupi() {
     switch (useContext(Lang)) {

@@ -1,6 +1,6 @@
 import {useEffect} from "react";
-import {devErr, devLog} from "../../../lib/common.js";
-import {get} from '../../../lib/net.js'
+import {devErr, devLog} from "@l/common.shared.js";
+import {get} from '@l/net.shared.js'
 
 export default function CatMenuScript({loadingDiv,loadingP,anotherButton,catImg,contextId,loadingLabels}) {
     useEffect(() => {

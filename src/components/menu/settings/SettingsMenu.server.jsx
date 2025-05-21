@@ -1,4 +1,4 @@
-import StaticMenuButton from "@c/clickable/smb/StaticMenuButton.server.jsx";
+import StaticMenuButton from "@c/layout/control/StaticMenuButton.server.jsx";
 import Language from "./Language.server.jsx";
 import Style from "./Style.server.jsx";
 import CookiesServer from "./Cookies.server.jsx";

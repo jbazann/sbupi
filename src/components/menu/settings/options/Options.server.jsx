@@ -1,9 +1,9 @@
 import styles from './Options.module.css'
-import ActionButton, {kinds} from "../../../clickable/ActionButton.server.jsx";
-import {devErr, ids} from "../../../../lib/common.js";
-import translate from "../../../../lib/translation.js";
+import ActionButton, {kinds} from "@c/layout/control/ActionButton.server.jsx";
+import {devErr, ids} from "@l/common.shared.js";
+import {translate} from "@l/translation.server.js";
 import {useContext, useId} from "react";
-import {Lang} from "../../../../lib/context.js";
+import {Lang} from "@l/context.shared.js";
 
 export default function Options({options,title,refresh = false,url = '/'}) {
     const lang = useContext(Lang)

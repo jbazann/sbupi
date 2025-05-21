@@ -1,8 +1,9 @@
-import ContentArea from "../components/area/ContentArea.server.jsx"
-import Header from "../components/area/Header.server.jsx"
-import MainMenu from "../components/menu/main/MainMenu.server.jsx"
-import Footer from "../components/area/Footer.server.jsx"
-import Router from "../components/Router.shared.jsx"
+import ContentArea from "@c/layout/ContentArea.server.jsx"
+import Header from "@c/layout/Header.server.jsx"
+import MainMenu from "@c/menu/main/MainMenu.server.jsx"
+import Footer from "@c/layout/Footer.server.jsx"
+import Router from "@c/system/Router.shared.jsx"
+import {get} from "@l/net.shared.js"
 
 export { data }
 
@@ -11,7 +12,10 @@ export { data }
 // without using dynamic imports
 // TODO make Vike stop attempting to serialize this in the build
 async function data(pageContext) {
+    const poems = get("/w/poems", {lang: pageContext?.lang || 'en'})
+
     return {
+        poems,
         ContentArea,
         Header,
         MainMenu,

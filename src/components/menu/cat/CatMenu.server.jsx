@@ -1,13 +1,13 @@
 import styles from './CatMenu.module.css'
-import {devLog, ids} from "../../../lib/common.js";
-import ActionButton from "../../clickable/ActionButton.server.jsx";
-import StaticMenuButton from "../../clickable/smb/StaticMenuButton.server.jsx";
-import HydrationRoot from "../../client/HydrationRoot.server.jsx";
-import {placeholders} from "../../../lib/placeholders.shared.js";
-import ServerContextSerializer from "../../ServerContextSerializer.server.jsx";
+import {devLog, ids} from "@l/common.shared.js";
+import ActionButton from "@c/layout/control/ActionButton.server.jsx";
+import StaticMenuButton from "@c/layout/control/StaticMenuButton.server.jsx";
+import HydrationRoot from "@c/system/HydrationRoot.server.jsx";
+import {placeholders} from "@l/placeholders.shared.js";
+import ServerContextSerializer from "@c/system/ServerContextSerializer.server.jsx";
 import {useContext} from "react";
-import translate from "../../../lib/translation.js";
-import {Lang, MenuContext} from "../../../lib/context.js";
+import {translate} from "@l/translation.server.js";
+import {Lang, MenuContext} from "@l/context.shared.js";
 
 export default function CatMenu() {
     const [loadingDiv, loadingP, catImg, anotherButton, contextId] =

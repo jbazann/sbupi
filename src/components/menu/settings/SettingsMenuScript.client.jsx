@@ -1,6 +1,6 @@
 import {useEffect} from "react";
-import {get, getDoc} from "@/lib/stores.js";
-import {settings} from "@/lib/enum.js";
+import {get, getDoc} from "@/lib/stores.shared.js";
+import {settings} from "@/lib/enum.shared.js";
 
 export default function SettingsMenuScript({setting,data}) {
     switch (setting) {

@@ -1,11 +1,11 @@
 import styles from './Settings.module.css'
-import {ids} from "@/lib/common.js";
+import {ids} from "@/lib/common.shared.js";
 import Options,{Option} from "./options/Options.server.jsx"
-import HydrationRoot from "@c/client/HydrationRoot.server.jsx";
+import HydrationRoot from "@c/system/HydrationRoot.server.jsx";
 import {placeholders} from "@/lib/placeholders.shared.js";
 import {useContext} from "react";
-import {Lang} from "@/lib/context.js";
-import {kinds} from "@c/clickable/ActionButton.server.jsx";
+import {Lang} from "@l/context.shared.js";
+import {kinds} from "@c/layout/control/ActionButton.server.jsx";
 
 
 export default function Language({url = '/settings/language'}) {

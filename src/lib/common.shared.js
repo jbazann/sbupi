@@ -1,4 +1,4 @@
-import {devmode} from "./environment.js";
+import {devmode} from "./environment.shared.js";
 
 export {
     devLog,
@@ -28,13 +28,9 @@ function id(id) {
 }
 
 // Let the wind lead the sail, let disorder create order.
-function devLog(thing, typeThing) {
+function devLog(thing, label) {
     if (devmode) {
-        if (typeThing) {
-            console.log(Object.assign(Object.create(typeThing),thing))
-        } else {
-            console.log(thing)
-        }
+        label && console.log(label, thing) || console.log(thing)
     }
 }
 

@@ -1,12 +1,12 @@
 import styles from './Settings.module.css'
-import {devLog, ids} from "../../../lib/common.js";
+import {devLog, ids} from "@l/common.shared.js";
 import Options, {Option} from "./options/Options.server.jsx";
-import HydrationRoot from "../../client/HydrationRoot.server.jsx";
-import {placeholders} from "../../../lib/placeholders.shared.js";
-import translate from "../../../lib/translation.js";
+import HydrationRoot from "../../system/HydrationRoot.server.jsx";
+import {placeholders} from "@l/placeholders.shared.js";
+import {translate} from "@l/translation.server.js";
 import {useContext} from "react";
-import {Lang} from "../../../lib/context.js";
-import {kinds} from "@c/clickable/ActionButton.server.jsx";
+import {Lang} from "@l/context.shared.js";
+import {kinds} from "@c/layout/control/ActionButton.server.jsx";
 
 export default function Theme() {
     const [

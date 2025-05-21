@@ -1,8 +1,12 @@
-export default function translate(lang,key = '') {
+export {
+    translate
+}
+
+function translate(lang,key = '') {
     let val
     if (langs[lang]) val = key.split('.').reduce((acc, k) => acc && acc[k], langs[lang])
     return typeof val === 'string' ? val : null
-};
+}
 
 const es = {
     misc: {

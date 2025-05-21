@@ -6,4 +6,5 @@ const placeholders = {
     CatMenuScript: 'CatMenuScript',
     SettingsMenuScript: 'SettingsMenuScript',
     Router: 'Router',
+    Artsy: 'Artsy'
 }

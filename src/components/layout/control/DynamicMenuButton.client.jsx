@@ -1,24 +1,19 @@
 import styles from "./StaticMenuButton.module.css";
-import global from "../../menu/MenuContainer.module.css";
-import MenuContainer from "../../menu/MenuContainer.server.jsx";
-import ActionButton, {kinds} from "../ActionButton.server.jsx";
-import {devLog, ids} from "../../../lib/common.js";
-import {setRoutes} from "../../../lib/routing.js";
+import global from "@c/menu/MenuContainer.module.css";
+import MenuContainer from "@c/menu/MenuContainer.server.jsx";
+import ActionButton, {kinds} from "./ActionButton.server.jsx";
+import {devLog, ids} from "@l/common.shared.js";
 import {useContext} from "react";
-import HydrationRoot from "../../client/HydrationRoot.server.jsx";
-import {placeholders} from "../../../lib/placeholders.shared.js";
-import translate from "../../../lib/translation.js";
-import {Lang, MenuContext} from "../../../lib/context.js";
+import {translate} from "@l/translation.server.js";
+import {Lang, MenuContext} from "@l/context.shared.js";
+import DynamicMenuButtonScript from "@c/layout/control/DynamicMenuButtonScript.client.jsx";
 
 // TODO review parameter 'clean'
-export default function StaticMenuButton({children, disabled, clean = false, routes, parentRoute, labelId, label}) {
+export default function DynamicMenuButton({children, disabled, clean = false, routes, parentRoute, labelId, label}) {
     const [ onBtn, offBtn, subState, onState, offState, radioGroupName ] =
         ids(6)
-    const lang = useContext(Lang) || {}
+    const lang = useContext(Lang) || {lang: 'en'}
     const menuContext = useContext(MenuContext)
-    if (routes) {
-        setRoutes(routes,onBtn,parentRoute || 'root')
-    }
     return <>
         <div className="contents">
             <input type="radio" id={subState} name={radioGroupName}
@@ -47,13 +42,12 @@ export default function StaticMenuButton({children, disabled, clean = false, rou
                           data={{route: routes[0], parentRoute: parentRoute || 'root'}}>
                 {translate(lang,labelId) || label}
             </ActionButton>
-            <HydrationRoot comp={placeholders.StaticMenuButtonScript}
-                           data={{
-                               onBtn, offBtn, onState, offState,
-                               parentSubState: menuContext.subState,
-                               parentOnState: menuContext.onState,
-                               disabled
-                           }}/>
+            <DynamicMenuButtonScript {...{
+                onBtn, offBtn, onState, offState,
+                parentSubState: menuContext.subState,
+                parentOnState: menuContext.onState,
+                disabled
+            }} />
         </div>
     </>
 }

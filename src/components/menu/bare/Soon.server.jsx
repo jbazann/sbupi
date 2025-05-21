@@ -1,8 +1,8 @@
-import TextContainer from "../../text/TextContainer.server.jsx";
-import styles from '../../text/TextContainer.module.css'
-import translate from "../../../lib/translation.js";
+import TextContainer from "@c/layout/text/TextContainer.server.jsx";
+import styles from '@c/layout/text/TextContainer.module.css'
+import {translate} from "@l/translation.server.js";
 import {useContext} from "react";
-import {Lang} from "../../../lib/context.js";
+import {Lang} from "@l/context.shared.js";
 
 export default function Soon() {
     const lang = useContext(Lang)
