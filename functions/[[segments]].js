@@ -2,20 +2,19 @@ export async function onRequest(context) {
     if (isExcluded(context.functionPath))
         return context.env.ASSETS.fetch(context.request)
 
-    const { request, env, functionPath, params } = context,
+    const { request, env, params } = context,
         cookies = parseCookies(request),
-        firstSegment = (params.segments || [])[0]?.toLowerCase(),
-        language = request.headers.get('Accept-Language') || "en",
+        firstSegment = params.segments?.[0]?.toLowerCase(),
+        headerLanguages = parseAcceptLanguage(request) || ['en'],
         isLocalizedPath = isLanguageSegment(firstSegment),
         htmlPath = isLocalizedPath ? `/${firstSegment}/` : '/',
-        segments = ((isLocalizedPath ? params.segments.slice(1) : params.segments) || [])
+        segments = ((isLocalizedPath ? params.segments?.slice(1) : params.segments) || [])
             .map(s => s.toLowerCase())
 
-    // TODO check cookie even if path is localized
     // Redirect to localized path
-    let localizedTarget = false
-    if (!isLocalizedPath && (localizedTarget = prefersSupportedLanguage(language,cookies))) {
-        return redirect(replacePath(request.url,localizedTarget + functionPath  ))
+    const preferredLocalePath = getUserSelectedLocale(htmlPath,cookies.lang,headerLanguages)
+    if (preferredLocalePath !== htmlPath) {
+        return redirect(replacePath(request.url,preferredLocalePath + segments.join('/')))
     }
 
     // Parse valid path segments for routing
@@ -64,31 +63,44 @@ function isExcluded(path) {
     }
 }
 
+function getUserSelectedLocale(requested,langCookie,headerLanguages) {
+    const preferredLocalePath = getLocaleFromCookie(langCookie) ??
+        getLocaleFromHeader(headerLanguages) ?? '/'
+
+    if (preferredLocalePath !== requested && (langCookie || requested === '/')) {
+        return preferredLocalePath
+    }
+    return requested
+}
+
 function replacePath(url, path) {
     const hostnameIndex = url.indexOf('://') + 3
     return url.slice(0, url.indexOf('/', hostnameIndex)) + path
 }
 
-function prefersSupportedLanguage(acceptLanguage, cookies) {
-    if((spanishOverEnglish(acceptLanguage) &&
-            cookies.lang !== 'en') ||
-        cookies.lang === 'es') {
-        return '/es'
+const supportedLanguageHeaders = [
+    {header: 'en', path: '/'},
+    {header: 'es', path: '/es/'},
+]
+function getLocaleFromHeader(languages) {
+    let preferred
+    while (preferred = languages.pop()) {
+        for (const entry of supportedLanguageHeaders) {
+            console.log(preferred,entry)
+            if (preferred.startsWith(entry.header)) return entry.path
+        }
     }
-    return false
+}
+function getLocaleFromCookie(lang) {
+    switch (lang) {
+        case 'en': return '/'
+        case 'es': return '/es/'
+    }
 }
 
 function setTheme(htmlRewriter, cookies) {
     cookies["theme"] && htmlRewriter.on('html', new ELementAttributeSetter('data-theme',cookies["theme"]))
     cookies["theme-variant"] && htmlRewriter.on('html', new ELementAttributeSetter('data-theme-variant',cookies["theme-variant"]))
-}
-
-function normalizePath(path) {
-    const segments = path.split('/').filter(s => s)
-    if (isLanguagePath(segments.at(0))) segments.slice(1)
-    return '/' + segments
-        .map(s => s?.toLowerCase())
-        .join('/')
 }
 
 function isLanguageSegment(segment) {
@@ -157,21 +169,27 @@ function isLanguagePath(str) {
 function parseCookies(request) {
     return (request.headers.get('Cookie') || "")
         .split(";")
-        .map(str => str.split("="))
+        .map(str => str.split("=", 2))
         .reduce((acc, curr) => {
-            if (curr && curr[2]) {
-                console.log("Silly cookie: " + JSON.stringify(curr))
-                return acc
-            }
-            if (curr && curr[0]) {
-                if (curr[1]) curr[1] = curr[1].trim()
-                acc[curr[0].trim()] = curr[1]
-            }
+            acc[curr[0]?.trim() ?? ''] = curr[1]?.trim()
             return acc;
         }, {})
 }
 
-function spanishOverEnglish(acceptLanguage) {
-    return acceptLanguage.includes('es') &&
-        (!acceptLanguage.includes('en') || acceptLanguage.indexOf('es') < acceptLanguage.indexOf('en'))
+/**
+ * @returns an array of language strings sorted from smallest to highest 'q' value.
+ */
+function parseAcceptLanguage(request) {
+    return (request.headers.get('Accept-Language') || "")
+        .split(",")
+        .map(str => str.split(";q=", 2))
+        .map(arr => ({
+            lang: arr[0]?.trim() || '',
+            q: arr[1]?.trim() || '1'
+        }))
+        .sort((a,b) => a.q - b.q)
+        .reduce((acc, curr) => {
+            acc.push(curr.lang)
+            return acc
+        }, [])
 }
