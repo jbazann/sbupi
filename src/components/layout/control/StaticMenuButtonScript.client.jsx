@@ -8,8 +8,7 @@ export default function StaticMenuButtonScript(
         parentSubState,
         parentOnState,
         onBtn,
-        offBtn,
-        disabled
+        offBtn
     }) {
 
     useEffect(() => {
@@ -33,9 +32,7 @@ export default function StaticMenuButtonScript(
             if (offStateElem) offStateElem.checked = true
             if (outerOnStateElem) outerOnStateElem.checked = true
         })
-        if (onBtnElem) onBtnElem.disabled = disabled
         return () => {
-            if (onBtnElem) onBtnElem.disabled = true
             onBtnElem?.removeEventListener("click", onClickHandler)
             offBtnElem?.removeEventListener("click", offClickHandler)
         }

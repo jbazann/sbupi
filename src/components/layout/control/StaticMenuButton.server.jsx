@@ -30,16 +30,9 @@ function StaticMenuButton({
         setRoutes(routes,onBtn,parentRoute || 'root')
     }
     return <>
-        <div className="contents">
-            <input type="radio" id={subState} name={radioGroupName}
-                   data-route-sub={routes}
-                   className={`${styles.subRadio} ${global.submenuOnToggle}`}/>
-            <input type="radio" id={onState} name={radioGroupName}
-                   data-route={routes}
-                   className={`${styles.onRadio} ${global.submenuOnToggle}`}/>
-            <input type="radio" id={offState} name={radioGroupName}
-                   data-route-off={routes}
-                   className={styles.offRadio} defaultChecked/>
+        <div data-menu={label} className="contents">
+            <HiddenInputs offState={offState} onState={onState} subState={subState}
+                          routes={routes} radioGroupName={radioGroupName} />
             <div className={styles.contentDiv}>
                 <MenuContext value={{onBtn, subState, onState, parentContext: menuContext}}>
                     <MenuContainer clean={clean} >
@@ -51,7 +44,7 @@ function StaticMenuButton({
                           kind={kinds.BackNav}>
                 {translate(lang,'misc.back') || "Back"}
             </ActionButton>
-            <ActionButton disabled={true} id={onBtn} classes={styles.openButton}
+            <ActionButton disabled={disabled} id={onBtn} classes={styles.openButton}
                           translationKey={labelId}
                           kind={kinds.ForwardNav}
                           data={{route: routes[0], parentRoute: parentRoute || 'root'}}>
@@ -61,9 +54,36 @@ function StaticMenuButton({
                            data={{
                                onBtn, offBtn, onState, offState,
                                parentSubState: menuContext.subState,
-                               parentOnState: menuContext.onState,
-                               disabled
+                               parentOnState: menuContext.onState
                            }}/>
         </div>
+    </>
+}
+
+function HiddenInputs({subState,onState,offState,radioGroupName,routes}) {
+    // MDN states that aria-hidden should not be necessary
+    // on elements hidden by display: none or visibility: hidden,
+    // NVDA's screen reader still reads these despite both
+    // of the above properties being present, and devtools'
+    // accessibility tree showing the elements are effectively removed.
+    // I presume it's because they are inputs.
+    // I could only manage to hide them from the reader
+    // by also using tabIndex=-1 and aria-hidden.
+    return <>
+        <input type="radio" id={subState} name={radioGroupName}
+               tabIndex={-1}
+               aria-hidden={true}
+               data-route-sub={routes}
+               className={`${styles.subRadio} ${global.submenuOnToggle}`}/>
+        <input type="radio" id={onState} name={radioGroupName}
+               tabIndex={-1}
+               aria-hidden={true}
+               data-route={routes}
+               className={`${styles.onRadio} ${global.submenuOnToggle}`}/>
+        <input type="radio" id={offState} name={radioGroupName}
+               tabIndex={-1}
+               aria-hidden={true}
+               data-route-off={routes}
+               className={styles.offRadio} defaultChecked/>
     </>
 }

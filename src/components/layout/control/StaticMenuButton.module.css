@@ -16,6 +16,7 @@
 
 .displayCheck, .onRadio, .offRadio, .subRadio {
     display: none;
+    visibility: hidden;
 }
 
 .openButton {
