@@ -1,17 +1,21 @@
 .onRadio:checked ~ .closeButton {
-    display: block
+    display: block;
+    visibility: visible;
 }
 
 .offRadio:checked ~ .openButton{
-    display: block
+    display: block;
+    visibility: visible;
 }
 
 .subRadio:checked ~ .closeButton {
     display: none;
+    visibility: hidden;
 }
 
 .onRadio:checked ~ .contentDiv, .subRadio:checked ~ .contentDiv {
-    display: block
+    display: block;
+    visibility: visible;
 }
 
 .displayCheck, .onRadio, .offRadio, .subRadio {
@@ -20,15 +24,19 @@
 }
 
 .openButton {
-    display: none
+    display: none;
+    visibility: hidden;
 }
 
 .closeButton {
-    display: none
+    display: none;
+    visibility: hidden;
 }
 
 .contentDiv {
     display: none;
+    visibility: hidden;
     height: 100%;
     width: 100%;
+    contain: strict;
 }

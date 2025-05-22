@@ -71,18 +71,15 @@ function HiddenInputs({subState,onState,offState,radioGroupName,routes}) {
     // by also using tabIndex=-1 and aria-hidden.
     return <>
         <input type="radio" id={subState} name={radioGroupName}
-               tabIndex={-1}
-               aria-hidden={true}
+               hidden aria-hidden tabIndex={-1}
                data-route-sub={routes}
                className={`${styles.subRadio} ${global.submenuOnToggle}`}/>
         <input type="radio" id={onState} name={radioGroupName}
-               tabIndex={-1}
-               aria-hidden={true}
+               hidden aria-hidden tabIndex={-1}
                data-route={routes}
                className={`${styles.onRadio} ${global.submenuOnToggle}`}/>
         <input type="radio" id={offState} name={radioGroupName}
-               tabIndex={-1}
-               aria-hidden={true}
+               hidden aria-hidden tabIndex={-1}
                data-route-off={routes}
                className={styles.offRadio} defaultChecked/>
     </>
