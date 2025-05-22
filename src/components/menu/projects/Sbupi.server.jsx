@@ -16,7 +16,7 @@ export default function Sbupi() {
 function en() {
     const [
         ref1, ref2, ref3, ref4
-    ] = ids()
+    ] = ids(4)
     return <>
         <TextContainer>
             <h2 className={styles.h1}><b>The Sbupi project</b></h2>
@@ -133,7 +133,7 @@ function en() {
 function es() {
     const [
         ref1, ref2, ref3, ref4
-    ] = ids()
+    ] = ids(4)
     return <>
         <TextContainer>
             <h2 className={styles.h1}><b>The Sbupi project</b></h2>
@@ -156,8 +156,7 @@ function es() {
                 La versión actual es construida con Vite, aprovecha Vike para estructurar las partes
                 molestas de integrar React,
                 pero el diseño intenta activamente evitar que React gestione el estado (donde sea viable)
-                <FootnoteRef target={ref2}>2</FootnoteRef>
-                . <br/>
+                <FootnoteRef target={ref2}>2</FootnoteRef>.
             </p>
             <p className={styles.p1}>
                 Features:
@@ -165,9 +164,8 @@ function es() {
             <ol>
                 <li>
                     Direcciones de e-mail personalizadas, tales como mail@jbazann.dev,
-                    sin usar ni implementar un servicio de correo real.
-                    <FootnoteRef target={ref3}>3</FootnoteRef>
-                    .
+                    sin usar ni implementar un servicio de correo real
+                    <FootnoteRef target={ref3}>3</FootnoteRef>.
                     <ol>
                         <li>
                             Cloudflare re-enruta los mensajes entrantes a <em><i>jbazanndev@gmail.com</i></em>,
