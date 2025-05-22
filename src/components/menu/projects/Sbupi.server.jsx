@@ -185,7 +185,7 @@ function es() {
                 </a>.
                     <ol>
                         <li>
-                            Navegar a <a href="https://jbazann.dev/cat">
+                            Navegar a <a href="https://jbazann.dev/es/cat">
                             jbazann.dev/cat</a> envía una solicitud a un worker en
                             <a href="https://jbazann.dev/w/cats">
                             jbazann.dev/w/cats</a>
