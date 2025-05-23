@@ -1,7 +1,7 @@
 import {devLog} from "@l/common.shared.js";
 import {useEffect} from "react";
 
-export default function StaticMenuButtonScript(
+export default function StaticMenuScript(
     {
         onState,
         offState,

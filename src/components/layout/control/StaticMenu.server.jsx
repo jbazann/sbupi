@@ -1,4 +1,4 @@
-import styles from "./StaticMenuButton.module.css";
+import styles from "./StaticMenu.module.css";
 import global from "../../menu/MenuContainer.module.css";
 import MenuContainer from "../../menu/MenuContainer.server.jsx";
 import ActionButton, {kinds} from "./ActionButton.server.jsx";
@@ -10,15 +10,14 @@ import {placeholders} from "@l/placeholders.shared.js";
 import {translate} from "@l/translation.server.js";
 import {Lang, MenuContext} from "@l/context.shared.js";
 
-export default StaticMenuButton
+export default StaticMenu
 
-// TODO review parameter 'clean'
-function StaticMenuButton({
+function StaticMenu({
                               children,
+                              hasSubmenu = true,
                               disabled,
-                              clean = false,
-                              routes,
-                              parentRoute,
+                              route,
+                              parentRoute = 'root',
                               labelId,
                               label
 }) {
@@ -26,19 +25,24 @@ function StaticMenuButton({
         ids(6)
     const lang = useContext(Lang)
     const menuContext = useContext(MenuContext)
-    if (routes) {
-        setRoutes(routes,onBtn,parentRoute || 'root')
+    if (route) {
+        setRoutes(route,onBtn,parentRoute)
     }
+    // TODO back button is in the wrong menu div
     return <>
-        <div data-menu={label} className="contents">
+        <div data-label={label} className="contents" role="presentation" >
             <HiddenInputs offState={offState} onState={onState} subState={subState}
-                          routes={routes} radioGroupName={radioGroupName} />
-            <div className={styles.contentDiv}>
-                <MenuContext value={{onBtn, subState, onState, parentContext: menuContext}}>
-                    <MenuContainer clean={clean} >
-                        {children}
-                    </MenuContainer>
-                </MenuContext>
+                          route={route} radioGroupName={radioGroupName} />
+            <div className={styles.contentDiv} role="presentation" >
+                { hasSubmenu ? (
+                    <MenuContext value={{onBtn, subState, onState, offBtn, parentContext: menuContext}}>
+                        <MenuContainer>
+                            {children}
+                        </MenuContainer>
+                    </MenuContext>
+                ) :
+                    children
+                }
             </div>
             <ActionButton id={offBtn} classes={styles.closeButton}
                           kind={kinds.BackNav}>
@@ -47,10 +51,10 @@ function StaticMenuButton({
             <ActionButton disabled={disabled} id={onBtn} classes={styles.openButton}
                           translationKey={labelId}
                           kind={kinds.ForwardNav}
-                          data={{route: routes[0], parentRoute: parentRoute || 'root'}}>
+                          data={{route, parentRoute}}>
                 {translate(lang,labelId) || label}
             </ActionButton>
-            <HydrationRoot comp={placeholders.StaticMenuButtonScript}
+            <HydrationRoot comp={placeholders.StaticMenuScript}
                            data={{
                                onBtn, offBtn, onState, offState,
                                parentSubState: menuContext.subState,
@@ -60,27 +64,16 @@ function StaticMenuButton({
     </>
 }
 
-function HiddenInputs({subState,onState,offState,radioGroupName,routes}) {
-    // MDN states that aria-hidden should not be necessary
-    // on elements hidden by display: none or visibility: hidden,
-    // NVDA's screen reader still reads these despite both
-    // of the above properties being present, and devtools'
-    // accessibility tree showing the elements are effectively removed.
-    // I presume it's because they are inputs.
-    // I could only manage to hide them from the reader
-    // by also using tabIndex=-1 and aria-hidden.
+function HiddenInputs({subState,onState,offState,radioGroupName,route}) {
     return <>
         <input type="radio" id={subState} name={radioGroupName}
-               hidden aria-hidden tabIndex={-1}
-               data-route-sub={routes}
+               data-route-sub={route}
                className={`${styles.subRadio} ${global.submenuOnToggle}`}/>
         <input type="radio" id={onState} name={radioGroupName}
-               hidden aria-hidden tabIndex={-1}
-               data-route={routes}
+               data-route={route}
                className={`${styles.onRadio} ${global.submenuOnToggle}`}/>
         <input type="radio" id={offState} name={radioGroupName}
-               hidden aria-hidden tabIndex={-1}
-               data-route-off={routes}
+               data-route-off={route}
                className={styles.offRadio} defaultChecked/>
     </>
 }

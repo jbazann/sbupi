@@ -17,11 +17,9 @@ function getDoc(key) {
         return document.documentElement.getAttribute(key)
 }
 
-function setRoutes(routes, to, from = 'root') {
+function setRoutes(route, to, from = 'root') {
     const edges = nodes.get(from.toLowerCase()) || new Map()
-    for (const route of routes) {
-        edges.set(route.toLowerCase(), to)
-    }
+    edges.set(route.toLowerCase(), to)
     nodes.set(from, edges)
 }
 

@@ -1,13 +1,13 @@
 import styles from './CatMenu.module.css'
 import {devLog, ids} from "@l/common.shared.js";
 import ActionButton from "@c/layout/control/ActionButton.server.jsx";
-import StaticMenuButton from "@c/layout/control/StaticMenuButton.server.jsx";
 import HydrationRoot from "@c/system/HydrationRoot.server.jsx";
 import {placeholders} from "@l/placeholders.shared.js";
 import ServerContextSerializer from "@c/system/ServerContextSerializer.server.jsx";
 import {useContext} from "react";
 import {translate} from "@l/translation.server.js";
 import {Lang, MenuContext} from "@l/context.shared.js";
+import StaticMenu from "@c/layout/control/StaticMenu.server.jsx";
 
 export default function CatMenu() {
     const [loadingDiv, loadingP, catImg, anotherButton, contextId] =
@@ -19,9 +19,9 @@ export default function CatMenu() {
         translate(lang, 'root.catMenu.loading.c') || "Fetching cats...",
     ])
     return <>
-        <StaticMenuButton key="CatMenu" label={"Cat"}
-                          labelId={'root.mainMenu.cat.button'}
-                          routes={['cat']} >
+        <StaticMenu key="CatMenu" label={"Cat"}
+                    labelId={'root.mainMenu.cat.button'}
+                    route={'cat'} >
             <div className="relative-container">
                 <div className="absolute-underlay flex-col center-children">
                     <div id={loadingDiv} className="flex-col center-children">
@@ -43,6 +43,6 @@ export default function CatMenu() {
                                      extractor={(context) => ({onBtn: context.onBtn})} />
             <HydrationRoot comp={placeholders.CatMenuScript}
                            data={{loadingDiv,loadingP,anotherButton,catImg,contextId,loadingLabels}} />
-        </StaticMenuButton>
+        </StaticMenu>
     </>
 };

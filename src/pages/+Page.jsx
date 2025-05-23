@@ -30,7 +30,7 @@ export default function Page() {
         )
     } else {
         return {
-            StaticMenuButtonScript: import('@c/layout/control/StaticMenuButtonScript.client.jsx'),
+            StaticMenuScript: import('@c/layout/control/StaticMenuScript.client.jsx'),
             ActionButtonScript: import('@c/layout/control/ActionButtonScript.client.jsx'),
             CatMenuScript: import('@c/menu/cat/CatMenuScript.jsx'),
             SettingsMenuScript: import('@c/menu/settings/SettingsMenuScript.client.jsx'),

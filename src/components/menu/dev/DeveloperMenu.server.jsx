@@ -1,12 +1,13 @@
-import StaticMenuButton from "@c/layout/control/StaticMenuButton.server.jsx";
 import Developer from "./Developer.server.jsx";
+import StaticMenu from "@c/layout/control/StaticMenu.server.jsx";
 
 export default function DeveloperMenu() {
     return <>
-        <StaticMenuButton key="DeveloperMenu" label="The Developer"
-                          labelId={'root.mainMenu.dev.button'}
-                          routes={['about']} clean={true} >
+        <StaticMenu key="DeveloperMenu" label="The Developer"
+                    hasSubmenu={false}
+                    labelId={'root.mainMenu.dev.button'}
+                    route={'about'} >
             <Developer />
-        </StaticMenuButton>
+        </StaticMenu>
     </>
 };

@@ -1,11 +1,11 @@
 import ActionButton from "@c/layout/control/ActionButton.server.jsx";
-import StaticMenuButton from "@c/layout/control/StaticMenuButton.server.jsx";
+import StaticMenu from "@c/layout/control/StaticMenu.server.jsx";
 
 export default function LinksMenu() {
     return <>
-        <StaticMenuButton key="LinksMenu" label={"Links"}
-                          labelId={'root.mainMenu.links.button'}
-                          routes={['links']} >
+        <StaticMenu key="LinksMenu" label={"Links"}
+                    labelId={'root.mainMenu.links.button'}
+                    route={'links'} >
             <ActionButton key="LinkedIn">
                 <a href="https://www.linkedin.com/in/jbazann/" target="_blank">
                     LinkedIn
@@ -21,6 +21,6 @@ export default function LinksMenu() {
                     X/Twitter
                 </a>
             </ActionButton>
-        </StaticMenuButton>
+        </StaticMenu>
     </>
 }

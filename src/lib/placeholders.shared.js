@@ -1,7 +1,7 @@
 export { placeholders }
 
 const placeholders = {
-    StaticMenuButtonScript: 'StaticMenuButtonScript',
+    StaticMenuScript: 'StaticMenuScript',
     ActionButtonScript: 'ActionButtonScript',
     CatMenuScript: 'CatMenuScript',
     SettingsMenuScript: 'SettingsMenuScript',

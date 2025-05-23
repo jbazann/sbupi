@@ -1,4 +1,4 @@
-import styles from "./StaticMenuButton.module.css";
+import styles from "./StaticMenu.module.css";
 import global from "@c/menu/MenuContainer.module.css";
 import MenuContainer from "@c/menu/MenuContainer.server.jsx";
 import ActionButton, {kinds} from "./ActionButton.server.jsx";

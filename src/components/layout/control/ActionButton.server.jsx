@@ -14,7 +14,7 @@ export const kinds = {
 
 export default function ActionButton({children, id, classes, disabled = false, kind = kinds.None, data = {}}) {
     return <>
-        <button disabled={disabled} id={id}
+        <button disabled={disabled} id={id} role="menuitem"
                 className={styles.actionButton + (classes ? ' ' + classes : '')} >
             {children}
         </button>
