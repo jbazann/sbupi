@@ -1,48 +1,54 @@
 import styles from './CatMenu.module.css'
-import {devLog, ids} from "@l/common.shared.js";
-import ActionButton from "@c/layout/control/ActionButton.server.jsx";
+import {devLog, ids, sid} from "@l/common.shared.js";
 import HydrationRoot from "@c/system/HydrationRoot.server.jsx";
 import {placeholders} from "@l/placeholders.shared.js";
-import ServerContextSerializer from "@c/system/ServerContextSerializer.server.jsx";
 import {useContext} from "react";
 import {translate} from "@l/translation.server.js";
-import {Lang, MenuContext} from "@l/context.shared.js";
-import StaticMenu from "@c/layout/control/StaticMenu.server.jsx";
+import {Lang} from "@l/context.shared.js";
+import StaticMenu from "@c/layout/menu/StaticMenu.server.jsx";
+import BaseButton from "@c/layout/control/BaseButton.server.jsx";
+import {buttons} from "@c/layout/menu/StaticMenu.shared.js";
 
-export default function CatMenu() {
-    const [loadingDiv, loadingP, catImg, anotherButton, contextId] =
-        ids(5)
+export default CatMenu
+
+function CatMenu({id,parentId}) {
+    const [loadingDiv, loadingP, catImg, anotherButton] =
+        ids(4)
+    const onBtn = sid(id,buttons.on)
     const lang = useContext(Lang)
     const loadingLabels = JSON.stringify([
-        translate(lang, 'root.catMenu.loading.a') || "Fetching cats.",
-        translate(lang, 'root.catMenu.loading.b') || "Fetching cats..",
-        translate(lang, 'root.catMenu.loading.c') || "Fetching cats...",
+        translate(lang, 'mainMenu.cat.loading.a') || "Fetching cats.",
+        translate(lang, 'mainMenu.cat.loading.b') || "Fetching cats..",
+        translate(lang, 'mainMenu.cat.loading.c') || "Fetching cats...",
     ])
+
     return <>
-        <StaticMenu key="CatMenu" label={"Cat"}
-                    labelId={'root.mainMenu.cat.button'}
-                    route={'cat'} >
-            <div className="relative-container">
-                <div className="absolute-underlay flex-col center-children">
-                    <div id={loadingDiv} className="flex-col center-children">
+        <StaticMenu key="CatMenu" menu={"cat"}
+                    id={id} parentId={parentId}
+                    bareContainer={true} >
+            <div className="relative-container" role="presentation">
+                <div className="absolute-underlay flex-col center-children" role="presentation">
+                    <div id={loadingDiv} className="flex-col center-children" role="presentation">
                         <p id={loadingP} className={"center-self " + styles.loadingP}>
-                            {translate(lang,'root.catMenu.loading.a') || "Fetching cats."}
+                            {translate(lang, 'mainMenu.cat.loading.a') || "Fetching cats."}
                         </p>
                     </div>
-                    <div className={"flex-col center-self center-children " + styles.imageContainer}>
-                        <img id={catImg} src="/icon/waiting.gif" alt={translate(lang, 'root.catMenu.img') || "A random cat image."}
+                    <div className={"flex-col center-self center-children " + styles.imageContainer} role="presentation">
+                        <img id={catImg} src="/icon/waiting.gif"
+                             alt={translate(lang, 'mainMenu.cat.img') || "A random cat image."}
                              className={"center-self " + styles.catImage}/>
                     </div>
                 </div>
             </div>
-            <ActionButton id={anotherButton} disabled={true}>
-                {translate(lang,'root.mainMenu.cat.another') || "Another!"}
-            </ActionButton>
-            <ServerContextSerializer id={contextId}
-                                     Context={MenuContext}
-                                     extractor={(context) => ({onBtn: context.onBtn})} />
+            <BaseButton id={anotherButton} disabled={true}>
+                {translate(lang, 'mainMenu.cat.another') || "Another!"}
+            </BaseButton>
             <HydrationRoot comp={placeholders.CatMenuScript}
-                           data={{loadingDiv,loadingP,anotherButton,catImg,contextId,loadingLabels}} />
+                           data={{
+                               loadingDiv, loadingP, loadingLabels,
+                               onBtn, anotherButton,
+                               catImg
+                           }}/>
         </StaticMenu>
     </>
 };

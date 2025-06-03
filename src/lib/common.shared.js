@@ -3,10 +3,26 @@ import {devmode} from "./environment.shared.js";
 export {
     devLog,
     devErr,
+    loggedEvent,
     debounce,
     throttle,
     throunce,
-    ids
+    ids,
+    sid,
+    sids,
+    event
+}
+
+function event(id, kind) {
+    return sid(id,'e'+kind)
+}
+
+function sids(id, subIds) {
+    return subIds.map(s => sid(id,s))
+}
+
+function sid(id, subId) {
+    return id + 's' + subId
 }
 
 let idCounter = 0
@@ -29,13 +45,16 @@ function id(id) {
 
 // Let the wind lead the sail, let disorder create order.
 function devLog(thing, label) {
-    if (devmode) {
-        label && console.log(label, thing) || console.log(thing)
-    }
+    devmode && (label && !console.log(label, thing) || console.log(thing))
 }
 
 function devErr(err) {
-    if (devmode) console.error(err)
+    devmode && console.error(err)
+}
+
+function loggedEvent(target, event) {
+    devLog({target,event}, 'LOGGED EVENT')
+    target.dispatchEvent(event)
 }
 
 function debounce(f, tms, that) {

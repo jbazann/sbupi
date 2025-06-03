@@ -2,19 +2,16 @@ import {useEffect} from "react";
 import {devErr, devLog} from "@l/common.shared.js";
 import {get} from '@l/net.shared.js'
 
-export default function CatMenuScript({loadingDiv,loadingP,anotherButton,catImg,contextId,loadingLabels}) {
+export default function CatMenuScript({onBtn,anotherButton,loadingDiv,loadingP,loadingLabels,catImg}) {
     useEffect(() => {
         let batch, nextBatch, handler, handlerOpts, anotherHandler
 
         loadingLabels = JSON.parse(loadingLabels)
 
-        const contextDiv = document.getElementById(contextId),
-            context = JSON.parse(contextDiv?.getAttribute('data-context'))
-
         const anotherButtonElem = document.getElementById(anotherButton),
             loadingPElem = document.getElementById(loadingP),
             loadingDivElem = document.getElementById(loadingDiv),
-            onBtnElem = document.getElementById(context?.onBtn),
+            onBtnElem = document.getElementById(onBtn),
             catImgElem = document.getElementById(catImg)
 
         /// TODO replace this with an event pattern

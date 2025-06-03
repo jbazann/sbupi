@@ -1,12 +1,11 @@
 import Developer from "./Developer.server.jsx";
-import StaticMenu from "@c/layout/control/StaticMenu.server.jsx";
+import StaticMenu from "@c/layout/menu/StaticMenu.server.jsx";
 
-export default function DeveloperMenu() {
+export default function DeveloperMenu({id, parentId}) {
     return <>
-        <StaticMenu key="DeveloperMenu" label="The Developer"
-                    hasSubmenu={false}
-                    labelId={'root.mainMenu.dev.button'}
-                    route={'about'} >
+        <StaticMenu key="DeveloperMenu" menu="developer"
+                    id={id} parentId={parentId}
+                    bareContainer={true} >
             <Developer />
         </StaticMenu>
     </>

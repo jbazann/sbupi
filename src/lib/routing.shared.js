@@ -1,5 +1,6 @@
 export {
     setRoutes,
+    setRoute,
     nav,
     pop,
     setStack,
@@ -21,6 +22,10 @@ function setRoutes(route, to, from = 'root') {
     const edges = nodes.get(from.toLowerCase()) || new Map()
     edges.set(route.toLowerCase(), to)
     nodes.set(from, edges)
+}
+
+function setRoute() {
+
 }
 
 let stack = []

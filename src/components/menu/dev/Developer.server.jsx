@@ -81,20 +81,20 @@ function en() {
             <p className={styles.p1}>
                 References:
             </p>
-            <Footnote id={ref1} label="1" translationKey="root.dev.r1">
+            <Footnote id={ref1} label="1">
                 Ingeniería en Sistemas de Información — Universidad Tecnológica Nacional.
             </Footnote>
-            <Footnote id={ref2} label="2" translationKey="root.dev.n">
+            <Footnote id={ref2} label="2">
                 He his currently mastering Java 21 and the Spring ecosystem. Despite this
                 specialization, the developer aims to learn to make computers do anything
                 computers can do. This means he is also exploring, to different extents,
                 frontend technologies, architecture, devops and system design. He will
                 soon begin to [EXPUNGED].
             </Footnote>
-            <Footnote id={ref3} label="3" translationKey="misc.expunged">
+            <Footnote id={ref3} label="3">
                 [EXPUNGED].
             </Footnote>
-            <Footnote id={ref4} label="4" translationKey="misc.expunged">
+            <Footnote id={ref4} label="4">
                 [EXPUNGED].
             </Footnote>
             <Footnote id={ref3712} label="312">
@@ -181,7 +181,7 @@ function es() {
             <p className={styles.p1}>
                 Referencias:
             </p>
-            <Footnote id={ref1} label="1" translationKey="root.dev.n">
+            <Footnote id={ref1} label="1">
                 Actualmente está refinando sus habilidades en Java 21 y el ecosistema Spring.
                 A pesar de esta especialización, el desarrollador busca aprender a hacer
                 que las computadoras hagan cualquier cosa que las computadoras puedan hacer.
@@ -189,10 +189,10 @@ function es() {
                 como el desarrollo front-end, arquitectura, devops y diseño de sistemas. Pronto
                 comenzará a [EXPURGADO].
             </Footnote>
-            <Footnote id={ref2} label="2" translationKey="misc.expunged">
+            <Footnote id={ref2} label="2">
                 [EXPURGADO].
             </Footnote>
-            <Footnote id={ref3} label="3" translationKey="misc.expunged">
+            <Footnote id={ref3} label="3">
                 [EXPURGADO].
             </Footnote>
             <Footnote id={ref3712} label="312">

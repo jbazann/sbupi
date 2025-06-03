@@ -6,16 +6,20 @@
     }
 }
 
-.bareContainer, .menuContainer {
+.bareContainer, .menuContainer, .containerContainer {
     contain: strict;
     position: relative;
     height: 100%;
     width: 100%;
-    padding: 0.12rem;
     display: flex;
     flex-direction: column;
     justify-content: safe center;
     align-items: safe center;
+    overflow: hidden;
+}
+
+.bareContainer, .menuContainer {
+    padding: 0.12rem;
 }
 
 .menuContainer {

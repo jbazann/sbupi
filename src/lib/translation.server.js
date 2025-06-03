@@ -24,42 +24,20 @@ const es = {
             dismiss: 'Click aquí para ocultar este diálogo.'
         }
     },
-    theme: {
-        titles: {
-            theme: 'Tema',
-            variant: 'Variante',
+    mainMenu: {
+        dev: {
+            button: 'Desarrollador',
+            title: 'Desarrollador backend.'
         },
-        dark: 'Oscuro',
-        light: 'Claro'
-    },
-    cookies: {
-        desc: "Perdón, las cookies son obligatorias."
-    },
-    root: {
-        mainMenu: {
-            dev: {
-                button: 'Desarrollador'
-            },
-            projects: {
-                button: 'Proyectos'
-            },
-            links: {
-                button: 'Enlaces'
-            },
-            cat: {
-                button: 'Gatos',
-                another: 'Otro!'
-            },
-            settings: {
-                button: 'Preferencias'
-            },
+        projects: {
+            button: 'Proyectos'
         },
-        settingsMenu: {
-            language: 'Lenguaje',
-            theme: 'Tema',
-            style: 'Estilo',
+        links: {
+            button: 'Enlaces'
         },
-        catMenu: {
+        cat: {
+            button: 'Gatos',
+            another: 'Otro!',
             img: 'Una imagen aleatoria de un gato.',
             loading: {
                 a: 'Buscando gatitos.',
@@ -67,9 +45,30 @@ const es = {
                 c: 'Buscando gatitos...',
             }
         },
-        dev: {
-            title: 'Desarrollador backend.'
-        }
+        gallery: {
+            button: 'Galería'
+        },
+        settings: {
+            button: 'Ajustes',
+            language: {
+                button: 'Lenguaje'
+            },
+            theme: {
+                button: 'Tema',
+                titles: {
+                    theme: 'Tema',
+                    variant: 'Variante',
+                },
+                dark: 'Oscuro',
+                light: 'Claro'
+            },
+            style: {
+                button: 'Estilo'
+            },
+            cookies: {
+                desc: "Perdón, las cookies son obligatorias."
+            },
+        },
     }
 }
 

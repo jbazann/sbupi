@@ -24,13 +24,14 @@ export default function Page() {
                         content={ <MainMenu /> }
                         footer={<Footer />}
                     />
-                    <Router />
+                    {/*<Router />*/}
                 </Lang>
             </>
         )
     } else {
         return {
-            StaticMenuScript: import('@c/layout/control/StaticMenuScript.client.jsx'),
+            StaticMenuScript: import('@c/layout/menu/StaticMenuScript.jsx'),
+            OnClickDispatchEventScript: import('@c/scripts/OnClickDispatchEventScript.jsx'),
             ActionButtonScript: import('@c/layout/control/ActionButtonScript.client.jsx'),
             CatMenuScript: import('@c/menu/cat/CatMenuScript.jsx'),
             SettingsMenuScript: import('@c/menu/settings/SettingsMenuScript.client.jsx'),
