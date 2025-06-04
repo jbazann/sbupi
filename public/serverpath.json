@@ -1,18 +1,44 @@
 {
-  "about": {},
+  "about": {
+    "key": "about"
+  },
   "projects": {
-    "sbupi": {},
-    "lady": {},
-    "skwidl": {},
-    "machine": {}
+    "key": "projects",
+    "sbupi": {
+      "key": "sbupi"
+    },
+    "lady": {
+      "key": "lady"
+    },
+    "skwidl": {
+      "key": "skwidl"
+    },
+    "machine": {
+      "key": "machine"
+    }
   },
   "settings": {
-    "theme": {},
-    "cookies": {},
-    "style": {},
-    "language": {}
+    "key": "settings",
+    "theme": {
+      "key": "theme"
+    },
+    "cookies": {
+      "key": "cookies"
+    },
+    "style": {
+      "key": "style"
+    },
+    "language": {
+      "key": "language"
+    }
   },
-  "cat": {},
-  "notyet": {},
-  "links": {}
+  "cat": {
+    "key": "cat"
+  },
+  "gallery": {
+    "key": "gallery"
+  },
+  "links": {
+    "key": "links"
+  }
 }

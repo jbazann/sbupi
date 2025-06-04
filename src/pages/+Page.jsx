@@ -24,7 +24,7 @@ export default function Page() {
                         content={ <MainMenu /> }
                         footer={<Footer />}
                     />
-                    {/*<Router />*/}
+                    <Router />
                 </Lang>
             </>
         )
@@ -36,7 +36,8 @@ export default function Page() {
             CatMenuScript: import('@c/menu/cat/CatMenuScript.jsx'),
             SettingsMenuScript: import('@c/menu/settings/SettingsMenuScript.client.jsx'),
             Router: import("@c/system/Router.shared.jsx"),
-            Artsy: import("@c/menu/artsy/Artsy.client.jsx")
+            Artsy: import("@c/menu/artsy/Artsy.client.jsx"),
+            RoutingScript: import("@c/system/RoutingScript.jsx")
         }
     }
 }

@@ -69,6 +69,9 @@ const es = {
                 desc: "Perdón, las cookies son obligatorias."
             },
         },
+        machine: {
+            button: 'La Máquina'
+        }
     }
 }
 

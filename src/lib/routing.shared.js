@@ -1,3 +1,5 @@
+import {devLog} from "@l/common.shared.js";
+
 export {
     setRoutes,
     setRoute,
@@ -24,14 +26,21 @@ function setRoutes(route, to, from = 'root') {
     nodes.set(from, edges)
 }
 
-function setRoute() {
-
+function setRoute(clickableId, route, from = 'root') {
+    if (!route) {
+        devLog({clickableId,route,from,nodes}, 'NULL SET ROUTE')
+    }
+    const edges = nodes.get(from.toLowerCase()) || new Map()
+    edges.set(route.toLowerCase(), clickableId)
+    nodes.set(from, edges)
+    devLog({nodes,edges,route, clickableId, from}, 'SET ROUTE')
 }
 
 let stack = []
 function nav(route, from = 'root') {
     let to = nodes.get(from.toLowerCase())?.get(route.toLowerCase())
-    if (to && (to = document.getElementById(to))) {
+    devLog({route, from, to, stack, nodes}, "NAV")
+    if (to && document.getElementById(to)) {
         stack.push(route)
         setStack()
         return true;

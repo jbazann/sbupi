@@ -18,11 +18,9 @@ export async function onRequest(context) {
     }
 
     // Parse valid path segments for routing
-    const validSegments = []
     let serverPath = await env.ASSETS.fetch('https://assets.local/serverpath.json').then(r => r.json())
     for (const segment of segments) {
         if (serverPath[segment]) {
-            validSegments.push(segment)
             serverPath = serverPath[segment]
         } else break
     }
@@ -42,7 +40,7 @@ export async function onRequest(context) {
     setTheme(rewriter,cookies)
 
     // Set initial client-routing state.
-    serverRouter(rewriter, validSegments)
+    serverPath.key && serverRouter(rewriter, serverPath.key)
 
     return rewriter.transform(response)
 }
@@ -118,21 +116,16 @@ function redirect(target) {
     return Response.redirect(target)
 }
 
-function serverRouter(htmlRewriter, segments) {
-    let current, previous = 'root'
-    segments = segments.reverse()
-    while ((current = segments.pop())) {
-        htmlRewriter
-            .on(`[data-route="${current}"]`,
-                new ElementCheckSetter())
-            .on(`[data-route-off="${current}"]`,
-                new ElementCheckRemover())
-            .on(`[data-route-sub="${previous}"]`,
-                new ElementCheckSetter())
-            .on(`[data-route="${previous}"]`,
-                new ElementCheckRemover())
-        previous = current
-    }
+function serverRouter(htmlRewriter, key) {
+    htmlRewriter
+        .on(`[data-route-off="root"]`,
+            new ElementCheckSetter())
+        .on(`[data-route="root"]`,
+            new ElementCheckRemover())
+        .on(`[data-route="${key}"]`,
+            new ElementCheckSetter())
+        .on(`[data-route-off="${key}"]`,
+            new ElementCheckRemover())
 }
 
 class ELementAttributeSetter {

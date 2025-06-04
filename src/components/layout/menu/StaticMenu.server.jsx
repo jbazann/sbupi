@@ -11,6 +11,7 @@ export default StaticMenu
 function StaticMenu({
                         children,
                         menu = 'unlabeled',
+                        routingKey,
                         id,
                         parentId,
                         isMainMenu = false,
@@ -25,6 +26,7 @@ function StaticMenu({
         <div data-menu={menu} className="contents" >
             <MenuContext value={{id, isMainMenu}}>
                 <HiddenInputs offRadio={offRadio} onRadio={onRadio} radioGroupName={radioGroupName}
+                              routingKey={routingKey}
                               isDefaultOn={isMainMenu} />
                 <div className={styles.contentDiv} role="presentation" >
                     <StaticMenuContainer bare={bareContainer}>
@@ -45,12 +47,14 @@ function StaticMenu({
     </>
 }
 
-function HiddenInputs({onRadio,offRadio,radioGroupName,isDefaultOn}) {
+function HiddenInputs({onRadio,offRadio,radioGroupName,isDefaultOn,routingKey}) {
     return <>
         <input type="radio" id={onRadio} name={radioGroupName}
+               data-route={routingKey}
                defaultChecked={isDefaultOn}
                className={`${styles.onRadio}`} />
         <input type="radio" id={offRadio} name={radioGroupName}
+               data-route-off={routingKey}
                defaultChecked={!isDefaultOn}
                className={styles.offRadio} />
     </>

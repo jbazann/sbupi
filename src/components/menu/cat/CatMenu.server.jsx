@@ -11,7 +11,7 @@ import {buttons} from "@c/layout/menu/StaticMenu.shared.js";
 
 export default CatMenu
 
-function CatMenu({id,parentId}) {
+function CatMenu({id,parentId,routingKey}) {
     const [loadingDiv, loadingP, catImg, anotherButton] =
         ids(4)
     const onBtn = sid(id,buttons.on)
@@ -25,6 +25,7 @@ function CatMenu({id,parentId}) {
     return <>
         <StaticMenu key="CatMenu" menu={"cat"}
                     id={id} parentId={parentId}
+                    routingKey={routingKey}
                     bareContainer={true} >
             <div className="relative-container" role="presentation">
                 <div className="absolute-underlay flex-col center-children" role="presentation">

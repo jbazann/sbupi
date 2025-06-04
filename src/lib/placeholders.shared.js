@@ -8,5 +8,6 @@ const placeholders = {
     StaticMenuButtonScript: 'StaticMenuButtonScript',
     OnClickDispatchEventScript: 'OnClickDispatchEventScript',
     Router: 'Router',
-    Artsy: 'Artsy'
+    Artsy: 'Artsy',
+    RoutingScript: 'RoutingScript'
 }
