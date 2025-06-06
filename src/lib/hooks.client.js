@@ -1,14 +1,37 @@
-import {useEffect} from "react";
+import {useEffect, useRef} from "react";
 import {nav, pop, setRoute} from "@l/routing.shared.js";
 import {devErr, devLog} from "@l/common.shared.js";
 
 export {
     useClickHandler,
+    useServerRenderedEventListener,
     useEventListener,
-    useRoutingHandler
+    useRoutingHandler,
+    useRefs
 }
 
-function useEventListener(targetId, event, handler, elementIds = {}) {
+function useRefs(amount,val) {
+    const refs = []
+    for (let i = 0; i < amount; i++) {
+        refs.push(useRef(val))
+    }
+    return refs
+}
+
+function useEventListener(event, handler, target = window) {
+    devLog({target,event}, 'CSR EVENT HANDLER ATTACHED')
+
+    useEffect(() => {
+        const handlerWrapper = (e) => {
+            devLog({target,event}, 'EVENT')
+            handler(e)
+        }
+        target?.addEventListener(event, handlerWrapper)
+        return () => target?.removeEventListener(event, handlerWrapper)
+    })
+}
+
+function useServerRenderedEventListener(targetId, event, handler, elementIds = {}) {
     useEffect(() => {
         const elems = getElements(elementIds)
         const target = targetId ? document.getElementById(targetId) : window

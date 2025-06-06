@@ -30,13 +30,12 @@ export default function Page() {
         )
     } else {
         return {
-            StaticMenuScript: import('@c/layout/menu/StaticMenuScript.jsx'),
+            ServerMenuScript: import('@c/layout/menu/server/ServerMenuScript.jsx'),
             OnClickDispatchEventScript: import('@c/scripts/OnClickDispatchEventScript.jsx'),
             ActionButtonScript: import('@c/layout/control/ActionButtonScript.client.jsx'),
             CatMenuScript: import('@c/menu/cat/CatMenuScript.jsx'),
             SettingsMenuScript: import('@c/menu/settings/SettingsMenuScript.client.jsx'),
             Router: import("@c/system/Router.shared.jsx"),
-            Artsy: import("@c/menu/artsy/Artsy.client.jsx"),
             RoutingScript: import("@c/system/RoutingScript.jsx")
         }
     }

@@ -7,11 +7,14 @@ function BaseButton({
                         id,
                         disabled,
                         role="menuitem",
-                        classes=''
+                        classes='',
+                        onClick,
+                        ref
 }) {
     return <>
         <button disabled={disabled} id={id} role={role}
-                className={styles.baseButton + (classes ? (' ' + classes) : '')}>
+                className={styles.baseButton + (classes ? (' ' + classes) : '')}
+                onClick={onClick} ref={ref} >
             {children}
         </button>
     </>

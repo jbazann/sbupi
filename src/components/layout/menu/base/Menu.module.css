@@ -6,10 +6,6 @@
     display: block;
 }
 
-.subRadio:checked ~ .closeButton {
-    display: none;
-}
-
 .onRadio:checked ~ .contentDiv, .subRadio:checked ~ .contentDiv {
     display: block;
 }

@@ -6,7 +6,7 @@ export default OnClickDispatchEventScript
 
 function OnClickDispatchEventScript({clickableId,eventName,eventTargetId = ''}) {
     devLog({clickableId,eventName}, 'EVENT DISPATCH SCRIPT')
-    useClickHandler(clickableId, (elems,event) => {
+    useClickHandler(clickableId, (elems,_event) => {
         const target = elems[key(eventTargetId)] || window
         loggedEvent(target,new CustomEvent(eventName))
     }, {eventTargetId})

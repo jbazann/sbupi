@@ -5,9 +5,9 @@ import {placeholders} from "@l/placeholders.shared.js";
 import {useContext} from "react";
 import {translate} from "@l/translation.server.js";
 import {Lang} from "@l/context.shared.js";
-import StaticMenu from "@c/layout/menu/StaticMenu.server.jsx";
-import BaseButton from "@c/layout/control/BaseButton.server.jsx";
-import {buttons} from "@c/layout/menu/StaticMenu.shared.js";
+import ServerMenu from "@c/layout/menu/server/ServerMenu.server.jsx";
+import BaseButton from "@c/layout/control/BaseButton.shared.jsx";
+import {buttons} from "@c/layout/menu/base/MenuConstants.shared.js";
 
 export default CatMenu
 
@@ -23,7 +23,7 @@ function CatMenu({id,parentId,routingKey}) {
     ])
 
     return <>
-        <StaticMenu key="CatMenu" menu={"cat"}
+        <ServerMenu key="CatMenu" label={"cat"}
                     id={id} parentId={parentId}
                     routingKey={routingKey}
                     bareContainer={true} >
@@ -50,6 +50,6 @@ function CatMenu({id,parentId,routingKey}) {
                                onBtn, anotherButton,
                                catImg
                            }}/>
-        </StaticMenu>
+        </ServerMenu>
     </>
 };

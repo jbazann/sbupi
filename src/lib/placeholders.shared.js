@@ -1,11 +1,11 @@
 export { placeholders }
 
 const placeholders = {
-    StaticMenuScript: 'StaticMenuScript',
+    ServerMenuScript: 'ServerMenuScript',
     ActionButtonScript: 'ActionButtonScript',
     CatMenuScript: 'CatMenuScript',
     SettingsMenuScript: 'SettingsMenuScript',
-    StaticMenuButtonScript: 'StaticMenuButtonScript',
+    ServerMenuButtonScript: 'ServerMenuButtonScript',
     OnClickDispatchEventScript: 'OnClickDispatchEventScript',
     Router: 'Router',
     Artsy: 'Artsy',

@@ -1,9 +1,9 @@
-import StaticMenu from "@c/layout/menu/StaticMenu.server.jsx";
-import BaseButton from "@c/layout/control/BaseButton.server.jsx";
+import ServerMenu from "@c/layout/menu/server/ServerMenu.server.jsx";
+import BaseButton from "@c/layout/control/BaseButton.shared.jsx";
 
 export default function LinksMenu({id, parentId, routingKey}) {
     return <>
-        <StaticMenu key="LinksMenu" menu={"links"}
+        <ServerMenu key="LinksMenu" label={"links"}
                     routingKey={routingKey}
                     id={id} parentId={parentId} >
             <BaseButton key="LinkedIn">
@@ -21,6 +21,6 @@ export default function LinksMenu({id, parentId, routingKey}) {
                     X/Twitter
                 </a>
             </BaseButton>
-        </StaticMenu>
+        </ServerMenu>
     </>
 }
