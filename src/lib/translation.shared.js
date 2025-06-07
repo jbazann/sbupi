@@ -1,6 +1,7 @@
 export {
     translate
 }
+// TODO make this file server-only again
 
 function translate(lang,key = '') {
     let val
@@ -12,6 +13,7 @@ const es = {
     misc: {
         back: 'Volver',
         apply: 'Aplicar',
+        contact: 'contacto',
         expunged: {
             header: 'EXPURGADO.',
             desc: 'A ella no le gustó esto.'
