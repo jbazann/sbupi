@@ -13,7 +13,7 @@ const es = {
     misc: {
         back: 'Volver',
         apply: 'Aplicar',
-        contact: 'contacto',
+        contact: 'contacto: mail@jbazann.dev',
         expunged: {
             header: 'EXPURGADO.',
             desc: 'A ella no le gustó esto.'
