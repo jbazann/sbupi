@@ -1,4 +1,4 @@
-import TextContainer from "@c/layout/text/TextContainer.server.jsx";
+import TextContainer from "@c/layout/text/TextContainer.shared.jsx";
 import styles from '@c/layout/text/TextContainer.module.css'
 import {useContext} from "react";
 import {Lang} from "@l/context.shared.js";

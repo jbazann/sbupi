@@ -1,7 +1,7 @@
-import TextContainer from "@c/layout/text/TextContainer.server.jsx";
+import TextContainer from "@c/layout/text/TextContainer.shared.jsx";
 import styles from '@c/layout/text/TextContainer.module.css'
 import {useContext} from "react";
-import {translate} from "@l/translation.server.js";
+import {translate} from "@l/translation.shared.js";
 import {Lang} from "@l/context.shared.js";
 
 export default function Expunged() {

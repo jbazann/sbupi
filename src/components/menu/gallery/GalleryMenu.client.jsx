@@ -1,35 +1,54 @@
 import {get} from "@l/net.shared.js";
-import ClientMenuButton from "@c/layout/menu/client/ClientMenuButton.client.jsx";
-import {useId, useRef} from "react";
-import {sid} from "@l/common.shared.js";
-import {lang} from "@l/environment.shared.js";
+import ClientMenuButton, {getBridgeRadioRef} from "@c/layout/menu/client/ClientMenuButton.client.jsx";
+import {useEffect, useId, useRef, useState} from "react";
+import {devLog, sid} from "@l/common.shared.js";
+import {devmode, lang} from "@l/environment.shared.js";
 import {radios} from "@c/layout/menu/base/MenuConstants.shared.js";
 import {createPortal} from "react-dom";
 import {id as portalId} from "@c/system/ClientMenuRoot.shared.jsx"
 import ClientMenu from "@c/layout/menu/client/ClientMenu.client.jsx";
+import Poem from "@c/menu/gallery/Poem.shared.jsx";
 
 export default GalleryMenu
 
 function GalleryMenu({parentId}) {
-    const entries = get('/w/gallery',{lang})
+    const [entries, setEntries] = useState(null)
     const id = useId()
     const radioRef = useRef(null)
-    radioRef.current = {
-        onRadio: document.getElementById(sid(parentId,radios.on)),
-        offRadio: document.getElementById(sid(parentId,radios.off))
-    }
 
+    useEffect(() => {
+        (async () => {
+            if (!entries) {
+                radioRef.current = getBridgeRadioRef(parentId)
+                setEntries(devmode ?
+                    getTestEntries() :
+                    await get('/w/gallery',{lang})
+                        .then(r => r.entries))
+            }
+        })()
+
+    })
     return <>
-        {entries.map(entry => (
+        {entries?.map(entry => (
             <ClientMenuButton key={entry.key} id={sid(id,entry.key)}
-                              label={entry.label} />
-        ))
+                              label={entry.label} /> ))
         }
-        {createPortal(entries.map(entry => (
+        {createPortal(entries?.map(entry => (
             <ClientMenu id={sid(id,entry.key)} key={entry.key}
                         label={entry.label} parentRef={radioRef} >
-            </ClientMenu>
-        )), document.getElementById(portalId))
+                <Poem title={entry.title} content={entry.content} />
+            </ClientMenu> )), document.getElementById(portalId))
         }
     </>
 }
+
+function getTestEntries() {
+    return [
+        {
+            key: 'I_d1',
+            label: 'I — Draft I',
+            version: 'unused'
+        }
+    ]
+}
+

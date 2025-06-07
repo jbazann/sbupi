@@ -36,7 +36,8 @@ export default function Page() {
             CatMenuScript: import('@c/menu/cat/CatMenuScript.jsx'),
             SettingsMenuScript: import('@c/menu/settings/SettingsMenuScript.client.jsx'),
             Router: import("@c/system/Router.shared.jsx"),
-            RoutingScript: import("@c/system/RoutingScript.jsx")
+            RoutingScript: import("@c/system/RoutingScript.jsx"),
+            GalleryMenu: import("@c/menu/gallery/GalleryMenu.client.jsx")
         }
     }
 }

@@ -1,7 +1,7 @@
 import styles from './Popover.module.css'
 import {useContext} from "react";
 import {Lang} from "@l/context.shared.js";
-import {translate} from "@l/translation.server.js";
+import {translate} from "@l/translation.shared.js";
 
 export default function Popover({children,id}) {
     const lang = useContext(Lang)

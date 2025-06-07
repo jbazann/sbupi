@@ -1,5 +1,5 @@
 import styles from './Footer.module.css'
-import {translate} from "@l/translation.server.js";
+import {translate} from "@l/translation.shared.js";
 import {useContext} from "react";
 import {Lang} from "@l/context.shared.js";
 

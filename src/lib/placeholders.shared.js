@@ -9,5 +9,6 @@ const placeholders = {
     OnClickDispatchEventScript: 'OnClickDispatchEventScript',
     Router: 'Router',
     Artsy: 'Artsy',
-    RoutingScript: 'RoutingScript'
+    RoutingScript: 'RoutingScript',
+    GalleryMenu: 'GalleryMenu'
 }

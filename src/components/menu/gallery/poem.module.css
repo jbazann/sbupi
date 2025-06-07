@@ -1,0 +1,9 @@
+.centeredContent {
+    margin-top: 4rem;
+    margin-bottom: 3rem;
+}
+
+.centeredContent {
+    text-align: center !important;
+    width: 100%;
+}

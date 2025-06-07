@@ -1,10 +1,14 @@
-import {translate} from "@l/translation.server.js";
+import {translate} from "@l/translation.shared.js";
 import {lang} from "@l/environment.shared.js";
-import {event as e, loggedEvent, sid} from "@l/common.shared.js"
-import {buttons,events} from "@c/layout/menu/base/MenuConstants.shared.js";
+import {devLog, event as e, loggedEvent, sid} from "@l/common.shared.js"
+import {buttons, events, radios} from "@c/layout/menu/base/MenuConstants.shared.js";
 import BaseButton from "@c/layout/control/BaseButton.shared.jsx";
 
 export default ClientMenuButton
+
+export {
+    getBridgeRadioRef
+}
 
 function ClientMenuButton({
                               id,
@@ -27,4 +31,17 @@ function ClientMenuButton({
             {translate(lang, labelKey) || label}
         </BaseButton>
     </>
+}
+
+function getBridgeRadioRef(parentId) {
+    const current = {
+        onRadio: {
+            current: document.getElementById(sid(parentId,radios.on))
+        },
+        offRadio: {
+            current: document.getElementById(sid(parentId,radios.off))
+        }
+    }
+    devLog(current, "CLIENT MENU — PARENT RADIOS")
+    return current
 }

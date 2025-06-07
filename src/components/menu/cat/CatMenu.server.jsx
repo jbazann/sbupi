@@ -3,7 +3,7 @@ import {devLog, ids, sid} from "@l/common.shared.js";
 import HydrationRoot from "@c/system/HydrationRoot.server.jsx";
 import {placeholders} from "@l/placeholders.shared.js";
 import {useContext} from "react";
-import {translate} from "@l/translation.server.js";
+import {translate} from "@l/translation.shared.js";
 import {Lang} from "@l/context.shared.js";
 import ServerMenu from "@c/layout/menu/server/ServerMenu.server.jsx";
 import BaseButton from "@c/layout/control/BaseButton.shared.jsx";

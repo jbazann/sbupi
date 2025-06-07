@@ -1,4 +1,4 @@
-import {translate} from "@l/translation.server.js";
+import {translate} from "@l/translation.shared.js";
 import {useContext} from "react";
 import {Lang} from "@l/context.shared.js";
 import HydrationRoot from "@c/system/HydrationRoot.server.jsx";

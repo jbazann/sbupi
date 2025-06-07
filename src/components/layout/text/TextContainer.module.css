@@ -89,3 +89,8 @@
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
+
+.centered {
+    text-align: center !important;
+    width: 100%;
+}

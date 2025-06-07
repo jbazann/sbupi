@@ -1,7 +1,7 @@
 import styles from './Options.module.css'
 import ActionButton, {kinds} from "@c/layout/control/ActionButton.server.jsx";
 import {devErr, ids} from "@l/common.shared.js";
-import {translate} from "@l/translation.server.js";
+import {translate} from "@l/translation.shared.js";
 import {useContext, useId} from "react";
 import {Lang} from "@l/context.shared.js";
 

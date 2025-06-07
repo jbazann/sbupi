@@ -3,7 +3,7 @@ import {devLog, ids} from "@l/common.shared.js";
 import Options, {Option} from "./options/Options.server.jsx";
 import HydrationRoot from "../../system/HydrationRoot.server.jsx";
 import {placeholders} from "@l/placeholders.shared.js";
-import {translate} from "@l/translation.server.js";
+import {translate} from "@l/translation.shared.js";
 import {useContext} from "react";
 import {Lang} from "@l/context.shared.js";
 import {kinds} from "@c/layout/control/ActionButton.server.jsx";

@@ -30,11 +30,10 @@ function ClientMenu({
                           kind={buttons.off} />
     </>
     return <>
-        <Menu id={id} isMainMenu={isMainMenu} bareContainer={bareContainer}
-              routingKey={routingKey} label={label}
+        <Menu id={id} bareContainer={bareContainer} label={label}
               onRadioRef={onRadio} offRadioRef={offRadio} radioGroupName={radioGroupName} >
             <MenuContainer bare={bareContainer} owns={offButton}
-                           BackButton={ <BackButton/> } >
+                           BackButton={BackButton} >
                 {children}
             </MenuContainer>
         </Menu>
@@ -42,8 +41,14 @@ function ClientMenu({
 }
 
 function useListeners(id, onRadioRef, offRadioRef, parentOnRadioRef, parentOffRadioRef) {
-    useEventListener(event(id,events.on), (_e) => setChecked(onRadioRef.current))
-    useEventListener(event(id,events.on), (_e) => setChecked(parentOffRadioRef.current))
-    useEventListener(event(id,events.off), (_e) => setChecked(offRadioRef.current))
-    useEventListener(event(id,events.off), (_e) => setChecked(parentOnRadioRef.current))
+    devLog({id, onRadioRef, offRadioRef, parentOnRadioRef, parentOffRadioRef},
+        "ClientMenu LISTENERS")
+    useEventListener(event(id,events.on), (_e) => {
+        setChecked(onRadioRef.current)
+        setChecked(parentOffRadioRef.current)
+    })
+    useEventListener(event(id,events.off), (_e) => {
+        setChecked(offRadioRef.current)
+        setChecked(parentOnRadioRef.current)
+    })
 }

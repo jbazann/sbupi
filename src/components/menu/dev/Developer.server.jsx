@@ -1,4 +1,4 @@
-import TextContainer from "@c/layout/text/TextContainer.server.jsx";
+import TextContainer from "@c/layout/text/TextContainer.shared.jsx";
 import styles from '@c/layout/text/TextContainer.module.css';
 import FootnoteRef from "@c/layout/text/footnote/FootnoteRef.server.jsx";
 import Footnote from "@c/layout/text/footnote/Footnote.server.jsx";
