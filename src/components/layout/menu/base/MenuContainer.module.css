@@ -24,4 +24,5 @@
 
 .menuContainer {
     overflow: hidden auto;
+    scrollbar-gutter: stable both-edges;
 }
