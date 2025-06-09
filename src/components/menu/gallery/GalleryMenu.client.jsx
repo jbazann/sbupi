@@ -8,6 +8,7 @@ import {createPortal} from "react-dom";
 import {id as portalId} from "@c/system/ClientMenuRoot.shared.jsx"
 import ClientMenu from "@c/layout/menu/client/ClientMenu.client.jsx";
 import Poem from "@c/menu/gallery/Poem.shared.jsx";
+import TextLoadingIndicator from "@c/layout/misc/TextLoadingIndicator.shared.jsx";
 
 export default GalleryMenu
 
@@ -17,24 +18,27 @@ function GalleryMenu({parentId}) {
     const radioRef = useRef(null)
 
     useEffect(() => {
-        (async () => {
-            if (!entries) {
-                radioRef.current = getBridgeRadioRef(parentId)
-                setEntries(devmode ?
-                    getTestEntries() :
-                    await get('/w/gallery',{lang})
-                        .then(r => r.entries))
-            }
-        })()
+        if (entries) return
+        const request = get('/w/gallery',{lang})
+        const timeout = setTimeout(async () => {
+            radioRef.current = getBridgeRadioRef(parentId)
+            setEntries(devmode ?
+                getTestEntries() :
+                (await request).entries)
+        }, 2222)
 
+        return () => clearTimeout(timeout)
     })
     return <>
+        {entries ? null :
+            <TextLoadingIndicator labels={['.','..','...']}/>
+        }
         {entries?.map(entry => (
             <ClientMenuButton key={entry.key} id={sid(id,entry.key)}
                               label={entry.label} /> ))
         }
         {createPortal(entries?.map(entry => (
-            <ClientMenu id={sid(id,entry.key)} key={entry.key}
+            <ClientMenu id={sid(id,entry.key)} key={entry.key} bareContainer={true}
                         label={entry.label} parentRef={radioRef} >
                 <Poem title={entry.title} content={entry.content} />
             </ClientMenu> )), document.getElementById(portalId))
