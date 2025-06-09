@@ -22,7 +22,7 @@ function ServerMenu({
     const [ parentOnRadio, parentOffRadio ] =
         (parentId && sids(parentId, [radios.on, radios.off])) ?? ['','']
 
-    const BackButton = () => <>
+    const BackButton = isMainMenu ? null : () => <>
         <ServerMenuButton id={id} forcedId={offButton}
                           label={'Back'} labelKey={'misc.back'}
                           kind={buttons.off} />
