@@ -9,7 +9,7 @@ function BaseButton({
                         role="menuitem",
                         classes='',
                         onClick,
-                        cue=false,
+                        cue,
                         ref
 }) {
     return <>
