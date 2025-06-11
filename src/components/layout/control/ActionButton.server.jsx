@@ -14,7 +14,7 @@ export const kinds = {
 
 export default function ActionButton({children, id, classes, disabled = false, kind = kinds.None, data = {}}) {
     return <>
-        <BaseButton id={id} classes={classes} disabled={disabled} >
+        <BaseButton id={id} classes={classes} disabled={disabled} cue={true} >
             {children}
         </BaseButton>
         <HydrationRoot comp={placeholders.ActionButtonScript}

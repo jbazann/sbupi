@@ -18,7 +18,7 @@ function ServerMenuButton({id,label,labelKey,disabled=false,kind = buttons.on, f
     route && setRoute(buttonId,route,parentRoute)
 
     return <>
-        <BaseButton id={buttonId} disabled={disabled} role="menuitem">
+        <BaseButton id={buttonId} disabled={disabled} role="menuitem" cue={true} >
             {translate(lang, labelKey) || label}
         </BaseButton>
         <HydrationRoot comp={placeholders.RoutingScript} data={{

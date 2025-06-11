@@ -9,10 +9,11 @@ function BaseButton({
                         role="menuitem",
                         classes='',
                         onClick,
+                        cue=false,
                         ref
 }) {
     return <>
-        <button disabled={disabled} id={id} role={role} data-inert={true}
+        <button disabled={disabled} id={id} role={role} data-inert={cue}
                 className={styles.baseButton + (classes ? (' ' + classes) : '')}
                 onClick={onClick} ref={ref} >
             {children}
