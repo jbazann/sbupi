@@ -49,3 +49,10 @@
         text-decoration-line: underline;
     }
 }
+
+button[data-inert] {
+    opacity: 42%;
+    &:hover, &:active, &:focus {
+        opacity: 42%;
+    }
+}

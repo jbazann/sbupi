@@ -10,6 +10,10 @@ export default function ActionButtonScript({id,kind,data}) {
         case 'Refresh': refresh(id, data); break
         case 'Attribute': attribute(id, data); break
     }
+    useEffect(() => {
+        document.getElementById(id)?.removeAttribute("data-inert")
+    }, [id]);
+    return null
 };
 
 function cookie(id, data) {

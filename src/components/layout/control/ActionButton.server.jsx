@@ -17,10 +17,8 @@ export default function ActionButton({children, id, classes, disabled = false, k
         <BaseButton id={id} classes={classes} disabled={disabled} >
             {children}
         </BaseButton>
-        {kind === kinds.None ? null :
-            <HydrationRoot comp={placeholders.ActionButtonScript}
-                           metadata={ActionButton.name}
-                           data={{id,kind,data}}/>
-        }
+        <HydrationRoot comp={placeholders.ActionButtonScript}
+                       metadata={ActionButton.name}
+                       data={{id,kind,data}}/>
     </>
 };

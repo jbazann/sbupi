@@ -12,7 +12,7 @@ function BaseButton({
                         ref
 }) {
     return <>
-        <button disabled={disabled} id={id} role={role}
+        <button disabled={disabled} id={id} role={role} data-inert={true}
                 className={styles.baseButton + (classes ? (' ' + classes) : '')}
                 onClick={onClick} ref={ref} >
             {children}
