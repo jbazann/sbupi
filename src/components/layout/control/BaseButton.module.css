@@ -51,8 +51,8 @@
 }
 
 button[data-inert] {
-    opacity: 42%;
+    opacity: 42% !important;
     &:hover, &:active, &:focus {
-        opacity: 42%;
+        opacity: 42% !important;
     }
 }
