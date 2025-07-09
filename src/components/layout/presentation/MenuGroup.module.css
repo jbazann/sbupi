@@ -1,0 +1,42 @@
+.label, .header {
+    padding-bottom: calc(2*0.22rem);
+    font-size: 1.32rem;
+    font-style: italic;
+}
+
+.group {
+    width: 100%;
+    height: fit-content;
+    margin-top: 0.72rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: safe center;
+    align-items: safe center;
+}
+
+.label {
+}
+
+.header {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: safe center;
+    align-items: safe end;
+    height: fit-content;
+    width: fit-content;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: safe center;
+    align-items: safe center;
+    border: var(--border-width) solid var(--color-border);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-radius: var(--border-radius);
+    width: fit-content;
+    min-width: 50%;
+    padding: 1rem;
+    margin: 0 0.5rem 0.5rem;
+}
