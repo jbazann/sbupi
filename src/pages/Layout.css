@@ -1,11 +1,11 @@
 :root {
 
-  --margin-y-base: 6.12vh;
+  --margin-y-base: 6.12dvh;
   --margin-x-base: 6vw;
-  --margin-y-wide: 4.12vh;
+  --margin-y-wide: 4.12dvh;
   --margin-x-wide: 9vw;
-  --margin-y-desk: 9.12vh;
-  --margin-x-desk: calc(2 * 2.12vw + 12vw);
+  --margin-y-desk: 9.12dvh;
+  --margin-x-desk: calc(2 * 2.12dvw + 12dvw);
   --margin-y: var(--margin-y-base);
   --margin-x: var(--margin-x-base);
 
@@ -20,8 +20,8 @@
 
   --border-width: 1px;
   --border-radius: 0.72rem;
-  --height: calc(100vh - 2 * var(--margin-y)); /* "calc" is slang for calculator btw */
-  --width: calc(100vw - 2 * var(--margin-x));
+  --height: calc(100dvh - 2 * var(--margin-y)); /* "calc" is slang for calculator btw */
+  --width: calc(100dvw - 2 * var(--margin-x));
   --header-height: 2.22rem;
   --header-max-height: calc(var(--height) * 0.22);
   --content-height: calc(var(--height) - 2 * min(var(--header-height), var(--header-max-height)));
