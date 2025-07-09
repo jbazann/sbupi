@@ -1,0 +1,9 @@
+.overrides {
+    padding: 0.2rem !important;
+    margin-left: 0.72rem !important;
+    font-size: 0.72rem !important;
+    border: var(--color-border) solid var(--border-width) !important;
+    border-right-width: 0 !important;
+    border-left-width: 0 !important;
+    border-radius: var(--border-radius) !important;
+}

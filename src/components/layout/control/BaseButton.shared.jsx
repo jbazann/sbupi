@@ -10,12 +10,15 @@ function BaseButton({
                         classes='',
                         onClick,
                         cue,
-                        ref
+                        ref,
+                        popoverTarget, popoverTargetAction = "toggle"
 }) {
     return <>
         <button disabled={disabled} id={id} role={role} data-inert={cue}
                 className={styles.baseButton + (classes ? (' ' + classes) : '')}
-                onClick={onClick} ref={ref} >
+                onClick={onClick} ref={ref}
+                popoverTarget={popoverTarget}
+                popoverTargetAction={popoverTargetAction} >
             {children}
         </button>
     </>
