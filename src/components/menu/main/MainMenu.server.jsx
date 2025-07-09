@@ -6,7 +6,6 @@ import CatMenu from "@c/menu/cat/CatMenu.server.jsx";
 import LinksMenu from "@c/menu/bare/LinksMenu.server.jsx";
 import ProjectsMenu from "@c/menu/projects/ProjectsMenu.server.jsx";
 import SettingsMenu from "@c/menu/settings/SettingsMenu.server.jsx";
-import Soon from "@c/menu/bare/Soon.server.jsx";
 import ClientMenuRoot from "@c/system/ClientMenuRoot.shared.jsx";
 import GalleryMenu from "@c/menu/gallery/GalleryMenu.server.jsx";
 
