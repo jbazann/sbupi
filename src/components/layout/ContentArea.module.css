@@ -11,8 +11,10 @@
     height: var(--height);
     width: var(--width);
     box-sizing: border-box;
-    border: var(--color-border) solid 1px;
-    border-radius: 0.5rem;
+    border: var(--color-border) solid var(--border-width);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-radius: var(--border-radius);
 }
 
 .header {

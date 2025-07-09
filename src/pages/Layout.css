@@ -18,6 +18,8 @@
     --margin-x: var(--margin-x-desk);
   }
 
+  --border-width: 1px;
+  --border-radius: 0.72rem;
   --height: calc(100vh - 2 * var(--margin-y)); /* "calc" is slang for calculator btw */
   --width: calc(100vw - 2 * var(--margin-x));
   --header-height: 2.22rem;
