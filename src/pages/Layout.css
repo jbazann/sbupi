@@ -85,6 +85,10 @@
     }
   }
 
+  & * {
+    scrollbar-width: thin;
+  }
+
 }
 
 * {
