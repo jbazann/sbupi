@@ -8,14 +8,20 @@
   --margin-x-desk: calc(2 * 2.12vw + 12vw);
   --margin-y: var(--margin-y-base);
   --margin-x: var(--margin-x-base);
+  --content-width-base: 100%;
+  --content-width-wide: 80%;
+  --content-width-desk: 80%;
+  --content-width: var(--content-width-base);
 
   @media (orientation: landscape) {
     --margin-y: var(--margin-y-wide);
     --margin-x: var(--margin-x-wide);
+    --content-width: var(--content-width-wide);
   }
   @media (min-width: 900px) and (orientation: landscape) {
     --margin-y: var(--margin-y-desk);
     --margin-x: var(--margin-x-desk);
+    --content-width: var(--content-width-desk);
   }
 
   --border-width: 1px;
