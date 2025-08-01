@@ -22,7 +22,7 @@ export async function onRequestGet(context) {
         size: metrics.cat_size
     }, headers = new Headers()
     headers.set('Content-Type','application/json')
-    if (metrics.cat_amount < 12000 && metrics.cat_size < gbtb(5)) context.waitUntil(fetchCats(context,metrics))
+    // if (metrics.cat_amount < 12000 && metrics.cat_size < gbtb(5)) context.waitUntil(fetchCats(context,metrics))
     return new Response(JSON.stringify(response),{headers});
 }
 
